@@ -13,7 +13,7 @@ export default function ProductDetail(){
         <div className="container">
             <div className="row page-titles">
                 <ol className="breadcrumb">
-                    <li className="breadcrumb-item active"><a href="javascript:void(0)">Layout</a></li>
+                    <li className="breadcrumb-item active"><a href="javasc~ript:void(0)">Layout</a></li>
                     <li className="breadcrumb-item"><a href="javascript:void(0)">Blank</a></li>
                 </ol>
             </div>
