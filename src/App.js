@@ -1,42 +1,68 @@
 import logo from './logo.svg';
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
 import './App.css';
 import Header from "./Component/Header";
-<<<<<<< HEAD
-import ProductDetail from './Component/Product-detail';
-import ProductList from './Component/Product-list';
-
-
-function App() {
-  return (
-    <ProductList/>
-=======
 import Login from './Component/Login';
 import Register from './Component/Register';
-import { child, getDatabase, ref, set } from 'firebase/database';
-// import {firebase } from "../firebase"
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { child, getDatabase, ref, set,get ,Database ,off,onValue} from 'firebase/database';
+import firebaseConfig from './FireBase/firebaseData';
+import ProductList from './Component/ProductList';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+
+import {products as p, products} from "./data/ProductData.js";
+import { loadProduct } from './Store/Action.js';
+
+
+
+const db = getDatabase();
+function writeUserData(userId, name, email, imageUrl) {
+  set(ref(db, 'users/' + userId), {
+    username: name,
+    email: email,
+    profile_picture : imageUrl
+  });
+}
+// Lấy dữ liệu từ đường dẫn '/products'
+// const productsRef = ref(db, 'products');
+// onValue(productsRef, (snapshot) => {
+//   const data = snapshot.val(); // Dữ liệu trong DataSnapshot
+//   console.log(data); // In ra dữ liệu lấy được từ Firebase
+// });
+// writeUserData('123456', 'Phan Thi An', '20130298@st.hcmuaf.edu.vn', '1234');
+
+ const starCountRef = ref(db, 'users');
+ onValue(starCountRef, (snapshot) => {
+   const data = snapshot.val();
+   for (const key in data) {
+    console.log(key);
+
+    const userData = data[key];
+    
+   }
+ });
 
 function App() {
+  const dispatch =useDispatch();
+    useEffect(()=>{
+      // đưa dữ liệu vào store
+      dispatch(loadProduct(products))
+    })
   
-  // const usersRef = firebase.database()
-//   const user = {
-//     id: 1,
-//     name: 'John',
-//     email: 'john@example.com',
-//     address: '123 Main St',
-//   };
-//   // Lưu trữ đối tượng dữ liệu vào collection 'users'
-//   usersRef.ref('users/' + user.id).set(user)
-//     .then(() => {
-//   console.log('Dữ liệu đã được lưu trữ vào Firebase.');
-// })
-// .catch((error) => {
-//   console.error('Lỗi khi lưu trữ dữ liệu vào Firebase: ', error);
-// });
-  return (
-   <Register></Register>
->>>>>>> 9317df37f0ff1a59129b3353b9e49d99a0b5061f
 
+  return (
+    <div>
+    <ProductList/>
+ 
+    </div>
+   
   );
+  
+ 
+ 
 }
 
 export default App;
