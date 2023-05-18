@@ -1,4 +1,6 @@
 import React from "react";
+import Header from "./Header";
+import Footer from "./Footer";
 
 import "../vendor/jquery-nice-select/css/nice-select.css"
 import "../vendor/bootstrap-select/dist/css/bootstrap-select.min.css"
@@ -9,6 +11,7 @@ import "../css/style.css"
 export default function ProductDetail(){
     return(
         <div> 
+            <Header/>
             <div className="content-body">
         <div className="container">
             <div className="row page-titles">
@@ -180,6 +183,7 @@ export default function ProductDetail(){
             </div>
         </div>
     </div>
+    <Footer/>
         </div>
         
     )
