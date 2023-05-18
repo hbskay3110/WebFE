@@ -1,16 +1,20 @@
 import React from "react";
+import Header from "./Header";
+import Footer from "./Footer"
+
 import "../vendor/jquery-nice-select/css/nice-select.css"
 import "../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"
 import "../vendor/swiper/css/swiper-bundle.min.css"
 import "../vendor/bootstrap-select/dist/css/bootstrap-select.min.css"
 import "../css/style.css"
-import Header from "./Header";
+
 
 
 
 export default function ProductList(){
     return(
         <div>
+			<Header/>
         <div className="content-body">
            
 			<div className="container">
@@ -708,6 +712,7 @@ export default function ProductList(){
 				</div>
 			</div>
 		</div>
+		<Footer/>
         </div>
     )
 }
