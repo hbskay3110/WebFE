@@ -14,7 +14,7 @@ export default function ProductDetail(){
     return(
         <div> 
             <Header/>
-			<NavHeader/>
+            <NavHeader/>
             <div className="content-body">
                 <div className="container">
             <div className="row page-titles">
