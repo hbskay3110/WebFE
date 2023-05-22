@@ -1,6 +1,9 @@
 import React from "react";
 import Header from "./Header";
 import Footer from "./Footer"
+import NavHeader from './NavHeader';
+import NavMenu from './NavMenu';
+import { Link } from "react-router-dom";
 
 import "../vendor/jquery-nice-select/css/nice-select.css"
 import "../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"
@@ -15,7 +18,10 @@ export default function ProductList(){
     return(
         <div>
 			<Header/>
-        <div className="content-body">
+			<NavHeader/>
+			<div className="d-flex">
+				<NavMenu/>
+        		<div className="content-body">
            
 			<div className="container">
 				<div className="d-flex align-items-center justify-content-between mb-4">
@@ -391,7 +397,7 @@ export default function ProductList(){
 									<div className="card-footer border-0 pt-2">
 										<div className="common d-flex align-items-center justify-content-between" >
 											<div>
-												<a href="javascript:void(0);"><h4>Cheese Burger</h4></a>
+												<Link to="/ProductDetail"><h4>Cheese Burger</h4></Link>
 												<h3 className=" mb-0 text-primary">$5.59</h3>
 											</div>
 											<div className="plus c-pointer">
@@ -711,7 +717,8 @@ export default function ProductList(){
 					</div>
 				</div>
 			</div>
-		</div>
+				</div>
+			</div>
 		<Footer/>
         </div>
     )
