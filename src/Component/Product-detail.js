@@ -4,10 +4,19 @@ import "../vendor/jquery-nice-select/css/nice-select.css"
 import "../vendor/bootstrap-select/dist/css/bootstrap-select.min.css"
 import "../vendor/swiper/css/swiper-bundle.min.css"
 import "../css/style.css"
+import Footer from "./Footer";
+import NavHeader from "./NavHeader";
+import Header from "./Header";
+import NavMenu from "./NavMenu";
+
 
 export default function ProductDetail(){
     return(
         <div> 
+               <NavHeader/>
+               <Header/>
+                <div className={"d-flex"}>
+                    <NavMenu/>
             <div className="content-body">
         <div className="container">
             <div className="row page-titles">
@@ -178,7 +187,9 @@ export default function ProductDetail(){
                 </div>
             </div>
         </div>
-    </div>
+            </div>
+            </div>
+            <Footer/>
         </div>
         
     )

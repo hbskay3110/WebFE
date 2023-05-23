@@ -12,9 +12,11 @@ import firebaseConfig from './FireBase/firebaseData';
 import ProductList from './Component/ProductList';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import {products as p, products} from "./data/ProductData.js";
+import { useState } from "react";
+
 import { loadProduct } from './Store/Action.js';
-import {Outlet} from 'react-router-dom'
+import { Outlet } from 'react-router-dom';
+
 
 
 const db = getDatabase();
@@ -33,29 +35,40 @@ function writeUserData(userId, name, email, imageUrl) {
 // });
 // writeUserData('123456', 'Phan Thi An', '20130298@st.hcmuaf.edu.vn', '1234');
 
- const starCountRef = ref(db, 'users');
- onValue(starCountRef, (snapshot) => {
-   const data = snapshot.val();
-   for (const key in data) {
-    console.log(key);
+//  const starCountRef = ref(db, 'users');
+//  onValue(starCountRef, (snapshot) => {
+//    const data = snapshot.val();
+//    for (const key in data) {
+//     console.log(key);
 
-    const userData = data[key];
+//     const userData = data[key];
     
-   }
- });
+//    }
+//  });
 
 function App() {
+  const[product,setProductList] = useState([]);
+	useEffect(()=>{
+		async function fetchPostList(){
+			const requestUrl = "http://localhost:3000/products";
+			const reponse  =  await fetch(requestUrl);
+			const reponseJson = await reponse.json();
+			console.log(reponseJson)
+			setProductList(reponseJson);
+		} 
+		fetchPostList()
+	},[])
   const dispatch =useDispatch();
     useEffect(()=>{
       // đưa dữ liệu vào store
-      dispatch(loadProduct(products))
+      dispatch(loadProduct(product))
     })
   
 
   return (
     <div>
-    <Outlet/>
- 
+      <Outlet/>
+
     </div>
    
   );
