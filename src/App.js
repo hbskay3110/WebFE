@@ -12,7 +12,6 @@ import firebaseConfig from './FireBase/firebaseData';
 import ProductList from './Component/ProductList';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-
 import {products as p, products} from "./data/ProductData.js";
 import { loadProduct } from './Store/Action.js';
 import {Outlet} from 'react-router-dom'

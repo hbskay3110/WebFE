@@ -20,6 +20,7 @@
 @import url(../vendor/perfect-scrollbar/css/perfect-scrollbar.css);
 @import url(../vendor/metismenu/css/metisMenu.min.css);
 :root {
+
     --primary: #FC8019;
     --secondary: #9D1CB2;
     --secondary-dark: #761586;

@@ -5,7 +5,6 @@ import "../vendor/bootstrap-select/dist/css/bootstrap-select.min.css"
 import "../vendor/swiper/css/swiper-bundle.min.css"
 import "../css/style.css"
 
-
 export default function ProductDetail(){
     return(
         <div> 
