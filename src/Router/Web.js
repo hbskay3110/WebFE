@@ -22,11 +22,11 @@ export const  webRouter = createBrowserRouter([{
             path:"/register",
             element:<Register/>
         },{
-        path:"listProduct",
+        path:"/listProduct",
         element:<ProductList/>
     },
     {
-        path:'product/:idProduct',
+        path:'/product/:idProduct',
         element:<ProductDetail/>,
     }]
 }])

@@ -13,14 +13,14 @@ export const products= [
     name: "Cơm sườn", 
     img: "https://cdn.tgdd.vn/Files/2022/01/25/1412805/cach-nau-pho-bo-nam-dinh-chuan-vi-thom-ngon-nhu-hang-quan-202201250230038502.jpg",
     des: "Cơm sườn thơm ngon mời bạn ăn nha",
-    price: 200000,
+    price: 210000,
   }
   ,{
     id: 7,
     name: "Cơm sườn", 
     img: "https://cdn.tgdd.vn/Files/2022/01/25/1412805/cach-nau-pho-bo-nam-dinh-chuan-vi-thom-ngon-nhu-hang-quan-202201250230038502.jpg",
     des: "Cơm sườn thơm ngon mời bạn ăn nha",
-    price: 200000,
+    price: 220000,
   }
 ]
 // Lấy dữ liệu từ đường dẫn '/products'
