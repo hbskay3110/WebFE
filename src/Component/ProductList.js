@@ -4,24 +4,39 @@ import "../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"
 import "../vendor/swiper/css/swiper-bundle.min.css"
 import "../vendor/bootstrap-select/dist/css/bootstrap-select.min.css"
 import "../css/style.css"
-import { products} from "../data/ProductData.js";
+import Footer from "./Footer";
+import NavHeader from "./NavHeader";
+import Header from "./Header";
+import NavMenu from "./NavMenu";
+
+
 import { useState, useEffect } from "react";
 import { getDatabase, ref, onValue } from "firebase/database";
 import { useSelector } from "react-redux";
 const ProductList=(props)=>{
+	const[products,setProducts] = useState([]);
+	useEffect(()=>{
+		async function fetchPostList(){
+			const requestUrl = "http://localhost:3000/products";
+			const reponse  =  await fetch(requestUrl);
+			const reponseJson = await reponse.json();
+			console.log(reponseJson)
+			setProducts(reponseJson);
+		} 
+		fetchPostList()
+	},[])
     const product = useSelector(state=> state.root.products)
+
+	console.log(product)
         return (
             <div className="content-body">
-           
-			<div className="container">
-				<div className="d-flex align-items-center justify-content-between mb-4">
-					<div className="input-group search-area2 style-1">
-						<span className="input-group-text p-0"><a href="javascript:void(0)"><svg  className="me-1" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M27.414 24.586L22.337 19.509C23.386 17.928 24 16.035 24 14C24 8.486 19.514 4 14 4C8.486 4 4 8.486 4 14C4 19.514 8.486 24 14 24C16.035 24 17.928 23.386 19.509 22.337L24.586 27.414C25.366 28.195 26.634 28.195 27.414 27.414C28.195 26.633 28.195 25.367 27.414 24.586ZM7 14C7 10.14 10.14 7 14 7C17.86 7 21 10.14 21 14C21 17.86 17.86 21 14 21C10.14 21 7 17.86 7 14Z" fill="#FC8019"/>
-						</svg>
-						</a></span>
-						<input type="text" className="form-control p-0" placeholder="What do you want eat today..."/>
-					</div>
+              <NavHeader/>
+               <Header/>
+                <div className={"d-flex"}>
+                    <NavMenu/>
+					<div className="container">
+					<div className="d-flex align-items-center justify-content-between mb-4">
+				
 					<ul className="grid-tab nav nav-pills" id="list-tab" role="tablist">
 					  <li className="nav-item" role="presentation">
 						<button className="nav-link me-3" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-list" type="button" role="tab" aria-controls="pills-list" aria-selected="true">
@@ -388,7 +403,9 @@ const ProductList=(props)=>{
 						</div>
 					</div>
 				</div>
-			</div>
+					</div>
+				</div>
+				<Footer/>
 		</div>
          
         )
