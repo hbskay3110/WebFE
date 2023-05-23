@@ -1,22 +1,15 @@
 import React from "react";
-import Header from "./Header";
-import Footer from "./Footer";
-import NavHeader from './NavHeader';
-import NavMenu from './NavMenu';
 
 import "../vendor/jquery-nice-select/css/nice-select.css"
 import "../vendor/bootstrap-select/dist/css/bootstrap-select.min.css"
 import "../vendor/swiper/css/swiper-bundle.min.css"
 import "../css/style.css"
 
-
 export default function ProductDetail(){
     return(
         <div> 
-            <Header/>
-            <NavHeader/>
             <div className="content-body">
-                <div className="container">
+        <div className="container">
             <div className="row page-titles">
                 <ol className="breadcrumb">
                     <li className="breadcrumb-item active"><a href="javasc~ript:void(0)">Layout</a></li>
@@ -184,9 +177,8 @@ export default function ProductDetail(){
                     </div>
                 </div>
             </div>
-                </div>
-            </div>
-    <Footer/>
+        </div>
+    </div>
         </div>
         
     )
