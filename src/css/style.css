@@ -33556,3 +33556,31 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
         object-fit: cover;
         border-radius: 0.5rem;
  }
+ .totalcard{
+    border-radius: 100%;
+    border: 1px solid orange;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    align-items: center;
+    margin-left: 5px;
+    margin-top: 10px;
+    margin-right: 10px;
+    background-color: var(--primary);
+    color: white;
+ }
+.namePro{
+    width:50%
+}
+.pricePro{
+    width:10%
+}
+.quatityPro{
+    width:8%
+}
+.text-center{
+    width:22%
+}
+.deletePro{
+    width:10%
+}

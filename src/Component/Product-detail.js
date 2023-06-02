@@ -17,7 +17,7 @@ export default function ProductDetail(){
                <Header/>
                 <div className={"d-flex"}>
                     <NavMenu/>
-            <div className="content-body">
+                    <div className="content-body">
         <div className="container">
             <div className="row page-titles">
                 <ol className="breadcrumb">
@@ -187,8 +187,8 @@ export default function ProductDetail(){
                 </div>
             </div>
         </div>
-            </div>
-            </div>
+                    </div>
+                </div>
             <Footer/>
         </div>
         

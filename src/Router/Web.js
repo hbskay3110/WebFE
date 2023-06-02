@@ -5,6 +5,7 @@ import App from "../App";
 import ProductDetail from "../Component/Product-detail";
 import Login from "../Component/Login";
 import Register from "../Component/Register";
+import Card from "../Component/Card"
 
 export const  webRouter = createBrowserRouter([{
     path:'/',
@@ -24,9 +25,14 @@ export const  webRouter = createBrowserRouter([{
         },{
         path:"/listProduct",
         element:<ProductList/>
-    },
-    {
-        path:'/product/:idProduct',
-        element:<ProductDetail/>,
-    }]
+        },
+        {
+        path:'/productDetail',
+        element:<ProductDetail/>
+        },
+        {
+            path:'/card',
+            element:<Card/>
+        }
+    ]
 }])
