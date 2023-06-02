@@ -18,25 +18,25 @@
   },
   "products":[
     {
-       " id": 1,
-       "name": "Phở bò", 
+       "id": 1,
+       "des": "Món phở ngon với hương vị thơm ngon đặc trưng của nước dùng và thịt bò thơm ngon",
        "img": "https://cdn.tgdd.vn/Files/2022/01/25/1412805/cach-nau-pho-bo-nam-dinh-chuan-vi-thom-ngon-nhu-hang-quan-202201250230038502.jpg",
-       " des": "Món phở ngon với hương vị thơm ngon đặc trưng của nước dùng và thịt bò thơm ngon",
+       "name": "Phở bò", 
        "price": 30000
     },{
-        " id": 2,
+        "id": 2,
         "des":"Cơm sườn thơm ngon mời bạn ăn nha",
         "img":"https://img.meta.com.vn/Data/image/2021/06/29/com-tam-0.jpg",
         "name":"Cơm sườn",
         "price":25000
     },{
-        " id": 3,
+        "id": 3,
         "des":"Món bánh mì kẹp thịt ngon với nhiều loại rau và sốt chấm",
         "img":"https://images2.thanhnien.vn/Uploaded/bienca/2022_10_07/anh-chup-man-hinh-2022-10-07-luc-172838-4541.png",
         "name":"Bánh mì thịt",
         "price":20000
     },{
-        " id": 4,
+        "id": 4,
         "des":"Món bún chả thơm ngon với chả chiên giòn và nước chấm đậm đà",
         "img":"https://sunhouse.com.vn/pic/news/images/image-20211229181528-1.jpeg",
         "name":"Bún chả",

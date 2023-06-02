@@ -13,7 +13,11 @@ import "../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"
 import "../css/style.css"
 import pic1 from '../images/banner-img/pic-1.png';
 
-export default function Header(){
+export default function Header({ onSearchChange }){
+    const handleSearchChange = (event) => {
+        const searchTerm = event.target.value;
+        onSearchChange(searchTerm);
+      };
     return (
         <div>
                 <div className="header">
@@ -41,8 +45,7 @@ export default function Header(){
 											<path d="M12.8333 18.6667C16.055 18.6667 18.6666 16.055 18.6666 12.8333C18.6666 9.61168 16.055 7 12.8333 7C9.61163 7 6.99996 9.61168 6.99996 12.8333C6.99996 16.055 9.61163 18.6667 12.8333 18.6667ZM12.8333 21C8.32297 21 4.66663 17.3437 4.66663 12.8333C4.66663 8.32301 8.32297 4.66667 12.8333 4.66667C17.3436 4.66667 21 8.32301 21 12.8333C21 17.3437 17.3436 21 12.8333 21Z" fill="var(--primary)"/>
 											</svg>
 											</a></span>
-                                                    <input type="text" className="form-control"  placeholder="What do you want eat today"/>
-
+                                                    <input type="text" className="form-control"  placeholder="What do you want eat today" onChange={handleSearchChange}/>
                                                 </div>
                                                 <div className="search-drop">
                                                     <div className="card tag-bx">
@@ -160,7 +163,7 @@ export default function Header(){
                                                         <span className="ms-2">Inbox</span>
                                                     </a>
                                                     <a href="edit-profile.html" className="dropdown-item ai-icon">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className="text-primary" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" className="text-primary feather feather-edit" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
                                                         <span className="ms-2">Edit Profile</span>
                                                     </a>
                                                     <a href="message.html" className="dropdown-item ai-icon ">
