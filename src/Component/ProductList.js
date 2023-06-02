@@ -15,23 +15,46 @@ import { getDatabase, ref, onValue } from "firebase/database";
 import { useSelector } from "react-redux";
 const ProductList=(props)=>{
 	const[products,setProducts] = useState([]);
+	const[query,setQuery] = useState("");
+	const [currentPage, setCurrentPage] = useState(1);
+  	const [itemsPerPage, setItemsPerPage] = useState(2);
+
+	
 	useEffect(()=>{
 		async function fetchPostList(){
 			const requestUrl = "http://localhost:3000/products";
+			// gửi một yêu cầu HTTP GET đến url
 			const reponse  =  await fetch(requestUrl);
+			//chuyển đổi phản hồi thành đối tượng JSON
 			const reponseJson = await reponse.json();
-			console.log(reponseJson)
+			//cập nhật giá trị của products
 			setProducts(reponseJson);
 		} 
 		fetchPostList()
 	},[])
-    const product = useSelector(state=> state.root.products)
-
+	const handleSearchChange = (searchValue) => {
+		setQuery(searchValue);
+		
+	  };
+	  // danh sách sản phẩm tìm kiếm
+	  const filteredProducts = products.filter(
+		(productitem) =>
+		  productitem.name.toLowerCase().includes(query.toLowerCase()) ||
+		  productitem.des.toLowerCase().includes(query.toLowerCase())
+	  );
+	  // vị trí đầu và cuối của danh sách
+	  const indexOfLastItem = currentPage * itemsPerPage;
+	  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+	  // lấy ra danh sách
+	  const currentItems = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
+	  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+      const product = useSelector(state=> state.root.products)
+	
 	console.log(product)
         return (
             <div className="content-body">
               <NavHeader/>
-               <Header/>
+               <Header  onSearchChange={handleSearchChange}/>
                 <div className={"d-flex"}>
                     <NavMenu/>
 					<div className="container">
@@ -374,8 +397,8 @@ const ProductList=(props)=>{
 					<div className="tab-pane fade show active" id="pills-grid" role="tabpanel" aria-labelledby="pills-grid-tab">
 						<div className="row">
 						
-                        {products.map(product=>(
-                            <Product id={product.id} name={product.name} price={product.price} img={product.img} des={product.des}></Product>
+                        {currentItems.map((productitem)=>(
+                            <Product key={productitem.id} id={productitem.id} name={productitem.name} price={productitem.price} img={productitem.img} des={productitem.des}></Product>
                         ))}
 							
 							<div className="d-flex align-items-center justify-content-xl-between justify-content-center flex-wrap pagination-bx">
@@ -388,11 +411,12 @@ const ProductList=(props)=>{
 											<a className="page-link" href="javascript:void(0)">
 												<i className="la la-angle-left"></i></a>
 										</li>
-										<li className="page-item active"><a className="page-link" href="javascript:void(0)">1</a>
-										</li>
-										<li className="page-item"><a className="page-link" href="javascript:void(0)">2</a></li>
+										{Array.from({ length: Math.ceil(filteredProducts.length / itemsPerPage) }).map((_, index) => (
+										<li key={index} className={`page-item ${currentPage === index + 1 ? 'active' : ''}`}>
+											<a className="page-link" href="javascript:void(0)" onClick={() => paginate(index + 1)}>{index + 1}</a>
 										
-										<li className="page-item"><a className="page-link" href="javascript:void(0)">3</a></li>
+										</li>
+										))}
 										<li className="page-item page-indicator">
 											<a className="page-link" href="javascript:void(0)">
 												<i className="la la-angle-right"></i></a>
