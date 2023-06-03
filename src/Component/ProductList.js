@@ -9,12 +9,13 @@ import NavHeader from "./NavHeader";
 import Header from "./Header";
 import NavMenu from "./NavMenu";
 
-
+import { fetchData, getData } from '../data/ProductData';
 import { useState, useEffect } from "react";
 import { getDatabase, ref, onValue } from "firebase/database";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { addCart } from "../Store/Action";
+import { Link } from "react-router-dom";
 const ProductList=(props)=>{
 	const[products,setProducts] = useState([]);
 	const[query,setQuery] = useState("");
@@ -448,6 +449,8 @@ const Product  =(prop)=>{
             <div className="col-xl-3 col-xxl-4 col-sm-6">
 								<div className="card dishe-bx b-hover style-1">
 										<i className="fa-solid fa-heart ms-auto c-heart c-pointer"></i>
+									
+									<Link to={`/product/${product.id}` }  state={{ product: product }}>
 									<div className="card-body pb-0 pt-3">
 										<div className="text-center mb-2">
 											<img src={product.img} alt=""/>
@@ -471,6 +474,7 @@ const Product  =(prop)=>{
 											</div>
 										</div>
 									</div>
+									</Link>
 									<div className="card-footer border-0 pt-2">
 										<div className="common d-flex align-items-center justify-content-between" >
 											<div>
