@@ -12,6 +12,7 @@ import "../vendor/swiper/css/swiper-bundle.min.css"
 import "../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"
 import "../css/style.css"
 import pic1 from '../images/banner-img/pic-1.png';
+import { Link } from "react-router-dom";
 
 export default function Header({ onSearchChange }){
     const handleSearchChange = (event) => {
@@ -141,7 +142,7 @@ export default function Header({ onSearchChange }){
                                         <li>
 
                                             <div className="header-profile2 ">
-                                                <a className="nav-link " href=""  role="button" >
+                                                <Link to="/cart">
                                                     <div className="header-info2 d-flex align-items-center">
                                                         <img src="https://banner2.cleanpng.com/20180703/vtz/kisspng-shopping-cart-software-computer-icons-mayline-5b3b72a89c95a3.3174593115306226326414.jpg" alt="avt"></img>
                                                         <div className="d-flex align-items-center sidebar-info">
@@ -152,7 +153,7 @@ export default function Header({ onSearchChange }){
                                                         </div>
 
                                                     </div>
-                                                </a>
+                                                    </Link>
                                                 
                                             </div>
                                         </li>

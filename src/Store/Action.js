@@ -14,6 +14,15 @@ export const addCart = (data, quantity=1)=>{
     } 
   }
 }
+export const updateQuantityCart = (productId, quantity)=>{
+  return {
+    type: 'cart.update',
+    payload:{
+      productId,
+      quantity
+    } 
+  }
+}
 
 
   

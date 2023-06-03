@@ -137,7 +137,7 @@ export default function ProductDetail(){
                                             
                                                 <div className="col-2 px-0  mb-2 me-3">
                                                     <input type="number" name="num" className="form-control input-btn input-number"  value={value} onChange={handleInputChange}/>
-                                                </div>
+                                                </div> 
                                                 
                                                 <div className="shopping-cart  mb-2 me-3" onClick={()=> handleAddCardClick(product,value)}>
                                                     <p className="btn btn-primary" href=""><i

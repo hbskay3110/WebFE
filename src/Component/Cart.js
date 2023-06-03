@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import clsx from "clsx";
 import "../images/favicon.png"
@@ -18,8 +18,13 @@ import NavMenu from "./NavMenu";
 
 
 export default function Cart() {
-	const cart = useSelector(state => state.cart);
+	const cart = useSelector(state => state.root.cart);
 
+	const [quantity,setQuantity]= useState(1);
+	const handleInputQuantity=(e)=>{
+		setQuantity(e.target.value);
+		console.log(cart.quantity);
+	}
     return (
         <div>
             <div id="main-wrapper">
@@ -49,23 +54,27 @@ export default function Cart() {
 									</div>
 									<div className="order-menu style-1 mt-3">
 										<h4>Order Menu</h4>
-										{cart.map(cartItem => (
-											<div className="d-flex align-items-center mb-4">
-											<img className="me-3" src={cartItem.product.img} alt=""/>
-											<div>
-												<h4 className="font-w600 text-nowrap mb-0"><a href="">{cartItem.product.name}</a></h4>
-                                                <div className="quantity-input">
-                                                <button className="quantity-input__modifier quantity-input__modifier--left" >-</button>
-                                                <input className="quantityItemCard" type="text" value="1" readonly />
-                                                <button className="quantity-input__modifier quantity-input__modifier--right" >+</button>  
-                                                </div>  
-											</div>
-                                            <button className="" >X</button>  
-											<h4 className="text-primary mb-0 ms-auto">{cartItem.product.price}</h4>
-										</div>
-										)) }
-									
-										
+										{cart ? (
+												<div>
+												{cart.map(cartItem => (
+													<div className="d-flex align-items-center mb-4">
+													<img className="me-3" src={cartItem.product.img} alt=""/>
+													<div>
+														<h4 className="font-w600 text-nowrap mb-0"><a href="">{cartItem.product.name}</a></h4>
+														<div className="quantityIp">
+														<button className="quantity-input__modifier quantity-input__modifier--left" >-</button>
+														<input className="quantityItemCard" value={quantity } onChange={handleInputQuantity} />
+														<button className="quantity-input__modifier quantity-input__modifier--right" >+</button>  
+														</div>  
+													</div>
+													<button className="" >X</button>  
+													<h4 className="text-primary mb-0 ms-auto">{cartItem.product.price}</h4>
+													</div>
+													)) }
+												</div>
+											) : (
+												<p>Cart is empty</p>
+											)}
 									</div>
 										
 									<div className="d-flex align-items-center justify-content-between">
@@ -86,6 +95,6 @@ export default function Cart() {
             </div>
             <Footer/>
         </div>
-    )
+    );
 
 }
