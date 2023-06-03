@@ -12,14 +12,23 @@ export const root = (state=initState,action)=>{
                  products: action.payload   
         };
         case 'cart.add':
-            // tạo ra đối tượng mới
-            return {
-                 ...state,
-                    cart:[
-                        ...state.cart,
-                        action.payload
-                    ]
-        };
+            const existingProduct = state.cart.find(item => item.product.id === action.payload.product.id);
+            if(existingProduct!=null){
+                return{
+                    ...state,
+                    cart:state.cart.map(item =>item.product.id === existingProduct.product.id
+                        ? { ...item, quantity: item.quantity + action.payload.quantity }: item)
+                };
+            }else{
+                return {
+                    ...state,
+                       cart:[
+                           ...state.cart,
+                           action.payload
+                       ]
+           };
+            }
+            
         default: return state;
     }
 }

@@ -10,14 +10,16 @@ import "../css/style.css"
 
 
 
-
+import { useSelector } from 'react-redux';
 import Footer from "./Footer";
 import NavHeader from "./NavHeader";
 import Header from "./Header";
 import NavMenu from "./NavMenu";
 
 
-export default function Card() {
+export default function Cart() {
+	const cart = useSelector(state => state.cart);
+
     return (
         <div>
             <div id="main-wrapper">
@@ -47,10 +49,11 @@ export default function Card() {
 									</div>
 									<div className="order-menu style-1 mt-3">
 										<h4>Order Menu</h4>
-										<div className="d-flex align-items-center mb-4">
-											<img className="me-3" src="images/popular-img/review-img/pic-1.jpg" alt=""/>
+										{cart.map(cartItem => (
+											<div className="d-flex align-items-center mb-4">
+											<img className="me-3" src={cartItem.product.img} alt=""/>
 											<div>
-												<h4 className="font-w600 text-nowrap mb-0"><a href="">Pepperoni Pizza</a></h4>
+												<h4 className="font-w600 text-nowrap mb-0"><a href="">{cartItem.product.name}</a></h4>
                                                 <div className="quantity-input">
                                                 <button className="quantity-input__modifier quantity-input__modifier--left" >-</button>
                                                 <input className="quantityItemCard" type="text" value="1" readonly />
@@ -58,8 +61,9 @@ export default function Card() {
                                                 </div>  
 											</div>
                                             <button className="" >X</button>  
-											<h4 className="text-primary mb-0 ms-auto">+$5.59</h4>
+											<h4 className="text-primary mb-0 ms-auto">{cartItem.product.price}</h4>
 										</div>
+										)) }
 									
 										
 									</div>

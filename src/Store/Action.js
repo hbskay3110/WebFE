@@ -5,13 +5,15 @@ export const loadProduct = (data)=>{
       payload: data
     }
   }
-  export const addCart = (data)=>{
-    return {
-      type: 'cart.add',
-      payload:{
-        data,
-        quatity:1
-      } 
-    }
+export const addCart = (data, quantity=1)=>{
+  return {
+    type: 'cart.add',
+    payload:{
+      product:data,
+      quantity
+    } 
   }
+}
+
+
   

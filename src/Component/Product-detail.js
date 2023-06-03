@@ -9,6 +9,8 @@ import NavHeader from "./NavHeader";
 import Header from "./Header";
 import NavMenu from "./NavMenu";
 import { useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addCart } from "../Store/Action";
 
 export default function ProductDetail(){
     const location = useLocation();
@@ -25,7 +27,10 @@ export default function ProductDetail(){
           }
 
       };
-    console.log(product)
+    const dispatch = useDispatch();
+	const handleAddCardClick = (pro,sl) => {
+		dispatch(addCart(pro,sl));
+	}
     return(
         <div> 
                <NavHeader/>
@@ -134,10 +139,10 @@ export default function ProductDetail(){
                                                     <input type="number" name="num" className="form-control input-btn input-number"  value={value} onChange={handleInputChange}/>
                                                 </div>
                                                 
-                                                <div className="shopping-cart  mb-2 me-3">
-                                                    <a className="btn btn-primary" href=""><i
+                                                <div className="shopping-cart  mb-2 me-3" onClick={()=> handleAddCardClick(product,value)}>
+                                                    <p className="btn btn-primary" href=""><i
                                                             className="fa fa-shopping-basket me-2"></i>Add
-                                                        to cart</a>
+                                                        to cart</p>
                                                 </div>
                                             </div>
                                         </div>
