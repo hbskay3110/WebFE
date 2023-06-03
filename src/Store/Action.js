@@ -8,7 +8,10 @@ export const loadProduct = (data)=>{
   export const addCart = (data)=>{
     return {
       type: 'cart.add',
-      payload: data
+      payload:{
+        data,
+        quatity:1
+      } 
     }
   }
   

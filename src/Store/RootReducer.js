@@ -15,10 +15,10 @@ export const root = (state=initState,action)=>{
             // tạo ra đối tượng mới
             return {
                  ...state,
-                 cart: [
-                    ...state,
-                    action.payload   
-                 ]
+                    cart:[
+                        ...state.cart,
+                        action.payload
+                    ]
         };
         default: return state;
     }
