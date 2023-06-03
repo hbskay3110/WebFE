@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "../vendor/jquery-nice-select/css/nice-select.css"
 import "../vendor/bootstrap-select/dist/css/bootstrap-select.min.css"
@@ -8,9 +8,24 @@ import Footer from "./Footer";
 import NavHeader from "./NavHeader";
 import Header from "./Header";
 import NavMenu from "./NavMenu";
-
+import { useLocation } from "react-router-dom";
 
 export default function ProductDetail(){
+    const location = useLocation();
+    const product = location.state.product;
+    const numberWithCommas = (number) => {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      };
+      const [value, setValue] = useState(1);
+
+      const handleInputChange = (event) => {
+        const newValue = parseInt(event.target.value);
+        if (newValue >= 1) {
+            setValue(newValue);
+          }
+
+      };
+    console.log(product)
     return(
         <div> 
                <NavHeader/>
@@ -19,12 +34,7 @@ export default function ProductDetail(){
                     <NavMenu/>
             <div className="content-body">
         <div className="container">
-            <div className="row page-titles">
-                <ol className="breadcrumb">
-                    <li className="breadcrumb-item active"><a href="javasc~ript:void(0)">Layout</a></li>
-                    <li className="breadcrumb-item"><a href="javascript:void(0)">Blank</a></li>
-                </ol>
-            </div>
+           
             <div className="row">
                 <div className="col-lg-12">
                     <div className="card">
@@ -34,31 +44,31 @@ export default function ProductDetail(){
                                    
                                     <div className="tab-content" id="nav-tabContent">
                                       <div className="tab-pane fade show active" id="nav-first" role="tabpanel" aria-labelledby="nav-first-tab">
-                                        <img className="img-fluid rounded" src="https://freepngimg.com/thumb/food/4-2-food-png.png" alt=""/>
+                                        <img className="img-fluid rounded" src={product.img} alt=""/>
                                       </div>
                                       <div className="tab-pane fade" id="nav-second" role="tabpanel" aria-labelledby="nav-second-tab">
-                                        <img className="img-fluid rounded" src="images/product/2.jpg" alt=""/>
+                                        <img className="img-fluid rounded" src={product.img} alt=""/>
                                       </div>
                                       <div className="tab-pane fade" id="nav-third" role="tabpanel" aria-labelledby="nav-third-tab">
-                                         <img className="img-fluid rounded" src="images/product/3.jpg" alt=""/>
+                                         <img className="img-fluid rounded" src={product.img} alt=""/>
                                       </div>
                                       <div className="tab-pane fade" id="nav-for" role="tabpanel" aria-labelledby="nav-for-tab">
-                                         <img className="img-fluid rounded" src="images/product/4.jpg" alt=""/>
+                                         <img className="img-fluid rounded" src={product.img} alt=""/>
                                       </div>
                                     </div>
                                     <nav>
                                       <div className="product-detail-tab nav nav-tabs" id="nav-tab" role="tablist">
                                         <button className="nav-link active" id="nav-first-tab" data-bs-toggle="tab" data-bs-target="#nav-first" type="button" role="tab" aria-controls="nav-first" aria-selected="true">
-                                            <img className="img-fluid" src="images/tab/1.jpg" alt="" width="50"/>
+                                            <img className="img-fluid" src={product.img} alt="" width="50"/>
                                         </button>
                                         <button className="nav-link" id="nav-second-tab" data-bs-toggle="tab" data-bs-target="#nav-second" type="button" role="tab" aria-controls="nav-second" aria-selected="false">
-                                            <img className="img-fluid" src="images/tab/2.jpg" alt="" width="50"/>
+                                            <img className="img-fluid" src={product.img} alt="" width="50"/>
                                         </button>
                                         <button className="nav-link" id="nav-third-tab" data-bs-toggle="tab" data-bs-target="#nav-third" type="button" role="tab" aria-controls="nav-third" aria-selected="false">
-                                            <img className="img-fluid" src="images/tab/3.jpg" alt="" width="50"/>
+                                            <img className="img-fluid" src={product.img} alt="" width="50"/>
                                         </button>
                                         <button className="nav-link" id="nav-for-tab" data-bs-toggle="tab" data-bs-target="#nav-for" type="button" role="tab" aria-controls="nav-for" aria-selected="false">
-                                            <img className="img-fluid" src="images/tab/4.jpg" alt="" width="50"/>
+                                            <img className="img-fluid" src={product.img} alt="" width="50"/>
                                         </button>
                                       </div>
                                     </nav>
@@ -68,7 +78,7 @@ export default function ProductDetail(){
                                     <div className="product-detail-content">
                                         
                                         <div className="new-arrival-content pr">
-                                            <h4>Solid Women's V-neck Dark T-Shirt</h4>
+                                            <h4>{product.name}</h4>
                                             <div className="comment-review star-rating">
                                                 <ul>
                                                     <li><i className="fa fa-star"></i></li>
@@ -80,12 +90,12 @@ export default function ProductDetail(){
                                                 <span className="review-text">(34 reviews) / </span><a className="product-review" href="#"  data-bs-toggle="modal" data-bs-target="#reviewModal">Write a review?</a>
                                             </div>
                                             <div className="d-table mb-2">
-                                                <p className="price float-start d-block">$325.00</p>
+                                                <p className="price float-start d-block">{numberWithCommas(product.price)} đ</p>
                                             </div>
                                             <p>Availability: <span className="item"> In stock <i
                                                         className="fa fa-shopping-basket"></i></span>
                                             </p>
-                                            <p>Product code: <span className="item">0405689</span> </p>
+                                            <p>Product code: <span className="item">{product.id}</span> </p>
                                             <p>Brand: <span className="item">Lee</span></p>
                                             <p>Product tags:&nbsp;&nbsp;
                                                 <span className="badge badge-success light">bags</span>
@@ -93,8 +103,7 @@ export default function ProductDetail(){
                                                 <span className="badge badge-success light">shoes</span>
                                                 <span className="badge badge-success light">dresses</span>
                                             </p>
-                                            <p className="text-content">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
-                                                If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing.</p>
+                                            <p className="text-content">{product.des}.</p>
                                             <div className="d-flex align-items-end flex-wrap mt-4">
                                                 
                                                 
@@ -122,7 +131,7 @@ export default function ProductDetail(){
                                                 </div>
                                             
                                                 <div className="col-2 px-0  mb-2 me-3">
-                                                    <input type="number" name="num" className="form-control input-btn input-number" value="1"/>
+                                                    <input type="number" name="num" className="form-control input-btn input-number"  value={value} onChange={handleInputChange}/>
                                                 </div>
                                                 
                                                 <div className="shopping-cart  mb-2 me-3">
