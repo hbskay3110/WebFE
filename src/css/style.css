@@ -33556,6 +33556,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
         object-fit: cover;
         border-radius: 0.5rem;
  }
+<<<<<<< HEAD
  .totalcard{
     border-radius: 100%;
     border: 1px solid orange;
@@ -33584,3 +33585,8 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 .deletePro{
     width:10%
 }
+=======
+ .errorLogin{
+    color: red;
+ }
+>>>>>>> e4d593b1e17acab648cb98ac120df3c6946a1b3c
