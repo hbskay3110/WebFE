@@ -23,6 +23,12 @@ export const updateQuantityCart = (productId, quantity)=>{
     } 
   }
 }
+export const setCart = (data)=>{
+  return {
+    type: 'cart.set',
+    payload:data
+  }
+}
 
 
   

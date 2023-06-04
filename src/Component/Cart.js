@@ -8,9 +8,10 @@ import "../vendor/bootstrap-select/dist/css/bootstrap-select.min.css"
 import "../vendor/swiper/css/swiper-bundle.min.css"
 import "../css/style.css"
 
-
-
+import { setCart } from "../Store/Action";
+import { useDispatch } from "react-redux";
 import { useSelector } from 'react-redux';
+import { useEffect } from "react";
 import Footer from "./Footer";
 import NavHeader from "./NavHeader";
 import Header from "./Header";
@@ -18,13 +19,35 @@ import NavMenu from "./NavMenu";
 
 
 export default function Cart() {
+	const dispatch = useDispatch();
+	// Kiểm tra xem có giỏ hàng trong Session Storage không
+	const savedCart = sessionStorage.getItem('cart');
+	if (savedCart) {
+		// Parse giỏ hàng từ JSON
+		const parsedCart = JSON.parse(savedCart);
+		// Cập nhật giỏ hàng trong Redux Store nếu có
+		dispatch(setCart(parsedCart));
+	  }
+	  //lấy cart từ store
 	const cart = useSelector(state => state.root.cart);
-
-	const [quantity,setQuantity]= useState(1);
-	const handleInputQuantity=(e)=>{
-		setQuantity(e.target.value);
-		console.log(cart.quantity);
-	}
+	
+	//tổng tiền
+	const [total, setTotal] = useState(0);
+		// Tính tổng tiền khi giỏ hàng thay đổi
+	// useEffect(() => {
+	// const calculateTotal = () => {
+	// 	let totalPrice = 0;
+	// 	for (const item of cart) {
+	// 	const price=item.product.price;
+	// 	const quantity = item.quantity;
+	// 	totalPrice += price * quantity;
+			
+	// 	}
+	// 	setTotal(totalPrice);
+	// };
+	// calculateTotal();
+	// }, [cart]);
+	// console.log(total);
     return (
         <div>
             <div id="main-wrapper">
@@ -63,7 +86,7 @@ export default function Cart() {
 														<h4 className="font-w600 text-nowrap mb-0"><a href="">{cartItem.product.name}</a></h4>
 														<div className="quantityIp">
 														<button className="quantity-input__modifier quantity-input__modifier--left" >-</button>
-														<input className="quantityItemCard" value={quantity } onChange={handleInputQuantity} />
+														<input className="quantityItemCard" value={cartItem.quantity }  />
 														<button className="quantity-input__modifier quantity-input__modifier--right" >+</button>  
 														</div>  
 													</div>
@@ -79,7 +102,7 @@ export default function Cart() {
 										
 									<div className="d-flex align-items-center justify-content-between">
 										<h4 className="font-w500 mb-0">Total</h4>
-										<h4 className="cate-title text-primary">$12.59</h4>
+										<h4>{total}</h4>
 									</div>
 								</div>
 							</div>
