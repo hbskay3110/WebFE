@@ -33556,3 +33556,6 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
         object-fit: cover;
         border-radius: 0.5rem;
  }
+ .errorLogin{
+    color: red;
+ }
