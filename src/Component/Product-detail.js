@@ -22,14 +22,18 @@ export default function ProductDetail(){
 
       const handleInputChange = (event) => {
         const newValue = parseInt(event.target.value);
-        if (newValue >= 1) {
+        if (newValue >= 0) {
             setValue(newValue);
           }
-
       };
     const dispatch = useDispatch();
-	const handleAddCardClick = (pro,sl) => {
-		dispatch(addCart(pro,sl));
+    // sự kiện click thêm sản phẩm vào cart
+	const handleAddCardClick = () => {
+        if(value<1){
+            dispatch(addCart(product,1));
+        }else{
+            dispatch(addCart(product,value));
+        }
 	}
     return(
         <div> 
@@ -139,7 +143,7 @@ export default function ProductDetail(){
                                                     <input type="number" name="num" className="form-control input-btn input-number"  value={value} onChange={handleInputChange}/>
                                                 </div> 
                                                 
-                                                <div className="shopping-cart  mb-2 me-3" onClick={()=> handleAddCardClick(product,value)}>
+                                                <div className="shopping-cart  mb-2 me-3" onClick={handleAddCardClick}>
                                                     <p className="btn btn-primary" href=""><i
                                                             className="fa fa-shopping-basket me-2"></i>Add
                                                         to cart</p>

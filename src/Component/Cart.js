@@ -8,10 +8,12 @@ import "../vendor/bootstrap-select/dist/css/bootstrap-select.min.css"
 import "../vendor/swiper/css/swiper-bundle.min.css"
 import "../css/style.css"
 
+import { removeItemCart } from "../Store/Action";
 import { setCart } from "../Store/Action";
 import { useDispatch } from "react-redux";
 import { useSelector } from 'react-redux';
 import { useEffect } from "react";
+import { updateQuantityCart } from "../Store/Action";
 import Footer from "./Footer";
 import NavHeader from "./NavHeader";
 import Header from "./Header";
@@ -21,33 +23,35 @@ import NavMenu from "./NavMenu";
 export default function Cart() {
 	const dispatch = useDispatch();
 	// Kiểm tra xem có giỏ hàng trong Session Storage không
-	const savedCart = sessionStorage.getItem('cart');
-	if (savedCart) {
+	useEffect(()=> {
+		const savedCart = sessionStorage.getItem('cart');
+		if (savedCart) {
 		// Parse giỏ hàng từ JSON
 		const parsedCart = JSON.parse(savedCart);
 		// Cập nhật giỏ hàng trong Redux Store nếu có
 		dispatch(setCart(parsedCart));
-	  }
-	  //lấy cart từ store
+	  	}
+	},[]);
+	//lấy cart từ store
 	const cart = useSelector(state => state.root.cart);
 	
 	//tổng tiền
 	const [total, setTotal] = useState(0);
-		// Tính tổng tiền khi giỏ hàng thay đổi
-	// useEffect(() => {
-	// const calculateTotal = () => {
-	// 	let totalPrice = 0;
-	// 	for (const item of cart) {
-	// 	const price=item.product.price;
-	// 	const quantity = item.quantity;
-	// 	totalPrice += price * quantity;
+	// Tính tổng tiền khi giỏ hàng thay đổi
+	useEffect(() => {
+	const calculateTotal = () => {
+		let totalPrice = 0;
+		for (const item of cart) {
+		const price=item.product.price;
+		const quantity = item.quantity;
+		totalPrice += price * quantity;
 			
-	// 	}
-	// 	setTotal(totalPrice);
-	// };
-	// calculateTotal();
-	// }, [cart]);
-	// console.log(total);
+		}
+		setTotal(totalPrice);
+	};
+	calculateTotal();
+	}, [cart]);
+
     return (
         <div>
             <div id="main-wrapper">
@@ -80,19 +84,7 @@ export default function Cart() {
 										{cart ? (
 												<div>
 												{cart.map(cartItem => (
-													<div className="d-flex align-items-center mb-4">
-													<img className="me-3" src={cartItem.product.img} alt=""/>
-													<div>
-														<h4 className="font-w600 text-nowrap mb-0"><a href="">{cartItem.product.name}</a></h4>
-														<div className="quantityIp">
-														<button className="quantity-input__modifier quantity-input__modifier--left" >-</button>
-														<input className="quantityItemCard" value={cartItem.quantity }  />
-														<button className="quantity-input__modifier quantity-input__modifier--right" >+</button>  
-														</div>  
-													</div>
-													<button className="" >X</button>  
-													<h4 className="text-primary mb-0 ms-auto">{cartItem.product.price}</h4>
-													</div>
+													<CartItem id={cartItem.product.id} img={cartItem.product.img} name={cartItem.product.name} quantity={cartItem.quantity} price={cartItem.product.price}/>
 													)) }
 												</div>
 											) : (
@@ -102,7 +94,7 @@ export default function Cart() {
 										
 									<div className="d-flex align-items-center justify-content-between">
 										<h4 className="font-w500 mb-0">Total</h4>
-										<h4>{total}</h4>
+										<h4 class="cate-title text-primary">{total}</h4>
 									</div>
 								</div>
 							</div>
@@ -120,4 +112,54 @@ export default function Cart() {
         </div>
     );
 
+}
+const CartItem = (prop) =>{
+	const dispatch = useDispatch();
+	//tính sô lượng của mỗi item
+	const [quantityItem, setQuantityItem] = useState(prop.quantity.toString());
+	//sự kiện khi thay đổi input
+	const handleInputQuantity=(e)=>{
+		const newValue =e.target.value.toString();
+ 			if(newValue>=0){
+				setQuantityItem(newValue);
+			}
+		dispatch(updateQuantityCart(prop.id,newValue));
+	}
+	// suej kiên click tăng sl
+	const handleClickIncrease=()=>{
+			const newValue =parseInt(quantityItem)+1;
+			setQuantityItem(newValue.toString());
+			dispatch(updateQuantityCart(prop.id,newValue));
+		
+	}
+	//sự kiện click giảm
+	const handleClickDecrease=()=>{
+		if(quantityItem>1){
+			const newValue =parseInt(quantityItem)-1;
+			setQuantityItem(newValue.toString());
+			dispatch(updateQuantityCart(prop.id,newValue));
+		}
+		
+	}
+	//sự kiên click remove item
+	const handleClickRemove=()=>{
+		dispatch(removeItemCart(prop.id));
+	}
+
+	return(
+		<div className="d-flex align-items-center mb-4">
+			<input className="checkboxCartItem" type="checkbox"/>
+			<img className="me-3" src={prop.img} alt=""/>
+			<div>
+			<h4 className="font-w600 text-nowrap mb-0">{prop.name}</h4>
+				<div className="quantityIp">
+				<button className="quantity-input__modifier quantity-input__modifier--left" onClick={handleClickDecrease} >-</button>
+				<input className="quantityItemCard" value={quantityItem} onChange={handleInputQuantity}/>
+				<button className="quantity-input__modifier quantity-input__modifier--right" onClick={handleClickIncrease} >+</button>  
+				</div>  
+			</div>
+			<button className="removeItemCart" onClick={handleClickRemove} >X</button>  
+			<h4 className="text-primary mb-0 ms-auto">{prop.price}</h4>
+		</div>
+	)
 }

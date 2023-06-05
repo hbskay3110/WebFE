@@ -442,8 +442,9 @@ const ProductList=(props)=>{
 const Product  =(prop)=>{
     const [product,setProduct] =useState(prop)
 	const dispatch = useDispatch();
-	const handleAddCardClick = (pro,sl) => {
-		dispatch(addCart(pro,sl));
+	// sự kiện click để thêm product vào cart
+	const handleAddCardClick = () => {
+		dispatch(addCart(product,1));
 	}
         return (
             <div className="col-xl-3 col-xxl-4 col-sm-6">
@@ -481,7 +482,7 @@ const Product  =(prop)=>{
 												<a href="javascript:void(0);"><h4>{product.name}</h4></a>
 												<h3 className=" mb-0 text-primary">{product.price} đ</h3>
 											</div>
-											<div className="plus c-pointer" onClick={()=>handleAddCardClick(product,1)}>
+											<div className="plus c-pointer" onClick={handleAddCardClick}>
 												<div className="sub-bx">
 												</div>
 											</div>
