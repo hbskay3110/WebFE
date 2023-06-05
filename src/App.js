@@ -53,7 +53,6 @@ function App() {
 			const requestUrl = "http://localhost:3000/products";
 			const reponse  =  await fetch(requestUrl);
 			const reponseJson = await reponse.json();
-			console.log(reponseJson)
 			setProductList(reponseJson);
 		} 
 		fetchPostList()
