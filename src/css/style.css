@@ -33559,3 +33559,251 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
  .errorLogin{
     color: red;
  }
+ /* checkout */
+ ------------------------------*/
+.coupon-accordion h3 {
+  background: #f6f6f6;
+  border-top: 3px orange;
+  color: #515151;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0 0 30px;
+  padding: 1em 2em 1em 3.5em;
+  position: relative;
+  /* text-transform: capitalize; */
+}
+.coupon-accordion h3 .coupon {
+  color:orange;
+  cursor: pointer;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+.coupon-accordion h3 .coupon:hover {
+  color: #000000;
+}
+
+.coupon-content {
+  border: 1px solid #dddddd;
+  margin-bottom: 30px;
+  padding: 20px;
+  display: none;
+}
+
+.coupon-info p.form-row-first {
+  float: left;
+  width: 48%;
+}
+@media only screen and (max-width: 479px) {
+  .coupon-info p.form-row-first {
+    width: 100%;
+  }
+}
+.coupon-info p.form-row-last {
+  float: right;
+  width: 48%;
+}
+@media only screen and (max-width: 479px) {
+  .coupon-info p.form-row-last {
+    width: 100%;
+  }
+}
+.coupon-info .remember {
+  margin-left: 10px;
+}
+.coupon-info .remember span {
+  margin-left: 5px;
+}
+
+.coupon-input label {
+  display: block;
+  font-size: 14px;
+}
+.coupon-input input {
+  border: 1px solid #999999;
+  color: #000000;
+  padding: 5px 10px;
+  width: 100%;
+  font-size: 14px;
+}
+.coupon-input span.required {
+  color: red;
+}
+
+.checkout-coupon input {
+  border: 1px solid #999999;
+  color: #555;
+  padding: 5px 10px;
+  width: auto;
+}
+.checkout-coupon input:focus {
+  outline: none;
+}
+.checkout-coupon .button-apply-coupon {
+  margin: -5px 0 0 10px;
+  padding: 7.2px 11px;
+}
+@media only screen and (max-width: 479px) {
+  .checkout-coupon .button-apply-coupon {
+    margin: 10px 0 0 0px;
+  }
+}
+
+.shoping-checkboxt-title {
+  border-bottom: 1px solid #dddddd;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+}
+
+.single-form-row {
+  margin-bottom: 20px !important;
+}
+.single-form-row label {
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+.single-form-row label span.required {
+  color: red;
+}
+.single-form-row input {
+  border: 1px solid #999999;
+  color: #666;
+  font-size: 14px;
+  padding: 5px 12px;
+  width: 100%;
+}
+.single-form-row input::focus {
+  outline: none;
+}
+.single-form-row textarea {
+  border: 1px solid #999999;
+  color: #555555;
+  padding: 12px;
+  width: 100%;
+  font-size: 14px;
+}
+.single-form-row.m-0 {
+  margin: 0 !important;
+}
+
+.checkout-box-wrap p {
+  font-size: 14px;
+}
+.checkout-box-wrap .ship-box-info {
+  display: none;
+}
+
+.account-create {
+  display: none;
+}
+.account-create .creat-pass > span {
+  color: red;
+}
+
+.nice-select select {
+  height: 35px;
+  width: 100%;
+  font-size: 14px;
+  padding: 0 10px;
+  color: #555;
+  border: 1px solid #999;
+}
+
+@media only screen and (max-width: 767px) {
+  .your-order-wrapper {
+    margin-top: 70px;
+  }
+}
+@media only screen and (max-width: 479px) {
+  .your-order-wrapper {
+    margin-top: 60px;
+  }
+}
+
+.your-order-wrap {
+  background: #f6f6f6;
+}
+
+.your-order-table {
+  padding: 20px 30px;
+}
+.your-order-table table {
+  width: 100%;
+}
+.your-order-table table th,
+.your-order-table table td {
+  border-bottom: 1px solid #d8d8d8;
+  border-right: medium none;
+  font-size: 14px;
+  padding: 15px 0;
+  text-align: center;
+}
+.your-order-table table th {
+  border-top: medium none;
+  font-weight: normal;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 250px;
+}
+.your-order-table table .shipping > th {
+  vertical-align: top;
+}
+
+.payment-method {
+  padding: 20px 30px;
+}
+
+.payment-accordion h3 a {
+  color: #333333;
+  font-size: 15px;
+  font-weight: 500;
+  padding-left: 31px;
+  position: relative;
+  text-decoration: none;
+  /* text-transform: capitalize; */
+}
+.payment-accordion h3 a::before,
+.payment-accordion h3 a::after {
+  content: "";
+  display: inline-block;
+  font-family: ionicons;
+  font-size: 19px;
+  left: 0;
+  position: absolute;
+  top: 0px;
+}
+.payment-accordion h3 a img {
+  height: 60px;
+  display: block;
+}
+.payment-accordion h3.open a::after {
+  content: "";
+}
+.payment-accordion p {
+  font-size: 14px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+}
+
+.order-button-payment {
+  margin-top: 30px;
+}
+.order-button-payment input {
+  background: orange;
+  border: medium none;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px;
+  text-transform: uppercase;
+  width: 100%;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+.order-button-payment input:hover {
+  background: #000000;
+  color: #ffffff;
+}
