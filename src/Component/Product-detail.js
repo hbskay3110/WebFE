@@ -9,6 +9,8 @@ import NavHeader from "./NavHeader";
 import Header from "./Header";
 import NavMenu from "./NavMenu";
 import { useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addCart } from "../Store/Action";
 
 export default function ProductDetail(){
     const location = useLocation();
@@ -20,19 +22,26 @@ export default function ProductDetail(){
 
       const handleInputChange = (event) => {
         const newValue = parseInt(event.target.value);
-        if (newValue >= 1) {
+        if (newValue >= 0) {
             setValue(newValue);
           }
-
       };
-    console.log(product)
+    const dispatch = useDispatch();
+    // sự kiện click thêm sản phẩm vào cart
+	const handleAddCardClick = () => {
+        if(value<1){
+            dispatch(addCart(product,1));
+        }else{
+            dispatch(addCart(product,value));
+        }
+	}
     return(
         <div> 
                <NavHeader/>
                <Header/>
                 <div className={"d-flex"}>
                     <NavMenu/>
-            <div className="content-body">
+                    <div className="content-body">
         <div className="container">
            
             <div className="row">
@@ -132,12 +141,12 @@ export default function ProductDetail(){
                                             
                                                 <div className="col-2 px-0  mb-2 me-3">
                                                     <input type="number" name="num" className="form-control input-btn input-number"  value={value} onChange={handleInputChange}/>
-                                                </div>
+                                                </div> 
                                                 
-                                                <div className="shopping-cart  mb-2 me-3">
-                                                    <a className="btn btn-primary" href=""><i
+                                                <div className="shopping-cart  mb-2 me-3" onClick={handleAddCardClick}>
+                                                    <p className="btn btn-primary" href=""><i
                                                             className="fa fa-shopping-basket me-2"></i>Add
-                                                        to cart</a>
+                                                        to cart</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -196,8 +205,8 @@ export default function ProductDetail(){
                 </div>
             </div>
         </div>
-            </div>
-            </div>
+                    </div>
+                </div>
             <Footer/>
         </div>
         

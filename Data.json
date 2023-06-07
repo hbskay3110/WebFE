@@ -1,9 +1,25 @@
 {
-  "posts": [
+  "order": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "email": "",
+      "products":[
+        {
+          "id": 1,
+          "des": "Món phở ngon với hương vị thơm ngon đặc trưng của nước dùng và thịt bò thơm ngon",
+          "img": "https://cdn.tgdd.vn/Files/2022/01/25/1412805/cach-nau-pho-bo-nam-dinh-chuan-vi-thom-ngon-nhu-hang-quan-202201250230038502.jpg",
+          "name": "Phở bò",
+          "price": 30000
+        }
+      ],
+      "name":"Nguyễn Trung Kiên",
+      "createAt": "typicode",
+      "address": "Linh Tây , Thủ Đức",
+      "price": 100,
+      "phone":"0345678912",
+      "note": "Cẩn thận",
+      "status":0
+
     }
   ],
   "comments": [
