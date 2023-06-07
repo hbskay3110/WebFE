@@ -33569,7 +33569,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
     background-color: var(--primary);
     color: white;
  }
-.namePro{
+/* .namePro{
     width:50%
 }
 .pricePro{
@@ -33583,7 +33583,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 .deletePro{
     width:10%
-}
+} */
  .errorLogin{
     color: red;
  }

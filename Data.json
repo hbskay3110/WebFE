@@ -22,7 +22,8 @@
       "phone": "0345678912",
       "address": "Linh Tây , Thủ Đức",
       "dob": "21/09/2002"
-    },   {
+    },
+    {
       "id": 2,
       "email": "phanan123@gmail.com",
       "pass": "phanan123",
@@ -31,7 +32,7 @@
       "address": "Linh Tây , Thủ Đức",
       "dob": "21/09/2002"
     }
-   
+    
   ],
   "products": [
     {
