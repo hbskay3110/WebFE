@@ -15570,6 +15570,7 @@ html[dir="rtl"]
   margin: 0;
   z-index: 0;
   transition: all 0.2s ease;
+  width: -webkit-fill-available
 }
 
 @media only screen and (max-width: 47.9375rem) {
@@ -51417,6 +51418,7 @@ html[dir="rtl"]
          height: 39.875rem;
         object-fit: cover;
         border-radius: 0.5rem;
+
  } */
 .totalcard {
   border-radius: 100%;
@@ -51431,6 +51433,7 @@ html[dir="rtl"]
   background-color: var(--primary);
   color: white;
 }
+
 /* .namePro{
     width:50%
 }
@@ -51445,7 +51448,7 @@ html[dir="rtl"]
 }
 .deletePro{
     width:10%
-}
+} */
  .errorLogin{
     color: red;
  } */

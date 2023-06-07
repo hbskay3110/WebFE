@@ -3,11 +3,14 @@ import Footer from "./Footer";
 import NavHeader from "./NavHeader";
 import Header from "./Header";
 import NavMenu from "./NavMenu";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 export default function OrderDetail() {
     const { id } = useParams();
     const [order, setOrder] = useState(null);
+    const numberWithCommas = (number) => {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      };
     useEffect(() => {
         const fetchOrder = async () => {
           try {
@@ -42,7 +45,7 @@ export default function OrderDetail() {
                                             <div className="col"> <strong>Estimated Delivery time:</strong> <br/>{order.createAt} </div>
                                             <div className="col"> <strong>Name:</strong> <br/>{order.name}, <br/> <i className="fa fa-phone"></i> +{order.phone} </div>
                                             <div className="col"> <strong>Address:</strong> <br/> {order.address} </div>
-                                            <div className="col"> <strong>Total Price:</strong> <br/> {order.address} </div>
+                                            <div className="col"> <strong>Total Price:</strong> <br/> {numberWithCommas(order.price)} đ</div>
                                         </div>
                                     </article>
                                     <div className="track">
@@ -53,30 +56,22 @@ export default function OrderDetail() {
                                     </div>
                                     <hr/>
                                     <ul className="row">
+                                    {order.products.map((product) => (
+                                        // <Link to={`/product/${product.id}` }  state={{ product: product }}>
                                         <li className="col-md-4">
+                                            <Link to={`/product/${product.id}` }  state={{ product: product }}>
                                             <figure className="itemside mb-3">
-                                                <div className="aside"><img src="https://i.imgur.com/iDwDQ4o.png" className="img-sm border"/></div>
+                                                <div className="aside"><img src= {product.img} className="img-sm border"/></div>
                                                 <figcaption className="info align-self-center">
-                                                    <p className="title">Dell Laptop with 500GB HDD <br/> 8GB RAM</p> <span className="text-muted">$950 </span>
+                                                    <p className="title">{product.name} x {product.quantity} </p><span className="text-muted">{numberWithCommas(product.price)} đ</span>
                                                 </figcaption>
                                             </figure>
+                                            </Link>
                                         </li>
-                                        <li className="col-md-4">
-                                            <figure className="itemside mb-3">
-                                                <div className="aside"><img src="https://i.imgur.com/tVBy5Q0.png" className="img-sm border"/></div>
-                                                <figcaption className="info align-self-center">
-                                                    <p className="title">HP Laptop with 500GB HDD <br/> 8GB RAM</p> <span className="text-muted">$850 </span>
-                                                </figcaption>
-                                            </figure>
-                                        </li>
-                                        <li className="col-md-4">
-                                            <figure className="itemside mb-3">
-                                                <div className="aside"><img src="https://i.imgur.com/Bd56jKH.png" className="img-sm border"/></div>
-                                                <figcaption className="info align-self-center">
-                                                    <p className="title">ACER Laptop with 500GB HDD <br/> 8GB RAM</p> <span className="text-muted">$650 </span>
-                                                </figcaption>
-                                            </figure>
-                                        </li>
+                                     
+                            
+                                    ))}
+                                       
                                     </ul>
                                     <hr/>
                                     <a href="#" className="btn btn-warning" data-abc="true"> <i className="fa fa-chevron-left"></i> Back to orders</a>
