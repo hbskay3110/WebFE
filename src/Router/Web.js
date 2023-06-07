@@ -8,6 +8,7 @@ import Register from "../Component/Register";
 import Cart from "../Component/Cart"
 import Checkout from "../Component/Checkout"
 import OrderDetail from "../Component/OrderDetail";
+import Account from "../Component/Account";                
 
 export const  webRouter = createBrowserRouter([{
     path:'/',
@@ -44,6 +45,11 @@ export const  webRouter = createBrowserRouter([{
         {
             path:'/orderDetail/:id',
             element:<OrderDetail/>,
-        }]
+        },
+        {
+            path:'/account',
+            element:<Account/>,
+        },
+    ]
 
 }])

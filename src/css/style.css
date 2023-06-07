@@ -35803,7 +35803,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 .form-control.active {
   box-shadow: none;
   background: #fff;
-  color: #7e808c;
+  color: #1b1401;
 }
 .form-control:focus {
   border-color: var(--primary);
@@ -51915,3 +51915,4 @@ p {
   border-color: #ff2b00;
   border-radius: 1px;
 }
+
