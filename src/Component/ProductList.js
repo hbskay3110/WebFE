@@ -21,7 +21,7 @@ const ProductList=(props)=>{
 	const[query,setQuery] = useState("");
 	const [currentPage, setCurrentPage] = useState(1);
   	const [itemsPerPage, setItemsPerPage] = useState(2);
-	
+	  
 	
 	useEffect(()=>{
 		async function fetchPostList(){
@@ -446,6 +446,9 @@ const Product  =(prop)=>{
 	const handleAddCardClick = () => {
 		dispatch(addCart(product,1));
 	}
+	const numberWithCommas = (number) => {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      };
         return (
             <div className="col-xl-3 col-xxl-4 col-sm-6">
 								<div className="card dishe-bx b-hover style-1">
@@ -480,7 +483,7 @@ const Product  =(prop)=>{
 										<div className="common d-flex align-items-center justify-content-between" >
 											<div>
 												<a href="javascript:void(0);"><h4>{product.name}</h4></a>
-												<h3 className=" mb-0 text-primary">{product.price} đ</h3>
+												<h3 className=" mb-0 text-primary">{numberWithCommas(product.price)} đ</h3>
 											</div>
 											<div className="plus c-pointer" onClick={handleAddCardClick}>
 												<div className="sub-bx">

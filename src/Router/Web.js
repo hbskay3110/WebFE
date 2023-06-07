@@ -6,6 +6,8 @@ import ProductDetail from "../Component/Product-detail";
 import Login from "../Component/Login";
 import Register from "../Component/Register";
 import Cart from "../Component/Cart"
+import Checkout from "../Component/Checkout"
+import OrderDetail from "../Component/OrderDetail";
 
 export const  webRouter = createBrowserRouter([{
     path:'/',
@@ -22,17 +24,26 @@ export const  webRouter = createBrowserRouter([{
         {
             path:"/register",
             element:<Register/>
-        },{
-        path:"/listProduct",
-        element:<ProductList/>
+        }
+        ,{
+            path:"/listProduct",
+            element:<ProductList/>
         },
         {
-        path:'/product/:idProduct',
-        element:<ProductDetail/>
+            path:'/product/:idProduct',
+            element:<ProductDetail/>,
+        },
+        {
+            path:'/checkout',
+            element:<Checkout/>,
         },
         {
             path:'/cart',
             element:<Cart/>
-        }
-    ]
+        },
+        {
+            path:'/orderDetail/:id',
+            element:<OrderDetail/>,
+        }]
+
 }])

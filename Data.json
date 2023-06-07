@@ -1,9 +1,33 @@
 {
-  "posts": [
+  "order": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "email": "",
+      "products":[
+        {
+          "id": 1,
+          "des": "Món phở ngon với hương vị thơm ngon đặc trưng của nước dùng và thịt bò thơm ngon",
+          "img": "https://cdn.tgdd.vn/Files/2022/01/25/1412805/cach-nau-pho-bo-nam-dinh-chuan-vi-thom-ngon-nhu-hang-quan-202201250230038502.jpg",
+          "name": "Phở bò",
+          "price": 30000,
+          "quantity": 2
+        },{
+          "id": 3,
+          "des": "Món bánh mì kẹp thịt ngon với nhiều loại rau và sốt chấm",
+          "img": "https://images2.thanhnien.vn/Uploaded/bienca/2022_10_07/anh-chup-man-hinh-2022-10-07-luc-172838-4541.png",
+          "name": "Bánh mì thịt",
+          "price": 20000,
+          "quantity": 1
+        }
+      ],
+      "name":"Nguyễn Trung Kiên",
+      "createAt": "typicode",
+      "address": "Linh Tây , Thủ Đức",
+      "price": 100000,
+      "phone":"0345678912",
+      "note": "Cẩn thận",
+      "status":0
+
     }
   ],
   "comments": [
