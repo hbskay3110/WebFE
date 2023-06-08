@@ -136,12 +136,15 @@ export default function Register(){
                 // dob: "21/09/2002"
             };
             try {
-            
+            // Sử dụng phương thức fetch để gửi yêu cầu tới API
             const response = await fetch("http://localhost:3000/account", {
+                // sử dụng POST để tạo một tài khoản mới.
                 method: "POST",
+                // Đặt tiêu đề yêu cầu để chỉ định rằng dữ liệu được gửi đi là dạng JSON.
                 headers: {
                 "Content-Type": "application/json",
                 },
+                // Chuyển đổi đối tượng JavaScript userData thành một chuỗi JSON, và gán nó vào thuộc tính body của yêu cầu
                 body: JSON.stringify(userData),
             });
         
