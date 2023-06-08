@@ -40,11 +40,11 @@
   "account": [
     {
       "id": 1,
-      "email": "phanthian@gmail.com",
+      "email": "phanan123@gmail.com",
       "pass": "phanan123",
       "name": "Phan Thị An",
-      "phone": "03456789121111",
-      "address": "Linh Tây , Thủ Đức,2222",
+      "phone": "0345678912",
+      "address": "Linh Tây , Thủ Đức",
       "dob": "21/09/2002"
     },
     {

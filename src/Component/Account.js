@@ -20,23 +20,31 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 export default function Home() {
-  var [account, setAccount] =useState(null);
+  const [account, setAccount] = useState(null);
+
   //kiểm tra có account trong localStorage không
-  useEffect(()=> {
-		const checkUser = localStorage.getItem("user-info");
-		if (checkUser) {
-		setAccount(JSON.parse(checkUser));
+  useEffect(() => {
+    const checkUser = localStorage.getItem("user-info");
+    if (checkUser) {
+      setAccount(JSON.parse(checkUser));
+    } else {
+      setAccount(null);
     }
-	},[]);
+  }, [account]);
+
   const [tab, setTab] = useState(0);
   //sự kiện chọn tab account
-  const handleChooseTabAccount=()=>{
-      setTab(0);
-  }
+  const handleChooseTabAccount = () => {
+    setTab(0);
+  };
   //sự kiện chọn tab changePass
-  const handleChooseTabChangeP=()=>{
-      setTab(1);
-  }
+  const handleChooseTabChangeP = () => {
+    setTab(1);
+  };
+  //sự kiên đăng xuất
+  const handleChooseLogout = () => {
+    localStorage.removeItem("user-info");
+  };
 
   return (
     <div>
@@ -58,14 +66,17 @@ export default function Home() {
                       >
                         <a
                           href="#"
-                          className={`${tab==0?"nav-link active setting-bx d-flex":"nav-link setting-bx d-flex"}`}
+                          className={`${
+                            tab == 0
+                              ? "nav-link active setting-bx d-flex"
+                              : "nav-link setting-bx d-flex"
+                          }`}
                           id="pills-account-tab"
                           data-bs-toggle="tab"
                           data-bs-target="#pills-account"
                           role="tab"
                           aria-controls="pills-account"
                           aria-selected="true"
-                          
                         >
                           <svg
                             width="24"
@@ -83,16 +94,25 @@ export default function Home() {
                               fill="#3D4152"
                             />
                           </svg>
-                          <div className="setting-info" onClick={handleChooseTabAccount}>
+                          <div
+                            className="setting-info"
+                            onClick={handleChooseTabAccount}
+                          >
                             <h6>Account</h6>
                             <p className="mb-0">
-                            Efficiently managing user accounts, ensuring secure access, and maintaining personalized settings.
+                              Efficiently managing user accounts, ensuring
+                              secure access, and maintaining personalized
+                              settings.
                             </p>
                           </div>
                         </a>
                         <a
                           href="#"
-                          className={`${tab==1?"nav-link active setting-bx d-flex":"nav-link setting-bx d-flex"}`}
+                          className={`${
+                            tab == 1
+                              ? "nav-link active setting-bx d-flex"
+                              : "nav-link setting-bx d-flex"
+                          }`}
                           id="pills-notification-tab"
                           data-bs-toggle="tab"
                           data-bs-target="#pills-notification"
@@ -116,11 +136,49 @@ export default function Home() {
                               fill="#3D4152"
                             />
                           </svg>
-                          <div className="setting-info" onClick={handleChooseTabChangeP}>
+                          <div
+                            className="setting-info"
+                            onClick={handleChooseTabChangeP}
+                          >
                             <h6>Change password</h6>
                             <p className="mb-0">
-                            Change password allows users to update their existing password for enhanced security and account protection.
+                              Change password allows users to update their
+                              existing password for enhanced security and
+                              account protection.
                             </p>
+                          </div>
+                        </a>
+                        <a
+                          href="#"
+                          className="nav-link setting-bx d-flex"
+                          id="pills-notification-tab"
+                          data-bs-toggle="tab"
+                          data-bs-target="#pills-notification"
+                          role="tab"
+                          aria-controls="pills-notification"
+                          aria-selected="false"
+                        >
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12.0003 22.5C11.8942 22.4995 11.7894 22.4765 11.6928 22.4325C7.55282 20.595 4.79282 17.01 3.44282 11.7675L2.25032 6.93C2.21223 6.77899 2.22209 6.61987 2.27854 6.47473C2.33498 6.32958 2.43521 6.2056 2.56532 6.12L3.12032 5.7525C5.79533 3.97063 8.69586 2.55315 11.7453 1.5375C11.8987 1.48659 12.0644 1.48659 12.2178 1.5375C15.2677 2.5555 18.1682 3.97551 20.8428 5.76L21.3978 6.1275C21.5333 6.20741 21.6402 6.32789 21.7035 6.4719C21.7668 6.61591 21.7831 6.77617 21.7503 6.93L20.5428 11.7675C19.2303 17.0175 16.4628 20.595 12.2928 22.4325C12.2009 22.4745 12.1014 22.4974 12.0003 22.5ZM3.85532 7.08L4.93532 11.4C6.09782 16.0425 8.47532 19.245 12.0003 20.925C15.5253 19.245 17.9028 16.0425 19.0653 11.4075L20.1453 7.0875L20.0328 7.0125C17.5381 5.34834 14.8381 4.01472 12.0003 3.045C9.16549 4.01281 6.46803 5.34389 3.97532 7.005L3.85532 7.08Z"
+                              fill="#3D4152"
+                            />
+                            <path
+                              d="M12.4357 1.6425C12.3395 1.57281 12.2282 1.52695 12.1108 1.50869C11.9935 1.49044 11.8735 1.50031 11.7607 1.5375C8.71343 2.55612 5.81545 3.97611 3.14318 5.76L2.58818 6.1275C2.45543 6.20953 2.35157 6.33093 2.29107 6.47477C2.23058 6.61862 2.21646 6.77775 2.25068 6.93L3.45818 11.7675C4.77068 17.0175 7.53818 20.595 11.7082 22.4325C11.8216 22.4805 11.9451 22.4999 12.0677 22.4889C12.1904 22.4779 12.3085 22.4369 12.4115 22.3694C12.5146 22.3019 12.5994 22.2101 12.6586 22.1021C12.7177 21.9941 12.7493 21.8732 12.7507 21.75V2.25C12.7501 2.13102 12.7213 2.01387 12.6665 1.90823C12.6117 1.8026 12.5326 1.71152 12.4357 1.6425Z"
+                              fill="#3D4152"
+                            />
+                          </svg>
+                          <div
+                            className="setting-info"
+                            onClick={handleChooseLogout}
+                          >
+                            <h6>Log out</h6>
                           </div>
                         </a>
                       </div>
@@ -130,96 +188,47 @@ export default function Home() {
                 <div className="col-xl-8">
                   <div className="tab-content" id="pills-tabContent">
                     <div
-                      className={`${tab==0?"tab-pane fade show active":"tab-pane fade"}`}
-                    //   className="tab-pane fade show active"
+                      className={`${
+                        tab == 0 ? "tab-pane fade show active" : "tab-pane fade"
+                      }`}
+                      //   className="tab-pane fade show active"
                       id="pills-account"
                       role="tabpanel"
                       tabindex="0"
                       aria-labelledby="pills-account-tab"
-                     
                     >
                       <div className="setting-right">
                         <div className="card">
                           <div className="card-body">
                             <h3 className="mb-4">Account</h3>
-                            {account ? <AccountForm id={account.id} email={account.email} pass={account.pass} name={account.name} phone={account.phone} dob={account.dob} address={account.address}/>
-                            :<AccountFormLogin/>}
+                            {account ? (
+                              <AccountForm id={account.id} />
+                            ) : (
+                              <AccountFormLogin />
+                            )}
                           </div>
                         </div>
                       </div>
                     </div>
                     <div
-                      className={`${tab==1?"tab-pane fade show active":"tab-pane fade"}`}
-                    //   className="tab-pane fade"
+                      className={`${
+                        tab == 1 ? "tab-pane fade show active" : "tab-pane fade"
+                      }`}
+                      //   className="tab-pane fade"
                       id="pills-notification"
                       role="tabpanel"
                       tabindex="0"
                       aria-labelledby="pills-notification-tab"
                     >
-                       <div className="setting-right">
+                      <div className="setting-right">
                         <div className="card">
                           <div className="card-body">
                             <h3 className="mb-4">Change password</h3>
-                            {account?(<div className="row">
-                              <div className="col-xl-6 col-sm-6">
-                                <div className="setting-input">
-                                  <label
-                                    for="exampleInputtext"
-                                    className="form-label"
-                                  >
-                                    Email
-                                  </label>
-                                  <input
-                                    type="text"
-                                    className="form-control"
-                                    id="exampleInputtext"
-                                    placeholder="Nguyen Van A"
-                                  />
-                                </div>
-                              </div>
-                              <div className="col-xl-6 col-sm-6">
-                                <div className="setting-input">
-                                  <label
-                                    for="exampleInputnumber"
-                                    className="form-label"
-                                  >
-                                    Password
-                                  </label>
-                                  <input
-                                    type="password"
-                                    className="form-control"
-                                    id="exampleInputnumber"
-                                    placeholder="********"
-                                  />
-                                </div>
-                                <div className="setting-input">
-                                  <label
-                                    for="exampleInputPassword1"
-                                    className="form-label"
-                                  >New Password
-                                  </label>
-                                  <input
-                                    type="password"
-                                    className="form-control"
-                                    id="exampleInputPassword1"
-                                    placeholder="********"
-                                  />
-                                </div>
-                                <a
-                                  href="javascript:void(0);"
-                                  className="btn btn-primary float-end w-50 btn-md"
-                                >
-                                  Save
-                                </a>
-                              </div>
-                            </div>):(<div className="row">
-                              <div className="col-xl-6 col-sm-6">
-                                <div className="setting-input">
-                                  <p>Customer has not logged into account</p>
-                                </div>
-                                {/* <button className="loginbtnAc" onClick={handleClickLogin}>Login</button>        */}
-                              </div>
-                            </div>)}
+                            {account ? (
+                              <AccountFormChangeP id={account.id} />
+                            ) : (
+                              <AccountFormLogin />
+                            )}
                           </div>
                         </div>
                       </div>
@@ -235,136 +244,309 @@ export default function Home() {
     </div>
   );
 }
+
 const AccountForm = (props) => {
-  const [name, setName] = useState(props.name);
-  const [phone, setPhone] = useState(props.phone);
-  const [dob, setDob] = useState(props.dob);
-  const [address, setAddress] = useState(props.address);
+  const [acc, setAcc] = useState(null);
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [dob, setDob] = useState("");
+  const [address, setAddress] = useState("");
+  const [message, setMessage] = useState("");
+  //load account
+  useEffect(() => {
+    async function fetchPostList() {
+      const requestUrl = "http://localhost:3000/account/" + props.id;
+      // gửi một yêu cầu HTTP GET đến url
+      const reponse = await fetch(requestUrl);
+      //chuyển đổi phản hồi thành đối tượng JSON
+      const reponseJson = await reponse.json();
+      //cập nhật giá trị của products
+      setAcc(reponseJson);
+    }
+    fetchPostList();
+  }, []);
+
+  useEffect(() => {
+    // kiểm tra sự thay đổi của acc, nếu đã load xong
+    if (acc) {
+      setName(acc.name);
+      setPhone(acc.phone);
+      setDob(acc.dob);
+      setAddress(acc.address);
+    }
+  }, [acc]);
+
+  // Nếu account chưa load xong
+  if (acc === null) {
+    return <div>Loading...</div>;
+  }
+  // cập nhật info acc lên server
   const updateAccountOnServer = async (updatedAccount) => {
     try {
-      const response = await fetch('http://localhost:3000/account/' + updatedAccount.id, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(updatedAccount)
-      });
+      const response = await fetch(
+        "http://localhost:3000/account/" + updatedAccount.id,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedAccount),
+        }
+      );
       const responseData = await response.json();
+      setMessage("Update successful !!!");
+
+      // cập nhật dữ liệu vào local
+      updatedAccount.pass = "";
+      localStorage.setItem("user-info", JSON.stringify(updatedAccount));
       console.log(responseData); // Dữ liệu phản hồi từ server
     } catch (error) {
+      setMessage("Update failed !!!");
       console.error(error);
     }
+
+    setTimeout(() => {
+      setMessage("");
+    }, 5000);
   };
-  
+
   // sự kiện update info account
-  const handleClickUpdateInfo=()=>{
+  const handleClickUpdateInfo = () => {
     //tạo account với thông tin mới
     const updatedAccount = {
-      id: props.id,
-      email:props.email,
-      pass: props.pass,
+      id: acc.id,
+      email: acc.email,
+      pass: acc.pass,
       name: name,
       phone: phone,
       address: address,
-      dob: dob
+      dob: dob,
     };
-      updateAccountOnServer(updatedAccount);
-  }
+    updateAccountOnServer(updatedAccount);
+  };
   return (
-      <div className="row">
-          <div className="col-xl-6 col-sm-6">
-            <div className="setting-input">
-              <label
-                for="exampleInputtext"
-                className="form-label"
-              >
-                Name
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="exampleInputtext"
-                placeholder="Nguyen Van A"
-                value={name}
-                onChange={(e)=>setName(e.target.value.toString())}
-                
-              />
-            </div>
-            <div className="setting-input">
-              <label
-                for="exampleInputEmail1"
-                className="form-label"
-              >
-                Phone
-              </label>
-              <input
-                type="email"
-                className="form-control"
-                id="exampleInputEmail1"
-                placeholder="+1233456778"
-                value={phone}
-                onChange={(e)=> setPhone(e.target.value.toString())}
-              />
-            </div>
-          </div>
-          <div className="col-xl-6 col-sm-6">
-            <div className="setting-input">
-              <label
-                for="exampleInputnumber"
-                className="form-label"
-              >
-                D.O.B
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="exampleInputnumber"
-                placeholder="dd/mm/yyyy"
-                value={dob}
-                onChange={(e)=>setDob(e.target.value.toString())}
-              />
-            </div>
-            <div className="setting-input">
-              <label
-                for="exampleInputPassword1"
-                className="form-label"
-              >
-                Address
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="exampleInputPassword1"
-                placeholder="Street, commune, district, province/city"
-                value={address}
-                onChange={(e) =>setAddress(e.target.value.toString())}
-              />
-            </div>
-            <a
-              href="javascript:void(0);"
-              className="btn btn-primary float-end w-50 btn-md"
-              onClick={handleClickUpdateInfo}
-            >
-              Update
-            </a>
-          </div>
+    <div className="row">
+      <div className="col-xl-6 col-sm-6">
+        <div className="setting-input">
+          <label for="exampleInputtext" className="form-label">
+            Name
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="exampleInputtext"
+            placeholder="Nguyen Van A"
+            value={name}
+            onChange={(e) => setName(e.target.value.toString())}
+          />
         </div>
+        <div className="setting-input">
+          <label for="exampleInputEmail1" className="form-label">
+            Phone
+          </label>
+          <input
+            type="email"
+            className="form-control"
+            id="exampleInputEmail1"
+            placeholder="+1233456778"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value.toString())}
+          />
+        </div>
+        <p className="messAcount">{message}</p>
+      </div>
+      <div className="col-xl-6 col-sm-6">
+        <div className="setting-input">
+          <label for="exampleInputnumber" className="form-label">
+            D.O.B
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="exampleInputnumber"
+            placeholder="dd/mm/yyyy"
+            value={dob}
+            onChange={(e) => setDob(e.target.value.toString())}
+          />
+        </div>
+        <div className="setting-input">
+          <label for="exampleInputPassword1" className="form-label">
+            Address
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="exampleInputPassword1"
+            placeholder="Street, commune, district, province/city"
+            value={address}
+            onChange={(e) => setAddress(e.target.value.toString())}
+          />
+        </div>
+        <a
+          href="javascript:void(0);"
+          className="btn btn-primary float-end w-50 btn-md"
+          onClick={handleClickUpdateInfo}
+        >
+          Update
+        </a>
+      </div>
+    </div>
   );
 };
 const AccountFormLogin = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   //sự kiện click chuyến đên login
-  const handleClickLogin=()=>{
+  const handleClickLogin = () => {
     navigate("/login");
-  }
+  };
   return (
     <div className="row">
-    <div className="col-xl-6 col-sm-6">
-      <div className="setting-input">
-        <p>Customer has not logged into account</p>
+      <div className="col-xl-6 col-sm-6">
+        <div className="setting-input">
+          <p>Customer has not logged into account</p>
+        </div>
+        <button className="loginbtnAc" onClick={handleClickLogin}>
+          Login
+        </button>
       </div>
-      <button className="loginbtnAc" onClick={handleClickLogin}>Login</button>       
     </div>
-  </div>
+  );
+};
+const AccountFormChangeP = (props) => {
+  const [oldPass, setOldPass] = useState("");
+  const [newPass, setNewPass] = useState("");
+  const [pass, setPass] = useState("");
+  const [mess, setMess] = useState("");
+  const [acc, setAcc] = useState(null);
+
+  //load account
+  useEffect(() => {
+    async function fetchPostList() {
+      const requestUrl = "http://localhost:3000/account/" + props.id;
+      // gửi một yêu cầu HTTP GET đến url
+      const reponse = await fetch(requestUrl);
+      //chuyển đổi phản hồi thành đối tượng JSON
+      const reponseJson = await reponse.json();
+      //cập nhật giá trị của products
+      setAcc(reponseJson);
+    }
+    fetchPostList();
+  }, []);
+
+  useEffect(() => {
+    // kiểm tra sự thay đổi của acc, nếu đã load xong
+    if (acc) {
+      setPass(acc.pass);
+    }
+  }, [acc]);
+
+  // Nếu account chưa load xong
+  if (acc === null) {
+    return <div>Loading...</div>;
+  }
+
+  // cập nhật account lên server
+  const updateAccountOnServer = async (updatedAccount) => {
+    try {
+      const response = await fetch(
+        "http://localhost:3000/account/" + updatedAccount.id,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedAccount),
+        }
+      );
+      const responseData = await response.json();
+      setMess("Change password successful !!!");
+      console.log(responseData); // Dữ liệu phản hồi từ server
+    } catch (error) {
+      setMess("Password change failed !!!");
+      console.error(error);
+    }
+  };
+
+  //sự kiện click change pass
+  const handleClickChangePass = () => {
+    // kiểm tra mật khẩu
+    if (pass.toString() === oldPass.toString()) {
+      if (newPass.trim().length < 8) {
+        setMess("Password must be at least 8 characters !!!");
+      } else {
+        const updatedAccount = {
+          id: props.id,
+          email: props.email,
+          pass: newPass,
+          name: props.name,
+          phone: props.phone,
+          address: props.address,
+          dob: props.dob,
+        };
+        updateAccountOnServer(updatedAccount);
+      }
+    } else {
+      setMess("Wrong password !!!");
+    }
+    setTimeout(() => {
+      setMess("");
+    }, 5000);
+    setOldPass("");
+    setNewPass("");
+  };
+
+  return (
+    <div className="row">
+      <div className="col-xl-6 col-sm-6">
+        <div className="setting-input">
+          <label for="exampleInputtext" className="form-label">
+            Email
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="exampleInputtext"
+            disabled
+            value={acc.email}
+          />
+        </div>
+        <p className="messAcount">{mess}</p>
+      </div>
+      <div className="col-xl-6 col-sm-6">
+        <div className="setting-input">
+          <label for="exampleInputnumber" className="form-label">
+            Password
+          </label>
+          <input
+            type="password"
+            className="form-control"
+            id="exampleInputnumber"
+            placeholder="********"
+            value={oldPass}
+            onChange={(e) => setOldPass(e.target.value.toString())}
+          />
+        </div>
+        <div className="setting-input">
+          <label for="exampleInputPassword1" className="form-label">
+            New Password
+          </label>
+          <input
+            type="password"
+            className="form-control"
+            id="exampleInputPassword1"
+            placeholder="********"
+            value={newPass}
+            onChange={(e) => setNewPass(e.target.value.toString())}
+          />
+        </div>
+        <a
+          href="javascript:void(0);"
+          className="btn btn-primary float-end w-50 btn-md"
+          onClick={handleClickChangePass}
+        >
+          Save
+        </a>
+      </div>
+    </div>
   );
 };

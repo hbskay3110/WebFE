@@ -51937,4 +51937,7 @@ p {
   color: white;
   background-color: var(--primary);
 }
-
+.messAcount{
+  font-size: 15px;
+  color: var(--primary);
+}
