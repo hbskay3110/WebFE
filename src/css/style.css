@@ -51915,4 +51915,26 @@ p {
   border-color: #ff2b00;
   border-radius: 1px;
 }
+.loginbtnAc{
+  color: #ffffff;
+  background-color: var(--primary);
+  border-color: var(--primary);
+  border-radius: 4px;
+  width: 80px;
+  height: 40px;
+  font-size: 20px;
+}
+.removeItemCart {
+  height: 20px;
+  width: 20px;
+  margin-left: 40px;
+  border: 0.2px solid #00000030;
+  border-radius: 100%;
+  background-color: transparent;
+  display: inline;
+}
+.removeItemCart:hover {
+  color: white;
+  background-color: var(--primary);
+}
 

@@ -16,16 +16,27 @@ import NavHeader from "./NavHeader";
 import Header from "./Header";
 import NavMenu from "./NavMenu";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Home() {
-    const [tab, setTab] = useState(0);
-    const handleChooseTabAccount=()=>{
-        setTab(0);
+  var [account, setAccount] =useState(null);
+  //kiểm tra có account trong localStorage không
+  useEffect(()=> {
+		const checkUser = localStorage.getItem("user-info");
+		if (checkUser) {
+		setAccount(JSON.parse(checkUser));
     }
-    const handleChooseTabChangeP=()=>{
-        setTab(1);
-    }
-    console.log("aa "+tab);
+	},[]);
+  const [tab, setTab] = useState(0);
+  //sự kiện chọn tab account
+  const handleChooseTabAccount=()=>{
+      setTab(0);
+  }
+  //sự kiện chọn tab changePass
+  const handleChooseTabChangeP=()=>{
+      setTab(1);
+  }
 
   return (
     <div>
@@ -131,74 +142,8 @@ export default function Home() {
                         <div className="card">
                           <div className="card-body">
                             <h3 className="mb-4">Account</h3>
-                            <div className="row">
-                              <div className="col-xl-6 col-sm-6">
-                                <div className="setting-input">
-                                  <label
-                                    for="exampleInputtext"
-                                    className="form-label"
-                                  >
-                                    Name
-                                  </label>
-                                  <input
-                                    type="text"
-                                    className="form-control"
-                                    id="exampleInputtext"
-                                    placeholder="Nguyen Van A"
-                                  />
-                                </div>
-                                <div className="setting-input">
-                                  <label
-                                    for="exampleInputEmail1"
-                                    className="form-label"
-                                  >
-                                    Phone
-                                  </label>
-                                  <input
-                                    type="email"
-                                    className="form-control"
-                                    id="exampleInputEmail1"
-                                    placeholder="+1233456778"
-                                  />
-                                </div>
-                              </div>
-                              <div className="col-xl-6 col-sm-6">
-                                <div className="setting-input">
-                                  <label
-                                    for="exampleInputnumber"
-                                    className="form-label"
-                                  >
-                                    D.O.B
-                                  </label>
-                                  <input
-                                    type="text"
-                                    className="form-control"
-                                    id="exampleInputnumber"
-                                    placeholder="dd/mm/yyyy"
-                                  />
-                                </div>
-                                <div className="setting-input">
-                                  <label
-                                    for="exampleInputPassword1"
-                                    className="form-label"
-                                  >
-                                    Address
-                                  </label>
-                                  <input
-                                    type="text"
-                                    className="form-control"
-                                    id="exampleInputPassword1"
-                                    placeholder="Street, commune, district, province/city"
-                                  />
-                                </div>
-                                <a
-                                  href="javascript:void(0);"
-                                  className="btn btn-primary float-end w-50 btn-md"
-                                >
-                                  Save
-                                </a>
-                              </div>
-                            </div>
+                            {account ? <AccountForm id={account.id} email={account.email} pass={account.pass} name={account.name} phone={account.phone} dob={account.dob} address={account.address}/>
+                            :<AccountFormLogin/>}
                           </div>
                         </div>
                       </div>
@@ -214,8 +159,8 @@ export default function Home() {
                        <div className="setting-right">
                         <div className="card">
                           <div className="card-body">
-                            <h3 className="mb-4">Account</h3>
-                            <div className="row">
+                            <h3 className="mb-4">Change password</h3>
+                            {account?(<div className="row">
                               <div className="col-xl-6 col-sm-6">
                                 <div className="setting-input">
                                   <label
@@ -267,7 +212,14 @@ export default function Home() {
                                   Save
                                 </a>
                               </div>
-                            </div>
+                            </div>):(<div className="row">
+                              <div className="col-xl-6 col-sm-6">
+                                <div className="setting-input">
+                                  <p>Customer has not logged into account</p>
+                                </div>
+                                {/* <button className="loginbtnAc" onClick={handleClickLogin}>Login</button>        */}
+                              </div>
+                            </div>)}
                           </div>
                         </div>
                       </div>
@@ -283,3 +235,136 @@ export default function Home() {
     </div>
   );
 }
+const AccountForm = (props) => {
+  const [name, setName] = useState(props.name);
+  const [phone, setPhone] = useState(props.phone);
+  const [dob, setDob] = useState(props.dob);
+  const [address, setAddress] = useState(props.address);
+  const updateAccountOnServer = async (updatedAccount) => {
+    try {
+      const response = await fetch('http://localhost:3000/account/' + updatedAccount.id, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedAccount)
+      });
+      const responseData = await response.json();
+      console.log(responseData); // Dữ liệu phản hồi từ server
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+  // sự kiện update info account
+  const handleClickUpdateInfo=()=>{
+    //tạo account với thông tin mới
+    const updatedAccount = {
+      id: props.id,
+      email:props.email,
+      pass: props.pass,
+      name: name,
+      phone: phone,
+      address: address,
+      dob: dob
+    };
+      updateAccountOnServer(updatedAccount);
+  }
+  return (
+      <div className="row">
+          <div className="col-xl-6 col-sm-6">
+            <div className="setting-input">
+              <label
+                for="exampleInputtext"
+                className="form-label"
+              >
+                Name
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="exampleInputtext"
+                placeholder="Nguyen Van A"
+                value={name}
+                onChange={(e)=>setName(e.target.value.toString())}
+                
+              />
+            </div>
+            <div className="setting-input">
+              <label
+                for="exampleInputEmail1"
+                className="form-label"
+              >
+                Phone
+              </label>
+              <input
+                type="email"
+                className="form-control"
+                id="exampleInputEmail1"
+                placeholder="+1233456778"
+                value={phone}
+                onChange={(e)=> setPhone(e.target.value.toString())}
+              />
+            </div>
+          </div>
+          <div className="col-xl-6 col-sm-6">
+            <div className="setting-input">
+              <label
+                for="exampleInputnumber"
+                className="form-label"
+              >
+                D.O.B
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="exampleInputnumber"
+                placeholder="dd/mm/yyyy"
+                value={dob}
+                onChange={(e)=>setDob(e.target.value.toString())}
+              />
+            </div>
+            <div className="setting-input">
+              <label
+                for="exampleInputPassword1"
+                className="form-label"
+              >
+                Address
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="exampleInputPassword1"
+                placeholder="Street, commune, district, province/city"
+                value={address}
+                onChange={(e) =>setAddress(e.target.value.toString())}
+              />
+            </div>
+            <a
+              href="javascript:void(0);"
+              className="btn btn-primary float-end w-50 btn-md"
+              onClick={handleClickUpdateInfo}
+            >
+              Update
+            </a>
+          </div>
+        </div>
+  );
+};
+const AccountFormLogin = () => {
+  const navigate=useNavigate();
+  //sự kiện click chuyến đên login
+  const handleClickLogin=()=>{
+    navigate("/login");
+  }
+  return (
+    <div className="row">
+    <div className="col-xl-6 col-sm-6">
+      <div className="setting-input">
+        <p>Customer has not logged into account</p>
+      </div>
+      <button className="loginbtnAc" onClick={handleClickLogin}>Login</button>       
+    </div>
+  </div>
+  );
+};
