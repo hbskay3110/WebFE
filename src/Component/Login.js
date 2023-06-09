@@ -9,7 +9,7 @@ import "../vendor/swiper/css/swiper-bundle.min.css"
 
 import "../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"
 import "../css/style.css"
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { set } from "firebase/database";
 
 <style>
@@ -59,6 +59,7 @@ export default function Login() {
           }
         
         }
+      
         if (!isEmailValid) {
             setErrorPass("");
           setErrorEmail("Email không hợp lệ");
@@ -85,8 +86,8 @@ export default function Login() {
                                         <div className="sign-in-your">
                                             <div className="text-center mb-3">
                                                 <img src="images/logo-full.png" className="mb-3" alt="" />
-                                                <h4 className="fs-20 font-w800 text-black">Login Account</h4>
-                                                <span className="dlab-sign-up">Sign In</span>
+                                                <h4 className="fs-20 font-w800 text-black">Create an Account</h4>
+                                                <span className="dlab-sign-up">Sign Up</span>
                                             </div>
                                             <form action="https://fooddesk.dexignlab.com/xhtml/index.html">
                                                 <div className="mb-3">
@@ -129,7 +130,7 @@ export default function Login() {
                                                 <button className="btn btn-outline-light mt-lg-0 mt-md-1 mt-sm-0 mt-1 linked-btn"><i className="fa-brands fa-linkedin me-2 likedin"></i>linkedin</button>
                                             </div>
                                             <div className="text-center">
-                                                <span>Already Have An Account?<a href="javascript:void(0);" className="text-primary"><Link to={"/register"}>Sign up</Link></a></span>
+                                                <span>Already Have An Account?<a href="javascript:void(0);" className="text-primary"> Sign in</a></span>
                                             </div>
 
                                         </div>

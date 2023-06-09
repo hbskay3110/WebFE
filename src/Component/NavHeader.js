@@ -3,7 +3,7 @@ export default function NavHeader() {
     return(
         <div>
             <div className="nav-header">
-                <a href="index.html" className="brand-logo">
+                <a href="/" className="brand-logo">
                     <svg className="logo-abbr" width="39" height="31" viewBox="0 0 39 31" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"

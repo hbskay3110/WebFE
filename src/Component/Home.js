@@ -23,7 +23,7 @@ export default function Home() {
         <div>
             <div id="main-wrapper">
                 <NavHeader/>
-               <Header/>
+                <Header />
                 <div className={"d-flex"}>
                     <NavMenu/>
                     <div className="content-body">
