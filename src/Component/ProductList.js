@@ -16,12 +16,13 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { addCart } from "../Store/Action";
 import { Link } from "react-router-dom";
+import HeaderSearch from "./HeaderSearch";
 const ProductList=(props)=>{
 	const[products,setProducts] = useState([]);
 	const[query,setQuery] = useState("");
 	const [currentPage, setCurrentPage] = useState(1);
   	const [itemsPerPage, setItemsPerPage] = useState(2);
-	  
+	const [searchKeyword, setSearchKeyword] = useState("");
 	
 	useEffect(()=>{
 		async function fetchPostList(){
@@ -35,10 +36,18 @@ const ProductList=(props)=>{
 		} 
 		fetchPostList()
 	},[])
+	useEffect(() => {
+		// Lấy tham số tìm kiếm từ URL
+		const search = new URLSearchParams(window.location.search).get("search");
+		setSearchKeyword(search);
+		setQuery(search || "");
+	}, []);
+	
 	const handleSearchChange = (searchValue) => {
-		setQuery(searchValue);
-		
-	  };
+			setQuery(searchValue);
+	};
+	 
+	
 	  // danh sách sản phẩm tìm kiếm
 	  const filteredProducts = products.filter(
 		(productitem) =>
@@ -58,7 +67,7 @@ const ProductList=(props)=>{
         return (
             <div className="content-body">
               <NavHeader/>
-               <Header  onSearchChange={handleSearchChange}/>
+               <HeaderSearch onSearchChange={handleSearchChange}/>
                 <div className={"d-flex"}>
                     <NavMenu/>
 					<div className="container">

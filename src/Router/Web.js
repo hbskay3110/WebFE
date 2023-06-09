@@ -9,6 +9,7 @@ import Cart from "../Component/Cart"
 import Checkout from "../Component/Checkout"
 import OrderDetail from "../Component/OrderDetail";
 import Account from "../Component/Account";                
+import OrderHistory from "../Component/OrderHistory";
 
 export const  webRouter = createBrowserRouter([{
     path:'/',
@@ -49,6 +50,9 @@ export const  webRouter = createBrowserRouter([{
         {
             path:'/account',
             element:<Account/>,
+        }, {
+            path:'/orderHistory',
+            element:<OrderHistory/>,
         },
     ]
 
