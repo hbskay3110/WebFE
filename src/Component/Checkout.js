@@ -206,19 +206,8 @@ export default function Checkout() {
 				quantity: cart_item.quantity
 				};
 			});
-			// tạo ra 1 đơn hàng
-			const order = {				
-            email: userInfo.email,
-		    products:products,
-			name:nameRecipient,
-			createAt: date,
-			address: address,
-			price: resultTotalMoney,
-			phone:phone,
-			note: note,
-			status:0
-			};
 			
+		
 		 // lấy dữ liệu đơn hàng hiện có từ localStorage
 		 	const existOrderJson = localStorage.getItem('order');
 		 // tạo mảng chứa danh sách các đơn hàng
@@ -228,6 +217,19 @@ export default function Checkout() {
 				// gán danh sách đơn hàng bằng danh sách các đơn hàng được lấy từ local storage 
 				existOrders = JSON.parse(existOrderJson);
 			}	
+			// tạo ra 1 đơn hàng
+			const order = {	
+				id: existOrders.length,			
+				email: userInfo.email,
+				products:products,
+				name:nameRecipient,
+				createAt: date,
+				address: address,
+				price: resultTotalMoney,
+				phone:phone,
+				note: note,
+				status:0
+				};
 		 // sau đó thêm đơn hàng vào danh sách đơn hàng
 			existOrders.push(order);
 		 // Chuyển đổi đối tượng JavaScript order thành một chuỗi JSON, và gán nó vào thuộc tính body của yêu cầu
