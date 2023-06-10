@@ -88,13 +88,16 @@
       "id": 3
     }
   ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
+   "typeImages" : {
+    "Phở": "https://phovihoang.vn/wp-content/uploads/2018/01/48267.png",
+    "Cơm": "https://hungandvietnamfood.files.wordpress.com/2018/11/tacc82cc81m-succ9bocc9bcc80n-bicc80.png",
+    "Bánh mì": "https://banhmipho.vn/wp-content/uploads/2021/03/ca-ngu.png",
+    "Hamberger":"https://png.pngtree.com/png-clipart/20230325/original/pngtree-juicy-burgers-with-a-transparent-background-png-image_9002761.png",
+    "Gà":"https://khothietke.net/wp-content/uploads/2021/03/freepng1565-dui-ga-chien-bot-ga-tam-bot.png",
+    "Đồ uống":"https://free.vector6.com/wp-content/uploads/2021/03/freepng1116-nuoc-ep-nuoc-giai-khat-do-uong-png-hinh-tach-nen-55.png",
+    "Bún":"https://png.pngtree.com/png-clipart/20210310/original/pngtree-tasty-beef-vietnamese-rice-noodles-png-image_5953848.png",
+    "Pizza":"https://static.vecteezy.com/system/resources/previews/009/384/620/original/fresh-pizza-and-pizza-box-clipart-design-illustration-free-png.png"
+  },
   "account": [
     {
       "id": 1,
@@ -121,28 +124,97 @@
       "des": "Món phở ngon với hương vị thơm ngon đặc trưng của nước dùng và thịt bò thơm ngon",
       "img": "https://cdn.tgdd.vn/Files/2022/01/25/1412805/cach-nau-pho-bo-nam-dinh-chuan-vi-thom-ngon-nhu-hang-quan-202201250230038502.jpg",
       "name": "Phở bò",
-      "price": 30000
+      "price": 30000,
+      "type":"Phở"
     },
     {
       "id": 2,
       "des": "Cơm sườn thơm ngon mời bạn ăn nha",
       "img": "https://img.meta.com.vn/Data/image/2021/06/29/com-tam-0.jpg",
       "name": "Cơm sườn",
-      "price": 25000
+      "price": 25000,
+      "type":"Cơm"
     },
     {
       "id": 3,
       "des": "Món bánh mì kẹp thịt ngon với nhiều loại rau và sốt chấm",
       "img": "https://images2.thanhnien.vn/Uploaded/bienca/2022_10_07/anh-chup-man-hinh-2022-10-07-luc-172838-4541.png",
       "name": "Bánh mì thịt",
-      "price": 20000
+      "price": 20000,
+      "type":"Bánh mì"
     },
     {
       "id": 4,
       "des": "Món bún chả thơm ngon với chả chiên giòn và nước chấm đậm đà",
       "img": "https://sunhouse.com.vn/pic/news/images/image-20211229181528-1.jpeg",
       "name": "Bún chả",
-      "price": 25000
+      "price": 25000,
+      "type":"Hamberger"
+    },
+    {
+      "id": 5,
+      "des": "Món bún chả thơm ngon với chả chiên giòn và nước chấm đậm đà",
+      "img": "https://sunhouse.com.vn/pic/news/images/image-20211229181528-1.jpeg",
+      "name": "Bún chả",
+      "price": 25000,
+      "type":"Gà"
+    },
+    {
+      "id": 6,
+      "des": "Món bún chả thơm ngon với chả chiên giòn và nước chấm đậm đà",
+      "img": "https://sunhouse.com.vn/pic/news/images/image-20211229181528-1.jpeg",
+      "name": "Bún chả",
+      "price": 25000,
+      "type":"Pizza"
+    },
+    {
+      "id": 7,
+      "des": "Món bún chả thơm ngon với chả chiên giòn và nước chấm đậm đà",
+      "img": "https://sunhouse.com.vn/pic/news/images/image-20211229181528-1.jpeg",
+      "name": "Bún chả",
+      "price": 25000,
+      "type":"Đồ uống"
+    },
+    {
+      "id": 8,
+      "des": "Món bún chả thơm ngon với chả chiên giòn và nước chấm đậm đà",
+      "img": "https://sunhouse.com.vn/pic/news/images/image-20211229181528-1.jpeg",
+      "name": "Bún chả",
+      "price": 25000,
+      "type":"Bún"
+    },
+    {
+      "id": 9,
+      "des": "Món bún chả thơm ngon với chả chiên giòn và nước chấm đậm đà",
+      "img": "https://sunhouse.com.vn/pic/news/images/image-20211229181528-1.jpeg",
+      "name": "Bún chả",
+      "price": 25000,
+      "type":"Bún"
+    },
+    {
+      "id": 10,
+      "des": "Món bún chả thơm ngon với chả chiên giòn và nước chấm đậm đà",
+      "img": "https://sunhouse.com.vn/pic/news/images/image-20211229181528-1.jpeg",
+      "name": "Bún chả",
+      "price": 25000,
+      "type":"Bún"
+    },
+    {
+      "id": 11,
+      "des": "Món bún chả thơm ngon với chả chiên giòn và nước chấm đậm đà",
+      "img": "https://sunhouse.com.vn/pic/news/images/image-20211229181528-1.jpeg",
+      "name": "Bún chả",
+      "price": 25000,
+      "type":"Bún"
+    },
+    {
+      "id": 12,
+      "des": "Món bún chả thơm ngon với chả chiên giòn và nước chấm đậm đà",
+      "img": "https://sunhouse.com.vn/pic/news/images/image-20211229181528-1.jpeg",
+      "name": "Bún chả",
+      "price": 25000,
+      "type":"Bún"
     }
+    
   ]
 }

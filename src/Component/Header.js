@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import clsx from "clsx";
 import "../images/favicon.png"
@@ -14,13 +14,18 @@ import "../css/style.css"
 import pic1 from '../images/banner-img/pic-1.png';
 import { Link } from "react-router-dom";
 export default function Header(){
+    const [user1, setUser] = useState(null);
     const [searchKeyword, setSearchKeyword] = useState("");
     const handleSearchChange = (event) => {
         const searchTerm = event.target.value;
         setSearchKeyword(searchTerm);
       
       };
-
+    
+    const user = localStorage.getItem("user-info");
+    const userObject = JSON.parse(user);
+    console.log(userObject)
+    console.log(user)
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
           // Xử lý sự kiện khi nhấn phím Enter
@@ -167,22 +172,48 @@ export default function Header(){
                                                 
                                             </div>
                                         </li>
-                                        <li className="nav-item d-flex align-items-center header-profile2">
-                                            <img className="img-avt" src="https://vivureviews.com/wp-content/uploads/2022/08/avatar-vo-danh-11.jpg"></img>
-                                            <h4 className="font-w500 mb-0 ms-2 text-while">Phan Thị An</h4>
-                                            <ul class="header__navbar-user-menu">
-                                                <li class="header__navbar-user-item">
-                                                    <Link to={"/accuont"}><a
-                                                    href="">Tài khoản của tôi </a></Link></li>
-
-                                                <li class="header__navbar-user-item"><Link to={"/cart"}><a href="">Đơn hàng</a></Link></li>
-                                                <li
-                                                    class="header__navbar-user-item header__navbar-user-item--separate">
-                                                    <a href="">Đăng xuất</a>
+                                        {!user ? (
+                                          <li className="nav-item d-flex align-items-center header-profile2">
+                                            <Link to={"/register"}>
+                                            <a href="" className="header-item_login">
+                                                <li className="header__navbar-item header__navbar-item--strong header__navbar-item--separate js-form-register">
+                                                Đăng kí
                                                 </li>
-
-                                            </ul>
+                                            </a>
+                                            </Link>
+                                            <Link to={"/login"}>
+                                            <a href="" className="header-item_register">
+                                                <li className="header__navbar-item header__navbar-item--strong js-form-login">
+                                                Đăng nhập
+                                                </li>
+                                            </a>
+                                            </Link>
                                         </li>
+                                        ) : (
+                                        <a>
+                                              <li className="nav-item d-flex align-items-center header-profile2">
+                                              <img className="img-avt" src="https://vivureviews.com/wp-content/uploads/2022/08/avatar-vo-danh-11.jpg"></img>
+                                                <h4 className="font-w500 mb-0 ms-2 text-while">{userObject.name}</h4>
+                                                <ul class="header__navbar-user-menu">
+                                                    <li class="header__navbar-user-item">
+                                                        <Link to={"/account"}><a
+                                                        href="">Tài khoản của tôi </a></Link></li>
+
+                                                    <li class="header__navbar-user-item"><Link to={"/cart"}><a href="">Đơn hàng</a></Link></li>
+                                                    <li
+                                                        class="header__navbar-user-item header__navbar-user-item--separate">
+                                                        <a href="">Đăng xuất</a>
+                                                    </li>
+
+                                                </ul>
+                                              </li>
+                                        </a>
+                                        )}
+                                      
+                                            {/*  */}
+                                          
+                                           
+                                      
                                        
                                     </ul>
                                 </div>

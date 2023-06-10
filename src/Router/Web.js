@@ -10,6 +10,7 @@ import Checkout from "../Component/Checkout"
 import OrderDetail from "../Component/OrderDetail";
 import Account from "../Component/Account";                
 import OrderHistory from "../Component/OrderHistory";
+import Sa from "../Component/Sa";
 
 export const  webRouter = createBrowserRouter([{
     path:'/',
@@ -53,7 +54,11 @@ export const  webRouter = createBrowserRouter([{
         }, {
             path:'/orderHistory',
             element:<OrderHistory/>,
+        }, {
+            path:'/test',
+            element:<Sa/>,
         },
+        
     ]
 
 }])
