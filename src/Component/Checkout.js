@@ -14,8 +14,6 @@ import { useSelector,useDispatch } from "react-redux";
 import { setCart } from "../Store/Action";
 export default function Checkout() {
 	const [showDialog, setShowDialog] = useState(false);
-	const [cities, setCities] = useState([]);
-	const [districts, setDistricts] = useState([]);
 	const [wards, setWards] = useState([]);
 	const [selectedCity, setSelectedCity] = useState("");
 	const [selectedDistrict, setSelectedDistrict] = useState("");
@@ -33,7 +31,7 @@ export default function Checkout() {
 	const navigate = useNavigate();
 	var totalMoney=0;	
 	var fee = 20000;
-// Lấy dữ liệu account từ localStorage
+   // Lấy dữ liệu account từ localStorage
 	const userInfoJSON = localStorage.getItem("user-info");
 	
 	// biến tính tổng tiền
@@ -59,77 +57,45 @@ export default function Checkout() {
 	// truy cập vào giá trị của cart từ Redux store
 	const cart = useSelector(state => state.root.cart);
 	console.log(cart)
+	// duyệt qua giỏ hàng lấy ra sản phẩm 
 	for(var i=0;i<cart.length;i++){
 		var cart_item = cart[i]
+    // tính tổng tiền của sản phẩm đó
 		const resultTotal =( cart_item.product.price * cart_item.quantity)
 		totalMoney += resultTotal
-	}
-	
-
- 
-	useEffect(() => {
-		fetchCities();
-	  }, []);
-	  const fetchCities = () => {
+	}		
+	// gọi tới API để lấy danh sách các xã của tp thủ đức
+	  const fetchWards = () => {
 		axios
-		  .get("https://provinces.open-api.vn/api/?depth=1")
+		  .get(`https://provinces.open-api.vn/api/d/769?depth=2`)
 		  .then((response) => {
-			setCities(response.data);
-		  })
-		  .catch((error) => {
-			console.error("Error fetching cities:", error);
-		  });
-	  };
-	
-	  const fetchDistricts = (cityId) => {
-		axios
-		  .get(`https://provinces.open-api.vn/api/p/${cityId}?depth=2`)
-		  .then((response) => {
-			setDistricts(response.data.districts);
-		  })
-		  .catch((error) => {
-			console.error("Error fetching districts:", error);
-		  });
-	  };
-	
-	  const fetchWards = (districtId) => {
-		axios
-		  .get(`https://provinces.open-api.vn/api/d/${districtId}?depth=2`)
-		  .then((response) => {
+	// set lại cái mảng xã bằng dữ liệu lấy về
 			setWards(response.data.wards);
 		  })
 		  .catch((error) => {
 			console.error("Error fetching wards:", error);
 		  });
 	  };
+     // hàm thay đổi thành phố
 	  const handleCityChange = (event) => {
 		// lấy ra giá trị được chọn
 		console.log(event.target)
 		const cityId = event.target.value;
 		setSelectedDistrict("");
 		setSelectedWard("");
-		fetchDistricts(cityId);
-		 // Lấy tên của tỉnh và lưu vào state selectedCityName
-		 const selectedCityObj = cities.find((city) => city.code == cityId);
-		 if (selectedCityObj) {
-			setSelectedCity(selectedCityObj.name);
-		 }
+		setSelectedCity(cityId)
+		
 	  };
-	
+	// hàm thay đổi quận,huyện
 	  const handleDistrictChange = (event) => {
 		const districtId = event.target.value;
 		setSelectedWard("");
-		fetchWards(districtId);
-	
-		 // tìm ra huyện có code bằng với code chọn từ option
-		 const selectedDistrictObj = districts.find((district) => district.code == districtId);
-		 // nếu có tồn tại
-		 if (selectedDistrictObj) {
-			// Lấy tên của huyện  và lưu vào state selectedDistrict
-			setSelectedDistrict(selectedDistrictObj.name);
-		 }
+		// gửi tới API
+		fetchWards();
+		setSelectedDistrict(districtId)
+		
 	  };
-	
+	// hàm thay đổi xã
 	  const handleWardChange = (event) => {
 		const wardId = event.target.value;
 		 // tìm ra xã có code bằng với code chọn từ option
@@ -141,10 +107,11 @@ export default function Checkout() {
 		 }
 	
 	  };
+	  // hàm hiển thị thông báo xác nhận khi click vào nút Thanh toán
 	const handleClick = () => {
 		setShowDialog(true);
 	  };
-
+	// hàm kiểm tra tên người nhận có nhập chưa
 	function checkNameRecipient() {
         if (nameRecipient === "") {
           setErrorNameRecipient("Vui lòng nhập trường này");
@@ -154,6 +121,7 @@ export default function Checkout() {
         return true;
         
       }
+	  // hàm kiểm tra địa chỉ có nhập chưa
 	  function checkAddressDetail() {
         if (addressDetail === "") {
           setErrorAddressDetail("Vui lòng nhập trường này");
@@ -163,6 +131,7 @@ export default function Checkout() {
         return true;
         
       }
+	  // // hàm kiểm tra số điện thoại có nhập chưa
 	  function checkPhone() {
 		// Xác định một pattern cho số điện thoại
 		var pattern =/^0\d{9}$/; // Ví dụ: 10 chữ số liên tiếp
@@ -171,13 +140,16 @@ export default function Checkout() {
           setErrorPhone("Vui lòng nhập trường này");
           return false;
         
-        }else if(!pattern.test(phone) ){
+        }
+		// nếu có nhập nhưng không đúng định dạng thì báo lỗi
+		else if(!pattern.test(phone) ){
 			setErrorPhone("Số điện thoại không hợp lệ")
 			return false;
 		}
         return true;
         
       }
+	  // hàm cập nhật tên người nhận khi thay đổi
 	  async function handleNameRecipient(e){
         setNameRecipient(e.target.value)
         setErrorNameRecipient("")
@@ -194,23 +166,24 @@ export default function Checkout() {
         setNote(e.target.value)
        
       }
+	  // hàm xác nhận thanh toán
       async function confirmPayment(){
-		checkNameRecipient();
-		checkAddressDetail();
-		checkPhone();
+		
+		// nếu chưa chọn tỉnh quận , xã thì báo lỗi
 		if(selectedCity=="" || selectedDistrict== "" || selectedWard==""){
 			setErrorSelectedCity("Vui lòng chọn tỉnh, quận, xã")
 			return;
 		}
+		// nếu không đúng
 		else if(!checkNameRecipient() || !checkAddressDetail() ||!checkPhone()){
-			console.warn(selectedCity,selectedDistrict,selectedWard)
-            console.log("no")
             return;
-		}else{
+		}
+		// 
+		else{
+			// nếu đã đăng nhập
 			if(userInfoJSON){
 			// Chuyển đổi dữ liệu từ chuỗi JSON thành đối tượng JavaScript
 			const userInfo = JSON.parse(userInfoJSON);
-			console.log("yes")
 			const currentDate = new Date();
 			const day = currentDate.getDate();
 			const month = currentDate.getMonth() + 1; // Lưu ý: Tháng trong JavaScript bắt đầu từ 0, nên cần cộng 1
@@ -220,8 +193,9 @@ export default function Checkout() {
 			const seconds = currentDate.getSeconds();
 			const date = day+"/"+month+"/"+year+" " +hours+":"+minutes+":"+seconds
 			const address = addressDetail + "," +selectedWard + "," +selectedDistrict+","+selectedCity
+			// tổng tiền của đơn hàng
 			const resultTotalMoney= totalMoney + fee
-			 // Lấy sản phẩm từ cart và tạo mảng mới
+			 // Lấy sản phẩm từ giỏ hàng và tạo mảng mới
 			const products = cart.map((cart_item) => {
 				return {
 				id: cart_item.product.id,
@@ -232,6 +206,7 @@ export default function Checkout() {
 				quantity: cart_item.quantity
 				};
 			});
+			// tạo ra 1 đơn hàng
 			const order = {				
             email: userInfo.email,
 		    products:products,
@@ -243,41 +218,32 @@ export default function Checkout() {
 			note: note,
 			status:0
 			};
-			try{
-				  // Sử dụng phương thức fetch để gửi yêu cầu tới API
-				const response = await fetch("http://localhost:3000/order",{
-					// sử dụng POST để tạo một đơn hàng mới.
-					method:"POST",
-					// Đặt tiêu đề yêu cầu để chỉ định rằng dữ liệu được gửi đi là dạng JSON.
-					headers : {
-						"Content-Type": "application/json",
-                },
-				  // Chuyển đổi đối tượng JavaScript order thành một chuỗi JSON, và gán nó vào thuộc tính body của yêu cầu
-               		 body: JSON.stringify(order),
-            });
-			// nếu thành công chuyển về trang home
-			if (response.ok) {
 			
+		 // lấy dữ liệu đơn hàng hiện có từ localStorage
+		 	const existOrderJson = localStorage.getItem('order');
+		 // tạo mảng chứa danh sách các đơn hàng
+			let existOrders = [];
+		 // kiểm tra xem nếu đơn hàng tồn tại thì
+		    if(existOrderJson){
+				// gán danh sách đơn hàng bằng danh sách các đơn hàng được lấy từ local storage 
+				existOrders = JSON.parse(existOrderJson);
+			}	
+		 // sau đó thêm đơn hàng vào danh sách đơn hàng
+			existOrders.push(order);
+		 // Chuyển đổi đối tượng JavaScript order thành một chuỗi JSON, và gán nó vào thuộc tính body của yêu cầu
+    		 var updateOrdersJSON = JSON.stringify(existOrders);
+		 // Sử dụng phương thức localStorage.setItem() để lưu chuỗi JSON vào localStorage.
+		 	localStorage.setItem("order", updateOrdersJSON); 
+			
+		 // xóa sản phẩm trong giỏ hàng sau khi đặt hàng
 				cart.map((cart_item)=>{
 					dispatch(removeItemCart(cart_item.product.id));
 				})
-				
+				// chuyển về trang home
                 navigate("/")
-            } else {
-                console.error("Lỗi khi gửi yêu cầu đăng ký:", response.status, response.statusText);
-            
-            }
-            } catch (error) {
-            // Xảy ra lỗi khi gửi yêu cầu đăng ký
-            console.error("Lỗi khi gửi yêu cầu đăng ký:", error.message);
-            // Xử lý lỗi và hiển thị thông báo cho người dùng
-            }
+			}
 		}
 	}
-	}
-
-
-
     return (
         <div> 
                <NavHeader/>
@@ -320,19 +286,19 @@ export default function Checkout() {
 															<div>											
 														<select  id="address" name="address" value={selectedCity} onChange={handleCityChange}>
 															<option value="" disabled>Chọn tỉnh thành</option>
-															{cities.map((city) => (
-																<option key={city.code} value={city.code}>
-																{city.name}
+														
+																<option key="79" value="Thành phố Hồ Chí Minh">
+																Thành phố Hồ Chí Minh
 																</option>
-															))}
+															
 														</select>
 														<select id="huyen" name="district"  value={selectedDistrict} onChange={handleDistrictChange}>
 															<option value="" disabled> Chọn quận huyện</option>
-															{districts.map((district) => (
-																<option key={district.code} value={district.code}>
-																{district.name}
+															
+																<option key="769" value="Thành phố Thủ Đức">
+																Thành phố Thủ Đức
 																</option>
-															))}
+														
 														</select>
 														
 														<select id="xa" name="ward" value={selectedWard} onChange={handleWardChange}>
@@ -465,14 +431,14 @@ export default function Checkout() {
 													<div className="payment-method">
 														<div className="payment-accordion">
 														
-															<h5><input type="radio" name="radio_button" value="button1"/>
+															<h5><input type="radio" name="radio_button" value="button1" className="radio_payment"/>
 																 Thanh toán khi nhận hàng</h5>
 															<div className="payment-content">
 																<p>Bạn sẽ được kiểm tra sản phẩm khi nhận hàng.</p>
 															</div>
 												
 														
-															<h5><input type="radio" name="radio_button" value="button2"/>
+															<h5><input type="radio" name="radio_button" value="button2"  className="radio_payment"/>
 																 Thanh toán bằng tài khoản paypal</h5>
 															<div className="payment-content">
 																<p>PayPal</p>
