@@ -34177,3 +34177,17 @@ p {
 .text-while{
     color: white;
 }
+.img-typeProduct{
+    width: 63px;
+    height: 68px;
+}
+.header__navbar-item--strong{
+    font-weight: 400;
+}
+.header-item_register{
+    padding: 10px;
+}
+.header-item_login{
+    padding-right: 10px;
+    border-right: 1px solid #fff;
+}

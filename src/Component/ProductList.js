@@ -9,7 +9,7 @@ import NavHeader from "./NavHeader";
 import Header from "./Header";
 import NavMenu from "./NavMenu";
 
-import { fetchData, getData } from '../data/ProductData';
+
 import { useState, useEffect } from "react";
 import { getDatabase, ref, onValue } from "firebase/database";
 import { useSelector } from "react-redux";
@@ -52,7 +52,8 @@ const ProductList=(props)=>{
 	  const filteredProducts = products.filter(
 		(productitem) =>
 		  productitem.name.toLowerCase().includes(query.toLowerCase()) ||
-		  productitem.des.toLowerCase().includes(query.toLowerCase())
+		  productitem.des.toLowerCase().includes(query.toLowerCase())||
+		  productitem.type.toLowerCase().includes(query.toLowerCase())
 	  );
 	  // vị trí đầu và cuối của danh sách
 	  const indexOfLastItem = currentPage * itemsPerPage;
