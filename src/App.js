@@ -19,34 +19,9 @@ import { Outlet } from 'react-router-dom';
 
 
 
-const db = getDatabase();
-function writeUserData(userId, name, email, imageUrl) {
-  set(ref(db, 'users/' + userId), {
-    username: name,
-    email: email,
-    profile_picture : imageUrl
-  });
-}
-// Lấy dữ liệu từ đường dẫn '/products'
-// const productsRef = ref(db, 'products');
-// onValue(productsRef, (snapshot) => {
-//   const data = snapshot.val(); // Dữ liệu trong DataSnapshot
-//   console.log(data); // In ra dữ liệu lấy được từ Firebase
-// });
-// writeUserData('123456', 'Phan Thi An', '20130298@st.hcmuaf.edu.vn', '1234');
-
-//  const starCountRef = ref(db, 'users');
-//  onValue(starCountRef, (snapshot) => {
-//    const data = snapshot.val();
-//    for (const key in data) {
-//     console.log(key);
-
-//     const userData = data[key];
-    
-//    }
-//  });
 
 function App() {
+
   const[product,setProductList] = useState([]);
 	useEffect(()=>{
 		async function fetchPostList(){
@@ -66,6 +41,7 @@ function App() {
 
   return (
     <div>
+      
       <Outlet/>
 
     </div>
