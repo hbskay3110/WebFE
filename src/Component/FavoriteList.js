@@ -28,8 +28,6 @@ export default function FavoriteList() {
                     <NavMenu/>
                     <div className="content-body">
 			<div className="container">
-				
-				
 				<div className="tab-content" id="pills-tabContent">
 					<div className="tab-pane fade" id="pills-list" role="tabpanel" aria-labelledby="pills-list-tab">
 						<div className="card h-auto">

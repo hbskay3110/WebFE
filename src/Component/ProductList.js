@@ -459,7 +459,7 @@ const Product  =(prop)=>{
 	}
 	// sự kiện click thêm product vào danh sách yêu thích
 	const handleAddFavorite=()=>{
-		dispatch(addFavorite(product.id));
+		dispatch(addFavorite(product));
 	}
 	const numberWithCommas = (number) => {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

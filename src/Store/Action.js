@@ -40,10 +40,10 @@ export const removeItemCart = (productId)=>{
   }
 }
 // thêm sản phẩm vào favotites
-export const addFavorite = (productId)=>{
+export const addFavorite = (data)=>{
   return {
     type: 'favorite.add',
-    payload:productId
+    payload:data
   }
 }
 

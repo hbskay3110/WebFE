@@ -59,14 +59,21 @@ export const root = (state=initState,action)=>{
                 cart:afterCart
             } 
         case 'favorite.add':
-            const productI = state.products.find(product => product.id === action.payload);
-            if (productI) {
+            const product = action.payload;
+            // Kiểm tra xem sản phẩm đã tồn tại trong danh sách yêu thích chưa
+            const checkProduct = state.favorites.find(item => item.id === product.id);
+            if (checkProduct) {
+              // Nếu sản phẩm đã tồn tại, không thực hiện thêm vào danh sách yêu thích
+              return state;
+            } else {
+              // Nếu sản phẩm chưa tồn tại, thêm vào danh sách yêu thích
+              const updatedFlist = [...state.favorites, product];
+        window.localStorage.setItem('favorite', JSON.stringify(updatedFlist));
               return {
                 ...state,
-                wishlist: [...state.favorites, productI]
+                wishlist: updatedFlist
               };
             }
-            return state;
         default: return state;
     }
 }
