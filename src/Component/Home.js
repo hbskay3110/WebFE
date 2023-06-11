@@ -42,7 +42,7 @@ export default function Home() {
 		fetchPostList()
 	},[])
     useEffect(()=>{
-		async function fetchPostList(){
+		async function fetchPostList1(){
 			const requestUrl = "http://localhost:3000/typeImages";
 			// gửi một yêu cầu HTTP GET đến url
 			const reponse  =  await fetch(requestUrl);
@@ -50,7 +50,7 @@ export default function Home() {
 			const reponseJson = await reponse.json();
 			setTypeImg(reponseJson);
 		} 
-		fetchPostList()
+		fetchPostList1()
 	},[])
     console.log(typeImg)
     const uniqueTypes = [...new Set(products.map((product) => product.type))];
