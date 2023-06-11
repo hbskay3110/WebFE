@@ -2,7 +2,8 @@
 // kho lưu trữ redux
 const initState = {
     products:[],
-    cart:[]
+    cart:[],
+    favorites:[]
 }
 export const root = (state=initState,action)=>{
     switch(action.type){
@@ -12,6 +13,7 @@ export const root = (state=initState,action)=>{
                  ...state,
                  products: action.payload   
         };
+
         case 'cart.add': // thêm 1 product vào cart
             // tìm product trong cart
         const existingProduct = state.cart.find(item => item.product.id === action.payload.product.id);
@@ -29,11 +31,13 @@ export const root = (state=initState,action)=>{
             ...state,
             cart: updatedCart
           };
+
         case 'cart.set': // cập nhạt lại cart bằng cart mới
             return{
                 ...state,
                 cart:action.payload
             }
+
         case 'cart.updateQuantity': // cập nhật lại só lượng của product trong cart
             let updateQuantityCart;
             updateQuantityCart=state.cart.map(item =>item.product.id === action.payload.productId
@@ -44,6 +48,7 @@ export const root = (state=initState,action)=>{
                 ...state,
                 cart:updateQuantityCart
             }
+
         case 'cart.removeItem': // xóa product trong cart
             let afterCart;
             afterCart=state.cart.filter(item => item.product.id !==action.payload);
@@ -52,7 +57,16 @@ export const root = (state=initState,action)=>{
             return{
                 ...state,
                 cart:afterCart
+            } 
+        case 'favorite.add':
+            const productI = state.products.find(product => product.id === action.payload);
+            if (productI) {
+              return {
+                ...state,
+                wishlist: [...state.favorites, productI]
+              };
             }
+            return state;
         default: return state;
     }
 }

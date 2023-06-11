@@ -39,6 +39,13 @@ export const removeItemCart = (productId)=>{
     payload:productId
   }
 }
+// thêm sản phẩm vào favotites
+export const addFavorite = (productId)=>{
+  return {
+    type: 'favorite.add',
+    payload:productId
+  }
+}
 
 
 
