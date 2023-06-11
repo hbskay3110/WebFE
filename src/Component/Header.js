@@ -13,7 +13,17 @@ import "../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"
 import "../css/style.css"
 import pic1 from '../images/banner-img/pic-1.png';
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 export default function Header(){
+    const { i18n } = useTranslation();
+    const changeLanguage = (lng)=>{
+        i18n.changeLanguage(lng)
+    }
+    const currentLanguage = i18n.language
+    const handleChangeLanguage = (language) => {
+      i18n.changeLanguage(language);
+    };
+  
     const [user1, setUser] = useState(null);
     const [searchKeyword, setSearchKeyword] = useState("");
     const handleSearchChange = (event) => {
@@ -155,15 +165,25 @@ export default function Header(){
                                     </div>
 
                                     <ul className="navbar-nav header-right ">
+                                    <a>
+                                              <li className="nav-item d-flex align-items-center header-profile2">
+                                              <i class="header__navbar-icon fas fa-globe"></i>
+                                              <h4 className="font-w500 mb-0 ms-2 text-while">{currentLanguage=='vi'?'Việt Nam':"English"}</h4>
+                                              <ul class="header__navbar-user-menu">
+                                                <a href="javascript:void(0);" class="header__navbar-languge-link" onClick={()=>changeLanguage('vi')}><li class="header__navber-languge-item">Tiếng Việt</li></a>
+                                                <a	href="javascript:void(0);" class="header__navbar-languge-link" onClick={()=>changeLanguage('en')}><li class="header__navber-languge-item">English</li></a>
+                                            </ul>
+                                              </li>
+                                        </a>
+                                    
                                         <li>
+                                       
                                             <div className="header-profile2 ">
                                                 <Link to="/cart">
                                                     <div className="header-info2 d-flex align-items-center">
                                                         <img src="https://banner2.cleanpng.com/20180703/vtz/kisspng-shopping-cart-software-computer-icons-mayline-5b3b72a89c95a3.3174593115306226326414.jpg" alt="avt"></img>
                                                         <div className="d-flex align-items-center sidebar-info">
-                                                            <div>
-                                                                <h4 className="font-w500 mb-0 ms-2 text-while">Card</h4>
-                                                            </div>
+                                                            
                                                             <p className="totalcard">1</p>
                                                         </div>
 
