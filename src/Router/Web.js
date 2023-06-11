@@ -11,6 +11,7 @@ import OrderDetail from "../Component/OrderDetail";
 import Account from "../Component/Account";                
 import OrderHistory from "../Component/OrderHistory";
 import Sa from "../Component/Sa";
+import FavoriteList from "../Component/FavoriteList"
 
 export const  webRouter = createBrowserRouter([{
     path:'/',
@@ -58,7 +59,10 @@ export const  webRouter = createBrowserRouter([{
             path:'/test',
             element:<Sa/>,
         },
-        
+        {
+            path:'/favoriteList',
+            element:<FavoriteList/>,
+        }
     ]
 
 }])
