@@ -46,6 +46,20 @@ export const addFavorite = (data)=>{
     payload:data
   }
 }
+// cập nhật lại favorites
+export const updatedFavorite = (data)=>{
+  return {
+    type: 'favorite.update',
+    payload:data
+  }
+}
+// cập nhật lại favorites
+export const removeFavoriteItem = (productId)=>{
+  return {
+    type: 'favorite.remove',
+    payload:productId
+  }
+}
 
 
 

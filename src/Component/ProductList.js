@@ -18,13 +18,14 @@ import { addCart } from "../Store/Action";
 import { Link } from "react-router-dom";
 import HeaderSearch from "./HeaderSearch";
 import { addFavorite } from "../Store/Action";
+import { updatedFavorite } from "../Store/Action";
 const ProductList=(props)=>{
 	const[products,setProducts] = useState([]);
 	const[query,setQuery] = useState("");
 	const [currentPage, setCurrentPage] = useState(1);
   	const [itemsPerPage, setItemsPerPage] = useState(2);
 	const [searchKeyword, setSearchKeyword] = useState("");
-	
+	const dispatch=useDispatch();
 	useEffect(()=>{
 		async function fetchPostList(){
 			const requestUrl = "http://localhost:3000/products";
@@ -63,7 +64,16 @@ const ProductList=(props)=>{
 	  const currentItems = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
 	  const paginate = (pageNumber) => setCurrentPage(pageNumber);
       const product = useSelector(state=> state.root.products)
-
+	
+	  useEffect(()=>{
+		const fList=localStorage.getItem('favorite');
+		if(fList){
+			// Parse danh sách yêu thích từ JSON
+			const parsedFList=JSON.parse(fList);
+			// cập nhật danh sách yêu thích trong redux store
+			dispatch(updatedFavorite(parsedFList));
+		}
+	},[]);
 	  
 	// console.log(product)
         return (
