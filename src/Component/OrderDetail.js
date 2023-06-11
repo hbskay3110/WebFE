@@ -8,26 +8,26 @@ import axios from "axios";
 export default function OrderDetail() {
     const { id } = useParams();
     const [order, setOrder] = useState(null);
+    const [orderList, setOrderList] = useState([]);
     const numberWithCommas = (number) => {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       };
-    useEffect(() => {
-        const fetchOrder = async () => {
-          try {
-            const response = await axios.get(`http://localhost:3000/order/${id}`);
-            setOrder(response.data);
-          } catch (error) {
-            console.log(error);
+      const existOrderJson = localStorage.getItem('order');
+   
+      useEffect(() => {
+          if (existOrderJson != null) {
+            setOrderList(JSON.parse(existOrderJson));
           }
-        };
-    
-        fetchOrder();
-      }, [id]);
-    
+        }, []);
+        useEffect(() => {
+            const result = orderList.find((order) => `${order.id}` === id );
+            setOrder(result)
+         }, [orderList, id]);
+       
     if (!order) {
         return <p>Loading...</p>;
     }
-    console.log(order.status<=0)
+
     return(
         <div> 
                <NavHeader/>

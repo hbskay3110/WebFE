@@ -30,18 +30,14 @@ export default function OrderHistory() {
         setSearchQuery(event.target.value);
         setCurrentPage(1);
     };
-    useEffect(()=>{
-		async function fetchPostList(){
-			const requestUrl = "http://localhost:3000/order";
-			// gửi một yêu cầu HTTP GET đến url
-			const reponse  =  await fetch(requestUrl);
-			//chuyển đổi phản hồi thành đối tượng JSON
-			const reponseJson = await reponse.json();
-			//cập nhật giá trị của products
-			setOrderList(reponseJson);
-		} 
-		fetchPostList()
-	},[])
+    
+    const existOrderJson = localStorage.getItem('order');
+    useEffect(() => {
+        if (existOrderJson != null) {
+          setOrderList(JSON.parse(existOrderJson));
+        }
+      }, []);
+    console.log(orderList)
     const numberWithCommas = (number) => {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       };
@@ -59,6 +55,7 @@ export default function OrderHistory() {
     const indexOfLastOrder = currentPage * ordersPerPage;
     const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
     const currentOrders = filteredOrders.slice(indexOfFirstOrder, indexOfLastOrder);
+    console.log(currentOrders)
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
     console.log(orderList)
     return(
@@ -110,7 +107,7 @@ export default function OrderHistory() {
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        {currentOrders.map((order)=>(
+                                                        {currentOrders.map((order,index)=>(
                                                             <tr>
                                                             <td>
                                                                 <div class="form-check style-3">
@@ -121,7 +118,7 @@ export default function OrderHistory() {
                                                                 <div class="media-bx d-flex py-3  align-items-center">
                                                                 
                                                                     <div>
-                                                                        <h5 class="mb-0">{order.id}</h5>
+                                                                        <h5 class="mb-0">{index+1}</h5>
                                                             
                                                                     </div>
                                                                 </div>

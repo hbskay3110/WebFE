@@ -24,8 +24,11 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function Home() {
+    const { t, i18n } = useTranslation();
+ 
     const[products,setProducts] = useState([]);
     const[typeImg,setTypeImg] = useState({});
     useEffect(()=>{
@@ -72,7 +75,7 @@ export default function Home() {
 
                                         <div className="col-xl-12">
                                             <div className="d-flex align-items-center justify-content-between mb-2 gap">
-                                                <h4 className=" mb-0 cate-title">Category</h4>
+                                                <h4 className=" mb-0 cate-title">{t('All category')}</h4>
                                                 <a href="favorite-menu.html" className="text-primary">View all <i
                                                     className="fa-solid fa-angle-right ms-2"></i></a>
                                             </div>
@@ -110,7 +113,7 @@ export default function Home() {
                                                 modules={[ Pagination, Autoplay]}
                                                 slidesPerView={4} // Hiển thị 3 slide cùng lúc
                                               
-                                                autoplay={{ delay: 1000 }}
+                                                autoplay={{ delay: 2000 }}
                                                 pagination={{ clickable: true }}
                                                
                                                 >
@@ -215,7 +218,7 @@ export default function Home() {
                                                 modules={[ Pagination, Autoplay]}
                                                 slidesPerView={4} // Hiển thị 3 slide cùng lúc
                                               
-                                                autoplay={{ delay: 1000 }}
+                                                autoplay={{ delay: 2000 }}
                                                 pagination={{ clickable: true }}
                                                
                                                 >
