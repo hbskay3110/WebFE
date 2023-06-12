@@ -71,9 +71,23 @@ export const root = (state=initState,action)=>{
         window.localStorage.setItem('favorite', JSON.stringify(updatedFlist));
               return {
                 ...state,
-                wishlist: updatedFlist
+                favorites: updatedFlist
               };
             }
+        case 'favorite.update':
+            return{
+                ...state,
+                favorites:action.payload
+            }
+        case 'favorite.remove':
+            let afterFList;
+            afterFList=state.favorites.filter(item => item.id !==action.payload);
+            // Lưu giỏ hàng vào Session Storage
+       window.localStorage.setItem('favorite', JSON.stringify(afterFList));
+           return{
+               ...state,
+               favorites:afterFList
+           } 
         default: return state;
     }
 }

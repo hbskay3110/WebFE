@@ -11,11 +11,13 @@ import "../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"
 import "../css/style.css"
 import { Navigate, useNavigate } from "react-router-dom";
 import { set } from "firebase/database";
+import { useTranslation } from "react-i18next";
 
 <style>
 
 </style>
 export default function Login() {
+    const { t, i18n } = useTranslation();
     const[email, setEmail]= useState("");
 
     const[password, setPassword]= useState("");
@@ -86,12 +88,12 @@ export default function Login() {
                                         <div className="sign-in-your">
                                             <div className="text-center mb-3">
                                                 <img src="images/logo-full.png" className="mb-3" alt="" />
-                                                <h4 className="fs-20 font-w800 text-black">Create an Account</h4>
-                                                <span className="dlab-sign-up">Sign Up</span>
+                                                <h4 className="fs-20 font-w800 text-black">{t('loginAccount')}</h4>
+                                                <span className="dlab-sign-up">{t('signin')}</span>
                                             </div>
                                             <form action="https://fooddesk.dexignlab.com/xhtml/index.html">
                                                 <div className="mb-3">
-                                                    <label className="mb-1"><strong>Email Address</strong></label>
+                                                    <label className="mb-1"><strong>{t('emailAddress')}</strong></label>
                                                     <input type="email" onChange={(e)=>setEmail(e.target.value)} className="form-control" placeholder="email" />
                                                 </div>
                                                 <div className="mb-3">
@@ -99,8 +101,8 @@ export default function Login() {
                                                    
                                                 </div>
                                                 <div className="mb-3">
-                                                    <label className="mb-1"><strong>Password</strong></label>
-                                                    <input type="password" onChange={(e)=>setPassword(e.target.value)} className="form-control" placeholder="password" />
+                                                    <label className="mb-1"><strong>{t('password')}</strong></label>
+                                                    <input type="password" onChange={(e)=>setPassword(e.target.value)} className="form-control" placeholder="" />
                                                 </div>
                                                 <div className="mb-3">
                                                     <span className="mb-1 errorLogin">{errorPass}</span>
@@ -110,19 +112,19 @@ export default function Login() {
                                                     <div className="mb-3">
                                                         <div className="form-check custom-checkbox ms-1">
                                                             <input type="checkbox" className="form-check-input" id="basic_checkbox_1" />
-                                                            <label className="form-check-label" for="basic_checkbox_1">Remember my preference</label>
+                                                            <label className="form-check-label" for="basic_checkbox_1">{t('rememberPassword')}</label>
                                                         </div>
                                                     </div>
                                                     <div className="mb-3">
-                                                        <a href="page-forgot-password.html">Forgot Password?</a>
+                                                        <a href="page-forgot-password.html">{t('forgotPassword')}</a>
                                                     </div>
                                                 </div>
                                                 <div className="text-center">
-                                                    <button type="button" onClick={login} className="btn btn-primary btn-block shadow">Sign Me In</button>
+                                                    <button type="button" onClick={login} className="btn btn-primary btn-block shadow">{t('signMeIn')}</button>
                                                 </div>
                                             </form>
                                             <div className="text-center my-3">
-                                                <span className="dlab-sign-up style-1">continue With</span>
+                                                <span className="dlab-sign-up style-1">{t('continueWith')}</span>
                                             </div>
                                             <div className="mb-3 dlab-signup-icon">
                                                 <button className="btn btn-outline-light"><i className="fa-brands fa-facebook me-2 facebook"></i>Facebook</button>
@@ -130,7 +132,7 @@ export default function Login() {
                                                 <button className="btn btn-outline-light mt-lg-0 mt-md-1 mt-sm-0 mt-1 linked-btn"><i className="fa-brands fa-linkedin me-2 likedin"></i>linkedin</button>
                                             </div>
                                             <div className="text-center">
-                                                <span>Already Have An Account?<a href="javascript:void(0);" className="text-primary"> Sign in</a></span>
+                                                <span>{t('realy')}<a href="javascript:void(0);" className="text-primary"> {t('signUp')}</a></span>
                                             </div>
 
                                         </div>

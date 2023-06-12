@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import { FacebookProvider } from 'react-facebook';
 import "../vendor/jquery-nice-select/css/nice-select.css"
 import "../vendor/bootstrap-select/dist/css/bootstrap-select.min.css"
 import "../vendor/swiper/css/swiper-bundle.min.css"
@@ -11,12 +11,13 @@ import NavMenu from "./NavMenu";
 import { useLocation, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addCart } from "../Store/Action";
+import { useTranslation } from "react-i18next";
 
 export default function ProductDetail(){
-    const products = useSelector(state=> state.root.products)
+    const { t, i18n } = useTranslation();
     const {idProduct} = useParams();
+    const products = useSelector(state=> state.root.products)
     const product = products.find((product) => product.id == idProduct);
-  
     const numberWithCommas = (number) => {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       };
@@ -112,7 +113,13 @@ export default function ProductDetail(){
                                                         className="fa fa-shopping-basket"></i></span>
                                             </p>
                                             <p>Product code: <span className="item">{product.id}</span> </p>
-                                            <p>Brand: <span className="item">Lee</span></p>
+                                            <a>Chia sẻ: <span className="item">
+                    
+                                                            <FacebookProvider appId="YOUR_APP_ID">
+                                                                <ShareButton url={`https://6fed-2001-ee0-4f53-4a0-b579-efec-b09-b38c.ngrok-free.app/product/${product.id}`} quote={"#FoodDesk"} />
+                                                            </FacebookProvider>
+                                                        </span>
+                                            </a>
                                             <p>Product tags:&nbsp;&nbsp;
                                                 <span className="badge badge-success light">bags</span>
                                                 <span className="badge badge-success light">clothes</span>
@@ -152,8 +159,7 @@ export default function ProductDetail(){
                                                 
                                                 <div className="shopping-cart  mb-2 me-3" onClick={handleAddCardClick}>
                                                     <p className="btn btn-primary" href=""><i
-                                                            className="fa fa-shopping-basket me-2"></i>Add
-                                                        to cart</p>
+                                                            className="fa fa-shopping-basket me-2"></i>{t('addCart')}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -219,3 +225,14 @@ export default function ProductDetail(){
         
     )
 }
+export const ShareButton = ({ url, quote }) => {
+    const handleShare = () => {
+      const facebookURL = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(quote)}`;
+      window.open(facebookURL, '_blank');
+    };
+  
+    return (
+        <i class="fa-brands fa-facebook-f" onClick={handleShare}></i> 
+      
+    );
+  };

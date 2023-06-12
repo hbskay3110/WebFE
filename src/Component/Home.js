@@ -45,7 +45,7 @@ export default function Home() {
 		fetchPostList()
 	},[])
     useEffect(()=>{
-		async function fetchPostList(){
+		async function fetchPostList1(){
 			const requestUrl = "http://localhost:3000/typeImages";
 			// gửi một yêu cầu HTTP GET đến url
 			const reponse  =  await fetch(requestUrl);
@@ -53,7 +53,7 @@ export default function Home() {
 			const reponseJson = await reponse.json();
 			setTypeImg(reponseJson);
 		} 
-		fetchPostList()
+		fetchPostList1()
 	},[])
     console.log(typeImg)
     const uniqueTypes = [...new Set(products.map((product) => product.type))];
@@ -75,8 +75,8 @@ export default function Home() {
 
                                         <div className="col-xl-12">
                                             <div className="d-flex align-items-center justify-content-between mb-2 gap">
-                                                <h4 className=" mb-0 cate-title">{t('All category')}</h4>
-                                                <a href="favorite-menu.html" className="text-primary">View all <i
+                                                <h4 className=" mb-0 cate-title">{t('category')}</h4>
+                                                <a href="favorite-menu.html" className="text-primary">{t('viewall')} <i
                                                     className="fa-solid fa-angle-right ms-2"></i></a>
                                             </div>
                                             <div className="swiper mySwiper-2">
@@ -104,8 +104,8 @@ export default function Home() {
                                         </div>
                                         <div className="col-xl-12">
                                             <div className="d-flex align-items-center justify-content-between mb-2">
-                                                <h4 className=" mb-0 cate-title">Popular Dishes</h4>
-                                                <a href="favorite-menu.html" className="text-primary">View all <i
+                                                <h4 className=" mb-0 cate-title">{t('popularDishes')} </h4>
+                                                <a href="favorite-menu.html" className="text-primary">{t('viewall')} <i
                                                     className="fa-solid fa-angle-right ms-2"></i></a>
                                             </div>
                                             <div className="swiper mySwiper-3">
@@ -209,8 +209,8 @@ export default function Home() {
                                         </div>
                                         <div className="col-xl-12">
                                             <div className="d-flex align-items-center justify-content-between mb-2">
-                                                <h4 className=" mb-0 cate-title">Recent Order</h4>
-                                                <a href="favorite-menu.html" className="text-primary">View all <i
+                                                <h4 className=" mb-0 cate-title">{t('recentOrder')}</h4>
+                                                <a href="favorite-menu.html" className="text-primary">{t('viewall')} <i
                                                     className="fa-solid fa-angle-right ms-2"></i></a>
                                             </div>
                                             <div className="swiper mySwiper-3">

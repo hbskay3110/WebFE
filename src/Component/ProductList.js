@@ -9,7 +9,6 @@ import NavHeader from "./NavHeader";
 import Header from "./Header";
 import NavMenu from "./NavMenu";
 
-
 import { useState, useEffect } from "react";
 import { getDatabase, ref, onValue } from "firebase/database";
 import { useSelector } from "react-redux";
@@ -18,14 +17,15 @@ import { addCart } from "../Store/Action";
 import { Link } from "react-router-dom";
 import HeaderSearch from "./HeaderSearch";
 import { addFavorite } from "../Store/Action";
+import { updatedFavorite } from "../Store/Action";
 const ProductList=(props)=>{
 	// const[products,setProducts] = useState([]);
 	const[query,setQuery] = useState("");
 	const [currentPage, setCurrentPage] = useState(1);
   	const [itemsPerPage, setItemsPerPage] = useState(2);
 	const [searchKeyword, setSearchKeyword] = useState("");
+	const dispatch=useDispatch();
 	const products = useSelector(state=> state.root.products)
-
 	useEffect(() => {
 		// Lấy tham số tìm kiếm từ URL
 		const search = new URLSearchParams(window.location.search).get("search");
@@ -51,9 +51,17 @@ const ProductList=(props)=>{
 	  // lấy ra danh sách
 	  const currentItems = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
 	  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-     
-		console.log(products)
-	  
+      const product = useSelector(state=> state.root.products)
+
+	  useEffect(()=>{
+		const fList=localStorage.getItem('favorite');
+		if(fList){
+			// Parse danh sách yêu thích từ JSON
+			const parsedFList=JSON.parse(fList);
+			// cập nhật danh sách yêu thích trong redux store
+			dispatch(updatedFavorite(parsedFList));
+		}
+	},[]);
 	// console.log(product)
         return (
             <div className="content-body">

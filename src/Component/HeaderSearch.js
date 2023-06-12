@@ -12,14 +12,22 @@ import "../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"
 import "../css/style.css"
 import pic1 from '../images/banner-img/pic-1.png';
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 export default  function HeaderSearch({onSearchChange}){
-  
+    const { t, i18n } = useTranslation();
+    const currentLanguage = i18n.language
+    const changeLanguage = (lng)=>{
+        i18n.changeLanguage(lng)
+    }
     const handleSearchChange = (event) => {
         const searchTerm = event.target.value;
         onSearchChange(searchTerm);
       };
-     
-    
+      const handleChangeLanguage = (language) => {
+        i18n.changeLanguage(language);
+      };
+      const user = localStorage.getItem("user-info");
+      const userObject = JSON.parse(user);
     return (
         <div>
                 <div className="header">
@@ -137,6 +145,17 @@ export default  function HeaderSearch({onSearchChange}){
                                     </div>
 
                                     <ul className="navbar-nav header-right ">
+                                    <a>
+                                              <li className="nav-item d-flex align-items-center header-profile2">
+                                              <i class="header__navbar-icon fas fa-globe"></i>
+                                              <h4 className="font-w500 mb-0 ms-2 text-while">{currentLanguage=='vi'?'Việt Nam':"English"}</h4>
+                                              <ul class="header__navbar-user-menu">
+                                                <a href="javascript:void(0);" class="header__navbar-languge-link" onClick={()=>changeLanguage('vi')}><li class="header__navber-languge-item">Tiếng Việt</li></a>
+                                                <a	href="javascript:void(0);" class="header__navbar-languge-link" onClick={()=>changeLanguage('en')}><li class="header__navber-languge-item">English</li></a>
+                                            </ul>
+                                              </li>
+                                        </a>
+                                    
                                     <li>
                                         <div className="header-profile2 ">
                                             <Link to="/cart">
@@ -154,22 +173,43 @@ export default  function HeaderSearch({onSearchChange}){
                                             
                                         </div>
                                     </li>
-                                    <li className="nav-item d-flex align-items-center header-profile2">
-                                            <img className="img-avt" src="https://vivureviews.com/wp-content/uploads/2022/08/avatar-vo-danh-11.jpg"></img>
-                                            <h4 className="font-w500 mb-0 ms-2 text-while">Phan Thị An</h4>
-                                            <ul class="header__navbar-user-menu">
-                                                <li class="header__navbar-user-item">
-                                                    <Link to={"/accuont"}><a
-                                                    href="">Tài khoản của tôi </a></Link></li>
-
-                                                <li class="header__navbar-user-item"><Link to={"/cart"}><a href="">Đơn hàng</a></Link></li>
-                                                <li
-                                                    class="header__navbar-user-item header__navbar-user-item--separate">
-                                                    <a href="">Đăng xuất</a>
+                                    {!user ? (
+                                          <li className="nav-item d-flex align-items-center header-profile2">
+                                            <Link to={"/register"}>
+                                            <a href="" className="header-item_login">
+                                                <li className="header__navbar-item header__navbar-item--strong header__navbar-item--separate js-form-register">
+                                                {t('signUp')}
                                                 </li>
-
-                                            </ul>
+                                            </a>
+                                            </Link>
+                                            <Link to={"/login"}>
+                                            <a href="" className="header-item_register">
+                                                <li className="header__navbar-item header__navbar-item--strong js-form-login">
+                                                {t('signin')}
+                                                </li>
+                                            </a>
+                                            </Link>
                                         </li>
+                                        ) : (
+                                        <a>
+                                              <li className="nav-item d-flex align-items-center header-profile2">
+                                              <img className="img-avt" src="https://vivureviews.com/wp-content/uploads/2022/08/avatar-vo-danh-11.jpg"></img>
+                                                <h4 className="font-w500 mb-0 ms-2 text-while">{userObject.name}</h4>
+                                                <ul class="header__navbar-user-menu">
+                                                    <li class="header__navbar-user-item">
+                                                        <Link to={"/account"}><a
+                                                        href="">{t('myAccount')} </a></Link></li>
+
+                                                    <li class="header__navbar-user-item"><Link to={"/cart"}><a href="">{t('order')}</a></Link></li>
+                                                    <li
+                                                        class="header__navbar-user-item header__navbar-user-item--separate">
+                                                        <a href="">{t('logOut')}</a>
+                                                    </li>
+
+                                                </ul>
+                                              </li>
+                                        </a>
+                                        )}
                                     
                                     </ul>
                                 </div>
