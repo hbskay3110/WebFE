@@ -19,6 +19,7 @@ import NavHeader from "./NavHeader";
 import Header from "./Header";
 import NavMenu from "./NavMenu";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 
 export default function OrderHistory() {
@@ -58,6 +59,7 @@ export default function OrderHistory() {
     console.log(currentOrders)
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
     console.log(orderList)
+    const { t, i18n } = useTranslation();
     return(
             <div>
             <div id="main-wrapper">
@@ -68,7 +70,7 @@ export default function OrderHistory() {
                     <div class="content-body">
                       
                         <div class="container">
-                        <h1 className="title">Order History</h1>
+                        <h1 className="title">{t("Order History")}</h1>
                             <div class="row">
                                 <div class="col-xl-12">
                                     <div class=" order-history d-flex algn-items-center justify-content-between mb-4">
@@ -77,7 +79,7 @@ export default function OrderHistory() {
                                             <path d="M27.414 24.586L22.337 19.509C23.386 17.928 24 16.035 24 14C24 8.486 19.514 4 14 4C8.486 4 4 8.486 4 14C4 19.514 8.486 24 14 24C16.035 24 17.928 23.386 19.509 22.337L24.586 27.414C25.366 28.195 26.634 28.195 27.414 27.414C28.195 26.633 28.195 25.367 27.414 24.586ZM7 14C7 10.14 10.14 7 14 7C17.86 7 21 10.14 21 14C21 17.86 17.86 21 14 21C10.14 21 7 17.86 7 14Z" fill="var(--primary)"/>
                                             </svg>
                                             </a></span>
-                                            <input type="text" class="form-control p-0" placeholder="Search here" onChange={handleSearch}/>
+                                            <input type="text" class="form-control p-0" placeholder={t("search")} onChange={handleSearch}/>
                                         </div>
                                         <select class="form-control default-select border w-auto d-none">
                                             <option>Recently</option>
@@ -97,10 +99,10 @@ export default function OrderHistory() {
                                                                 </div>
                                                             </th>
                                                             <th>ID</th>
-                                                            <th>Date</th>
-                                                            <th>Address</th>
-                                                            <th>Total</th>
-                                                            <th>Status</th>
+                                                            <th>{t("date")}</th>
+                                                            <th>{t("address")}</th>
+                                                            <th>{t("total")}</th>
+                                                            <th>{t("status")}</th>
                                                             
                                                             <th class="bg-none"></th>
                                                             <th class="bg-none"></th>
@@ -142,11 +144,11 @@ export default function OrderHistory() {
                                                                     <h4 class="text-primary">{numberWithCommas(order.price)} đ</h4>
                                                                 </div>
                                                             </td>
-                                                            <td><span class={`badge badge-xl light  ${order.status>=3 ? "badge-success" : "badge-danger"}`}>{order.status>=3 ? "Completed" : "Canceled"}</span></td>
+                                                            <td><span class={`badge badge-xl light  ${order.status>=3 ? "badge-success" : "badge-danger"}`}>{order.status>=3 ?  t("Completed") : t("canceled")}</span></td>
                                                             <td>
                                                                 <Link to={`/orderDetail/${order.id}`}>
                                                                 <div>
-                                                                    <a href="javascript:void(0);" class="btn btn-detail btn-detail-order-primary">Order Detail</a>
+                                                                    <a href="javascript:void(0);" class="btn btn-detail btn-detail-order-primary">{t("detail")}</a>
                                                                 </div>
                                                                 </Link>
                                                             </td>
@@ -160,8 +162,7 @@ export default function OrderHistory() {
                                                                         </svg>
                                                                     </a>
                                                                     <div class="dropdown-menu">
-                                                                        <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                                                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                                                     
                                                                     </div>
                                                                 </div>
                                                             </td>

@@ -12,7 +12,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSelector,useDispatch } from "react-redux";
 import { setCart } from "../Store/Action";
+import { useTranslation } from "react-i18next";
+
 export default function Checkout() {
+	const { t, i18n } = useTranslation();
+
 	const [showDialog, setShowDialog] = useState(false);
 	const [wards, setWards] = useState([]);
 	const [selectedCity, setSelectedCity] = useState("");
@@ -268,11 +272,11 @@ export default function Checkout() {
 										<div className="col-lg-6 col-md-6">
 											<div className="billing-details-wrap">
 
-													<h3 className="shoping-checkboxt-title">Hóa đơn</h3>
+													<h3 className="shoping-checkboxt-title">{t('bill')}</h3>
 													<div className="row">
 														<div className="col-lg-12">
 															<p className="single-form-row">
-																<label>Tên người nhận <span className="required">*</span></label> <input
+																<label>{t('recipientName')}<span className="required">*</span></label> <input
 																	type="text" onBlur={checkNameRecipient} onChange={handleNameRecipient} name="Firstname"/>
 																	<div className="mb-3">
 																		<span className="mb-1 errorLogin">{errorNameRecipient}</span>      
@@ -282,7 +286,7 @@ export default function Checkout() {
 
 														<div className="col-lg-12">
 															<p className="single-form-row">
-																<label>Địa chỉ<span className="required">*</span></label>
+																<label>{t('address')}<span className="required">*</span></label>
 
 															
 															<div>											
@@ -320,7 +324,7 @@ export default function Checkout() {
 													
 													<div className="col-lg-12">
 														<p className="single-form-row">
-															<label for="address-details">Địa chỉ chi tiết</label>
+															<label for="address-details">{t('detailAddress')}</label>
 															<input type="text" onBlur={checkAddressDetail} onChange={handleAddressDetail} id="address-details" name="address-details"/>
 															<div className="mb-3">
 																		<span className="mb-1 errorLogin">{errorAddressDetail}</span>      
@@ -330,7 +334,7 @@ export default function Checkout() {
 
 													<div className="col-lg-12">
 														<p className="single-form-row">
-															<label>Phone<span className="required">*</span></label>
+															<label>{t('phone')}<span className="required">*</span></label>
 															<input type="text" onBlur={checkPhone} onChange={handlePhone} name="telephone"/>
 															<div className="mb-3">
 																		<span className="mb-1 errorLogin">{errorPhone}</span>      
@@ -343,18 +347,18 @@ export default function Checkout() {
 
 													<div className="col-lg-12">
 														<p className="single-form-row ">
-															<label>Ghi chú<span className="required">*</span></label>
+															<label>{t('note')}<span className="required">*</span></label>
 															<input type="text" onChange={handleNote} name="note"
 																rows="2" cols="5"/>
 														</p>
 													</div>
 												</div>
 												<div className={`dialog ${showDialog ? "show" : ""}`}>
-													<p className="dialong__title">Xác nhận</p>
+													<p className="dialong__title">{t('confirm')}</p>
 													<div className="dialog__main">
-														<p className="dialog__text">Bạn có chắc muốn thanh toán</p>
-														<button className="dialog__btn " type="button">Thoát</button>
-														<button className="dialog__btn dialog__btn-ok" type="button" onClick={confirmPayment}>Xác nhận</button>
+														<p className="dialog__text">{t('youWantToPay')}</p>
+														<button className="dialog__btn " type="button">{t('exit')}</button>
+														<button className="dialog__btn dialog__btn-ok" type="button" onClick={confirmPayment}>{t('confirm')}</button>
 													</div>
 												</div>
 											</div>
@@ -363,7 +367,7 @@ export default function Checkout() {
 										<div className="col-lg-6 col-md-6">
 										
 											<div className="your-order-wrapper">
-												<h3 className="shoping-checkboxt-title">Đơn hàng</h3>
+												<h3 className="shoping-checkboxt-title">{t('order')}</h3>
 											
 												<div className="your-order-wrap">
 												
@@ -371,8 +375,8 @@ export default function Checkout() {
 														<table>
 															<thead>
 															<tr>
-																<th className="product-name">SẢN PHẨM</th>
-																<th className="product-total">TỔNG</th>
+																<th className="product-name">{t('product')}</th>
+																<th className="product-total">{t('total')}</th>
 															</tr>
 															</thead>
 															<tbody>
@@ -394,20 +398,20 @@ export default function Checkout() {
 															</tbody>
 															<tfoot>
 															<tr className="cart-subtotal">
-																<th>Giỏ hàng</th>
+																<th>{t('cart')}</th>
 																<td><span className="amount" id="total">{numberWithCommas(totalMoney)}</span>
 																	₫</td>
 															</tr>
 															<tr className="cart-subtotal">
-																<th>Mã giảm giá</th>
+																<th>{t('discountCode')}</th>
 																<td>
 																	<p className="checkout-coupon">
-																		<input type="text" placeholder="Mã giảm giá"/>
+																		<input type="text" placeholder=""/>
 																	</p>
 																</td>
 															</tr>
 															<tr className="shipping">
-																<th>Phí vận chuyển</th>
+																<th>{t('fee')}</th>
 																<td>
 																	<ul>
 																		<li><label><span className="amount" id="fee" name="fee">{numberWithCommas(fee)}</span>đ
@@ -418,7 +422,7 @@ export default function Checkout() {
 														
 
 															<tr className="order-total">
-																<th>Tổng hóa đơn</th>
+																<th>{t('totalBill')}</th>
 																<td><strong><span className="amount" id="totalPrice">{numberWithCommas(totalMoney + fee)}</span>
 																	₫</strong></td>
 															</tr>
@@ -434,21 +438,21 @@ export default function Checkout() {
 														<div className="payment-accordion">
 														
 															<h5><input type="radio" name="radio_button" value="button1" className="radio_payment"/>
-																 Thanh toán khi nhận hàng</h5>
+															{t('paymentDeli')}</h5>
 															<div className="payment-content">
-																<p>Bạn sẽ được kiểm tra sản phẩm khi nhận hàng.</p>
+																<p>{t('youReceipt')}</p>
 															</div>
 												
 														
 															<h5><input type="radio" name="radio_button" value="button2"  className="radio_payment"/>
-																 Thanh toán bằng tài khoản paypal</h5>
+															{t('payAccount')}</h5>
 															<div className="payment-content">
 																<p>PayPal</p>
 															</div>
 														
 														</div>
 														<div className="order-button-payment ">
-															<input onClick={handleClick} className="btn-primary btn-checkOut" type="button" value="Thanh toán"/>
+															<input onClick={handleClick} className="btn-primary btn-checkOut" type="button" value={t('payment')}/>
 														</div>
 													</div>
 										

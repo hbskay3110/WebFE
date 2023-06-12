@@ -14,8 +14,11 @@ import "../css/style.css"
 import pic1 from '../images/banner-img/pic-1.png';
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+
+   
 export default function Header(){
-    const { i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
+   
     const changeLanguage = (lng)=>{
         i18n.changeLanguage(lng)
     }
@@ -70,7 +73,7 @@ export default function Header(){
                                                 </select>
                                                 <div className="input-group search-area2 ps-3" id="Serach-bar">
 											
-                                                    <input type="text" className="form-control"  placeholder="What do you want eat today"   onKeyDown={handleKeyDown} onChange={handleSearchChange}/>
+                                                    <input type="text" className="form-control"  placeholder={t('whateattoday')}  onKeyDown={handleKeyDown} onChange={handleSearchChange}/>
                                                     <span className="input-group-text h-search"><a href="javascript:void(0)" onClick={handleSearchChange}>
                                                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
 											<path opacity="0.3" d="M16.6751 19.4916C16.2195 19.036 16.2195 18.2973 16.6751 17.8417C17.1307 17.3861 17.8694 17.3861 18.325 17.8417L22.9917 22.5084C23.4473 22.964 23.4473 23.7027 22.9917 24.1583C22.5361 24.6139 21.7974 24.6139 21.3417 24.1583L16.6751 19.4916Z" fill="var(--primary)"/>
@@ -197,14 +200,14 @@ export default function Header(){
                                             <Link to={"/register"}>
                                             <a href="" className="header-item_login">
                                                 <li className="header__navbar-item header__navbar-item--strong header__navbar-item--separate js-form-register">
-                                                Đăng kí
+                                                {t('signUp')}
                                                 </li>
                                             </a>
                                             </Link>
                                             <Link to={"/login"}>
                                             <a href="" className="header-item_register">
                                                 <li className="header__navbar-item header__navbar-item--strong js-form-login">
-                                                Đăng nhập
+                                                {t('signin')}
                                                 </li>
                                             </a>
                                             </Link>
@@ -217,12 +220,12 @@ export default function Header(){
                                                 <ul class="header__navbar-user-menu">
                                                     <li class="header__navbar-user-item">
                                                         <Link to={"/account"}><a
-                                                        href="">Tài khoản của tôi </a></Link></li>
+                                                        href="">{t('myAccount')} </a></Link></li>
 
-                                                    <li class="header__navbar-user-item"><Link to={"/cart"}><a href="">Đơn hàng</a></Link></li>
+                                                    <li class="header__navbar-user-item"><Link to={"/cart"}><a href="">{t('order')}</a></Link></li>
                                                     <li
                                                         class="header__navbar-user-item header__navbar-user-item--separate">
-                                                        <a href="">Đăng xuất</a>
+                                                        <a href="">{t('logOut')}</a>
                                                     </li>
 
                                                 </ul>

@@ -1,12 +1,14 @@
 import React from "react";
 import clsx from "clsx";
+import { useTranslation } from "react-i18next";
 
 export default function NavMenu() {
+    const { t, i18n } = useTranslation();
     return (
         <div>
             <div className="dlabnav border-right">
                 <div className="dlabnav-scroll">
-                    <p className={clsx("menu-title", "style-1")}> Main Menu</p>
+                    <p className={clsx("menu-title", "style-1")}> {t('mainMenu')}</p>
                     <ul className="metismenu" id="menu">
                         <li className="menu-title">Other</li>
                         <li><a className="has-arrow " href="javascript:void(0);" aria-expanded="false">
@@ -14,7 +16,7 @@ export default function NavMenu() {
                             <span className="nav-text">Apps</span>
                         </a>
                             <ul aria-expanded="false">
-                                <li><a href="app-profile.html">Profile</a></li>
+                                <li><a href="app-profile.html">{t('profile')}</a></li>
                                 <li><a href="post-details.html">Post Details</a></li>
                                 <li><a className="has-arrow" href="javascript:void(0);"
                                        aria-expanded="false">Email</a>
@@ -29,10 +31,10 @@ export default function NavMenu() {
                                        aria-expanded="false">Shop</a>
                                     <ul aria-expanded="false">
                                         <li><a href="ecom-product-grid.html">Product Grid</a></li>
-                                        <li><a href="ecom-product-list.html">Product List</a></li>
+                                        <li><a href="ecom-product-list.html">{t('productList')}</a></li>
                                         <li><a href="ecom-product-detail.html">Product Details</a></li>
-                                        <li><a href="ecom-product-order.html">Order</a></li>
-                                        <li><a href="ecom-checkout.html">Checkout</a></li>
+                                        <li><a href="ecom-product-order.html">{t('order')}</a></li>
+                                        <li><a href="ecom-checkout.html">{t('checkout')}</a></li>
                                         <li><a href="ecom-invoice.html">Invoice</a></li>
                                         <li><a href="ecom-customers.html">Customers</a></li>
                                     </ul>

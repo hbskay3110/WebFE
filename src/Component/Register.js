@@ -10,8 +10,12 @@ import "../vendor/swiper/css/swiper-bundle.min.css"
 import "../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"
 import "../css/style.css"
 import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
+   
 export default function Register(){
+    const { t, i18n } = useTranslation();
+
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -175,11 +179,11 @@ export default function Register(){
 									<div className="text-center mb-3">
 										<a href="index.html"><img src="images/logo-full.png" alt=""/></a>
 									</div>
-                                    <h4 className="text-center mb-4">Sign up your account</h4>
+                                    <h4 className="text-center mb-4">{t('signUpAccount')}</h4>
                                     <form action="https://fooddesk.dexignlab.com/xhtml/index.html">
                                         <div className="mb-3">
-                                            <label className="mb-1"><strong>Username</strong></label>
-                                            <input type="text" onBlur={checkUserName} onChange={handleUserName} className="form-control" placeholder="username"/>
+                                            <label className="mb-1"><strong>{t('username')}</strong></label>
+                                            <input type="text" onBlur={checkUserName} onChange={handleUserName} className="form-control" placeholder="Phan Thị An"/>
                                         </div>
                                         <div className="mb-3">
                                                     <span className="mb-1 errorLogin">{errorName}</span>      
@@ -192,32 +196,32 @@ export default function Register(){
                                                     <span className="mb-1 errorLogin">{errorEmail}</span>                                       
                                         </div>
                                         <div className="mb-3">
-                                            <label className="mb-1"><strong>Password</strong></label>
-                                            <input type="password" onBlur={checkPassWord} onChange={handlePassword} className="form-control" placeholder="Password"/>
+                                            <label className="mb-1"><strong>{t('password')}</strong></label>
+                                            <input type="password" onBlur={checkPassWord} onChange={handlePassword} className="form-control" placeholder=""/>
                                         </div>
                                         <div className="mb-3">
                                                     <span className="mb-1 errorLogin">{errorPass}</span>                                       
                                         </div>
                                         <div className="mb-3">
-                                            <label className="mb-1"><strong>Confirm Password</strong></label>
-                                            <input type="password" onBlur={checkConfirmPass}  onChange={handleConfirmPassword} className="form-control" placeholder="Confirm Password"/>
+                                            <label className="mb-1"><strong>{t('confirmPass')}</strong></label>
+                                            <input type="password" onBlur={checkConfirmPass}  onChange={handleConfirmPassword} className="form-control" placeholder=""/>
                                         </div>
                                         <div className="mb-3">
                                             <span className="mb-1 errorLogin">{errorConfimPass}</span>                                       
                                         </div>
                                         <div className="mb-3">
-                                            <label className="mb-1"><strong>Phone number</strong></label>
-                                            <input type="text" onBlur={checkPhone} onChange={handlePhone} className="form-control" placeholder="Phone number"/>
+                                            <label className="mb-1"><strong>{t('phoneNum')}</strong></label>
+                                            <input type="text" onBlur={checkPhone} onChange={handlePhone} className="form-control" placeholder="0356940356"/>
                                         </div>
                                         <div className="mb-3">
                                              <span className="mb-1 errorLogin">{errorPhone}</span>                                       
                                         </div>
                                         <div className="text-center mt-4">
-                                            <button type="button" onClick={registerUser} className="btn btn-primary btn-block">Sign me up</button>
+                                            <button type="button" onClick={registerUser} className="btn btn-primary btn-block">{t('signMeUp')}</button>
                                         </div>
                                     </form>
                                     <div className="new-account mt-3">
-                                        <p>Already have an account? <a className="text-primary" href="page-login.html">Sign in</a></p>
+                                        <p>{t('realy')}<a className="text-primary" href="page-login.html">{t('signin')}</a></p>
                                     </div>
                                 </div>
                             </div>
