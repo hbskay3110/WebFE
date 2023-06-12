@@ -18,9 +18,11 @@ import Footer from "./Footer";
 import NavHeader from "./NavHeader";
 import Header from "./Header";
 import NavMenu from "./NavMenu";
-
+import { useTranslation } from "react-i18next";
 
 export default function Cart() {
+	const { t, i18n } = useTranslation();
+	
 	const dispatch = useDispatch();
 	// Kiểm tra xem có giỏ hàng trong Session Storage không
 	useEffect(()=> {
@@ -68,7 +70,7 @@ export default function Cart() {
 								<div className="card-body">
 									<div className="d-flex align-items-center justify-content-between border-bottom flex-wrap">
 										<div className="mb-4">
-											<h4 className="font-w500">Order #1</h4>
+											<h4 className="font-w500">{t('order')} #1</h4>
 											<span>June 1, 2020, 08:22 AM</span>
 										</div>
 										<div className="orders-img d-flex mb-4">
@@ -80,7 +82,7 @@ export default function Cart() {
 										</div>
 									</div>
 									<div className="order-menu style-1 mt-3">
-										<h4>Order Menu</h4>
+										<h4>{t('orderMenu')}</h4>
 										{cart ? (
 												<div>
 												{cart.map(cartItem => (
@@ -93,14 +95,14 @@ export default function Cart() {
 									</div>
 										
 									<div className="d-flex align-items-center justify-content-between">
-										<h4 className="font-w500 mb-0">Total</h4>
+										<h4 className="font-w500 mb-0">{t('total')}</h4>
 										<h4 class="cate-title text-primary">{total}</h4>
 									</div>
 								</div>
 							</div>
 							<div className="text-end">
-								<a href="javascript:void(0);" className="btn btn-outline-danger me-sm-4 me-2">Reject Order</a>
-								<a href="javascript:void(0);" className="btn btn-primary">Accept Order</a>
+								<a href="javascript:void(0);" className="btn btn-outline-danger me-sm-4 me-2">{t('rejectOrder')}</a>
+								<a href="javascript:void(0);" className="btn btn-primary">{t('acceptOrder')}</a>
 							</div>
 						</div>
 					</div>

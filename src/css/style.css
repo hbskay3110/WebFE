@@ -34064,7 +34064,7 @@ p {
   background-color: var(--primary);
   border-color: var(--primary);
   border-radius: 4px;
-  width: 80px;
+  width: inherit;
   height: 40px;
   font-size: 20px;
 }

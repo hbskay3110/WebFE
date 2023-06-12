@@ -11,8 +11,10 @@ import NavMenu from "./NavMenu";
 import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addCart } from "../Store/Action";
+import { useTranslation } from "react-i18next";
 
 export default function ProductDetail(){
+    const { t, i18n } = useTranslation();
     const location = useLocation();
     const product = location.state.product;
     const numberWithCommas = (number) => {
@@ -145,8 +147,7 @@ export default function ProductDetail(){
                                                 
                                                 <div className="shopping-cart  mb-2 me-3" onClick={handleAddCardClick}>
                                                     <p className="btn btn-primary" href=""><i
-                                                            className="fa fa-shopping-basket me-2"></i>Add
-                                                        to cart</p>
+                                                            className="fa fa-shopping-basket me-2"></i>{t('addCart')}</p>
                                                 </div>
                                             </div>
                                         </div>

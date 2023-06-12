@@ -1,19 +1,16 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-
+import vi from "./language/vi.json"
+import en from "./language/en.json"
 // the translations
 // (tip move them in a JSON file and import them,
 // or even better, manage them separated from your code: https://react.i18next.com/guides/multiple-translation-files)
 const resources = {
   vi: {
-    translation: {
-      "All category": "Tất cả danh mục"
-    }
+    translation: vi
   },
   en: {
-    translation: {
-        "All category": "All category"
-    }
+    translation: en
   }
 };
 

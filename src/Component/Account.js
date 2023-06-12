@@ -18,8 +18,11 @@ import NavMenu from "./NavMenu";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Home() {
+  const { t, i18n } = useTranslation();
+
   const [account, setAccount] = useState(null);
 
   //kiểm tra có account trong localStorage không
@@ -98,11 +101,9 @@ export default function Home() {
                             className="setting-info"
                             onClick={handleChooseTabAccount}
                           >
-                            <h6>Account</h6>
+                            <h6>{t('account')}</h6>
                             <p className="mb-0">
-                              Efficiently managing user accounts, ensuring
-                              secure access, and maintaining personalized
-                              settings.
+                            {t('manageAccount')}
                             </p>
                           </div>
                         </a>
@@ -140,11 +141,9 @@ export default function Home() {
                             className="setting-info"
                             onClick={handleChooseTabChangeP}
                           >
-                            <h6>Change password</h6>
+                            <h6>{t('changePassword')}</h6>
                             <p className="mb-0">
-                              Change password allows users to update their
-                              existing password for enhanced security and
-                              account protection.
+                            {t('changePass')}
                             </p>
                           </div>
                         </a>
@@ -178,7 +177,7 @@ export default function Home() {
                             className="setting-info"
                             onClick={handleChooseLogout}
                           >
-                            <h6>Log out</h6>
+                            <h6>{t('logOut')}</h6>
                           </div>
                         </a>
                       </div>
@@ -200,7 +199,7 @@ export default function Home() {
                       <div className="setting-right">
                         <div className="card">
                           <div className="card-body">
-                            <h3 className="mb-4">Account</h3>
+                            <h3 className="mb-4">{t('account')}</h3>
                             {account ? (
                               <AccountForm id={account.id} />
                             ) : (
@@ -246,6 +245,7 @@ export default function Home() {
 }
 
 const AccountForm = (props) => {
+  const { t, i18n } = useTranslation();
   const [acc, setAcc] = useState(null);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -395,6 +395,7 @@ const AccountForm = (props) => {
 };
 const AccountFormLogin = () => {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
   //sự kiện click chuyến đên login
   const handleClickLogin = () => {
     navigate("/login");
@@ -403,10 +404,10 @@ const AccountFormLogin = () => {
     <div className="row">
       <div className="col-xl-6 col-sm-6">
         <div className="setting-input">
-          <p>Customer has not logged into account</p>
+          <p>{t('cusNotLogAcc')}</p>
         </div>
         <button className="loginbtnAc" onClick={handleClickLogin}>
-          Login
+        {t('login')}
         </button>
       </div>
     </div>
