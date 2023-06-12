@@ -19,24 +19,13 @@ import { Link } from "react-router-dom";
 import HeaderSearch from "./HeaderSearch";
 import { addFavorite } from "../Store/Action";
 const ProductList=(props)=>{
-	const[products,setProducts] = useState([]);
+	// const[products,setProducts] = useState([]);
 	const[query,setQuery] = useState("");
 	const [currentPage, setCurrentPage] = useState(1);
   	const [itemsPerPage, setItemsPerPage] = useState(2);
 	const [searchKeyword, setSearchKeyword] = useState("");
-	
-	useEffect(()=>{
-		async function fetchPostList(){
-			const requestUrl = "http://localhost:3000/products";
-			// gửi một yêu cầu HTTP GET đến url
-			const reponse  =  await fetch(requestUrl);
-			//chuyển đổi phản hồi thành đối tượng JSON
-			const reponseJson = await reponse.json();
-			//cập nhật giá trị của products
-			setProducts(reponseJson);
-		} 
-		fetchPostList()
-	},[])
+	const products = useSelector(state=> state.root.products)
+
 	useEffect(() => {
 		// Lấy tham số tìm kiếm từ URL
 		const search = new URLSearchParams(window.location.search).get("search");
@@ -62,8 +51,8 @@ const ProductList=(props)=>{
 	  // lấy ra danh sách
 	  const currentItems = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
 	  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-      const product = useSelector(state=> state.root.products)
-
+     
+		console.log(products)
 	  
 	// console.log(product)
         return (
@@ -469,7 +458,7 @@ const Product  =(prop)=>{
 								<div className="card dishe-bx b-hover style-1">
 										<i className="fa-solid fa-heart ms-auto c-heart c-pointer" onClick={handleAddFavorite}></i>
 									
-									<Link to={`/product/${product.id}` }  state={{ product: product }}>
+									<Link to={`/product/${product.id}` }  >
 									<div className="card-body pb-0 pt-3">
 										<div className="text-center mb-2">
 											<img src={product.img} alt=""/>

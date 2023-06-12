@@ -8,13 +8,15 @@ import Footer from "./Footer";
 import NavHeader from "./NavHeader";
 import Header from "./Header";
 import NavMenu from "./NavMenu";
-import { useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useLocation, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { addCart } from "../Store/Action";
 
 export default function ProductDetail(){
-    const location = useLocation();
-    const product = location.state.product;
+    const products = useSelector(state=> state.root.products)
+    const {idProduct} = useParams();
+    const product = products.find((product) => product.id == idProduct);
+  
     const numberWithCommas = (number) => {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       };
@@ -35,6 +37,11 @@ export default function ProductDetail(){
             dispatch(addCart(product,value));
         }
 	}
+    if(!product){
+        return(
+            <span class="loader"></span>
+        )
+    }
     return(
         <div> 
                <NavHeader/>
