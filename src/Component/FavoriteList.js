@@ -36,7 +36,22 @@ export default function FavoriteList() {
 	// lấy danh sách yêu thích từ store
 	const favorites = useSelector(state => state.root.favorites);
 
-
+	// phân trang
+	const [currentPage, setCurrentPage] = useState(1);
+	const productsPerPage = 2;
+  
+	// Tính toán chỉ số bắt đầu và chỉ số kết thúc của sản phẩm trên trang hiện tại
+	const indexOfLastProduct = currentPage * productsPerPage;
+	const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+	const currentProducts = favorites.slice(indexOfFirstProduct, indexOfLastProduct);
+  
+	// Tính tổng số trang
+	const totalPages = Math.ceil(favorites.length / productsPerPage);
+  
+	// sự kiện chuyển đến trang
+	const handleNextPage = (pageNumber) => {
+	  setCurrentPage(pageNumber);
+	};
     return (
         <div>
             <div id="main-wrapper">
@@ -357,27 +372,25 @@ export default function FavoriteList() {
 					</div>
 					<div className="tab-pane fade show active" id="pills-grid" role="tabpanel" aria-labelledby="pills-grid-tab">
 						<div className="row">
-							{favorites?(
+							{currentProducts?(
 								<div className="FItem">
-									{favorites.map(fItem => <FavoriteItem id={fItem.id} img={fItem.img} price={fItem.price} des={fItem.des} name={fItem.name}/>)}
+									{currentProducts.map(fItem => <FavoriteItem id={fItem.id} img={fItem.img} price={fItem.price} des={fItem.des} name={fItem.name}/>)}
 								</div>
 							):(<p>Favorite list is empty</p>)}
 							<div className="d-flex align-items-center justify-content-xl-between justify-content-center flex-wrap pagination-bx">
 								<div className="mb-sm-0 mb-3 pagination-title">
-									<p className="mb-0"><span>Showing 1-5</span> from <span>100</span> data</p>
+									<p className="mb-0"><span>Showing {indexOfFirstProduct+1}-{indexOfLastProduct}</span> from <span>{favorites.length}</span> data</p>
 								</div>
 								<nav>
 									<ul className="pagination pagination-gutter">
-										<li className="page-item page-indicator">
-											<a className="page-link" href="javascript:void(0)">
-												<i className="la la-angle-left"></i></a>
-										</li>
-										<li className="page-item active"><a className="page-link" href="javascript:void(0)">1</a>
-										</li>
-										<li className="page-item"><a className="page-link" href="javascript:void(0)">2</a></li>
-										
-										<li className="page-item"><a className="page-link" href="javascript:void(0)">3</a></li>
-										<li className="page-item page-indicator">
+										<li className="page-item page-indicator" onClick={()=>handleNextPage(currentPage-1)}>
+												<a className="page-link" href="javascript:void(0)">
+													<i className="la la-angle-left"></i></a>
+											</li>
+									{Array.from({ length: totalPages }, (_, index) => index + 1).map(page => (
+										<li className={page===currentPage?"page-item active":"page-item"} onClick={()=> handleNextPage(page)}><a className="page-link" href="javascript:void(0)">{page}</a></li>
+										))}
+										<li className="page-item page-indicator" onClick={()=>handleNextPage(currentPage+1)}>
 											<a className="page-link" href="javascript:void(0)">
 												<i className="la la-angle-right"></i></a>
 										</li>
