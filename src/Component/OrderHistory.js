@@ -23,6 +23,7 @@ import { useTranslation } from "react-i18next";
 
 
 export default function OrderHistory() {
+    const [account, setAccount] = useState(null);
     const [orderList, setOrderList] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [ordersPerPage, setOrdersPerPage] = useState(2);
@@ -33,12 +34,27 @@ export default function OrderHistory() {
     };
     
     const existOrderJson = localStorage.getItem('order');
+    const existUserJson = localStorage.getItem('user-info');
+
     useEffect(() => {
-        if (existOrderJson != null) {
-          setOrderList(JSON.parse(existOrderJson));
+        if (existOrderJson != null && account != null) {
+          const orders =  JSON.parse(existOrderJson)
+        
+          const myOrder = orders.filter(
+            (order) =>
+            order.email.includes(account.email)
+          );
+          setOrderList(myOrder);
         }
-      }, []);
-    console.log(orderList)
+      }, [account]);
+
+    useEffect(() => {
+        if (existUserJson != null ) {
+          const user = JSON.parse(existUserJson);
+            setAccount(user)
+        }
+    }, []);
+  
     const numberWithCommas = (number) => {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       };
