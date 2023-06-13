@@ -9040,7 +9040,7 @@ svg.pulse-svg .third-circle {
     border: 2px solid var(--primary);
     margin: 0; }
 .header-right .header-profile2 i, .header-right .header-profile2 h6, .header-right .header-profile2 .h6 {
-    color: #3D4152; }
+    color: white; }
 .header-right .header-profile2 i {
     font-size: 1rem; }
 .header-right .header-profile2 .nav-link {
@@ -33568,10 +33568,11 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
  .totalcard {
   border-radius: 100%;
   border: 1px solid orange;
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   text-align: center;
   align-items: center;
+  justify-content: center;
   margin-left: 5px;
   margin-top: 10px;
   margin-right: 10px;

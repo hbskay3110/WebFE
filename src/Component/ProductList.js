@@ -493,10 +493,12 @@ const Product  =(prop)=>{
 									</Link>
 									<div className="card-footer border-0 pt-2">
 										<div className="common d-flex align-items-center justify-content-between" >
+										<Link to={`/product/${product.id}` }  >
 											<div>
 												<a href="javascript:void(0);"><h4>{product.name}</h4></a>
 												<h3 className=" mb-0 text-primary">{numberWithCommas(product.price)} đ</h3>
 											</div>
+											</Link>
 											<div className="plus c-pointer" onClick={handleAddCardClick}>
 												<div className="sub-bx">
 												</div>

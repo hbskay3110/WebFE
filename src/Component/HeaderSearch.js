@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import "../images/favicon.png"
 import "../vendor/jquery-nice-select/css/nice-select.css"
@@ -13,6 +13,10 @@ import "../css/style.css"
 import pic1 from '../images/banner-img/pic-1.png';
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import { useSelector } from 'react-redux';
+import { setCart } from "../Store/Action";
+
 export default  function HeaderSearch({onSearchChange}){
     const { t, i18n } = useTranslation();
     const currentLanguage = i18n.language
@@ -28,6 +32,20 @@ export default  function HeaderSearch({onSearchChange}){
       };
       const user = localStorage.getItem("user-info");
       const userObject = JSON.parse(user);
+      const dispatch = useDispatch();
+      // Kiểm tra xem có giỏ hàng trong Session Storage không
+      useEffect(()=> {
+          const savedCart = sessionStorage.getItem('cart');
+          if (savedCart) {
+          // Parse giỏ hàng từ JSON
+          const parsedCart = JSON.parse(savedCart);
+          // Cập nhật giỏ hàng trong Redux Store nếu có
+          dispatch(setCart(parsedCart));
+            }
+      },[]);
+      //lấy cart từ store
+      const cart = useSelector(state => state.root.cart);
+      const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
     return (
         <div>
                 <div className="header">
@@ -165,7 +183,7 @@ export default  function HeaderSearch({onSearchChange}){
                                                         <div>
                                                             <h6 className="font-w500 mb-0 ms-2">Card</h6>
                                                         </div>
-                                                        <p className="totalcard">1</p>
+                                                        <p className="totalcard">{totalItems}</p>
                                                     </div>
 
                                                 </div>

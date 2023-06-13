@@ -38,7 +38,7 @@ export default function FavoriteList() {
 
 	// phân trang
 	const [currentPage, setCurrentPage] = useState(1);
-	const productsPerPage = 2;
+	const productsPerPage = 6;
   
 	// Tính toán chỉ số bắt đầu và chỉ số kết thúc của sản phẩm trên trang hiện tại
 	const indexOfLastProduct = currentPage * productsPerPage;
@@ -416,7 +416,7 @@ const FavoriteItem=(props)=>{
 	const handleAddCardClick = () => {
 		dispatch(addCart(props,1));
 	}
-	// sự kiện click thêm product vào danh sách yêu thích
+	// sự kiện click xóa product vào danh sách yêu thích
 	const handleRemoveFavorite=()=>{
 		dispatch(removeFavoriteItem(props.id));
 	}
