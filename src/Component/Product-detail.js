@@ -14,10 +14,27 @@ import { addCart } from "../Store/Action";
 import { useTranslation } from "react-i18next";
 
 export default function ProductDetail(){
+    const [viewedProducts, setViewedProducts] = useState([]);
     const { t, i18n } = useTranslation();
     const {idProduct} = useParams();
     const products = useSelector(state=> state.root.products)
     const product = products.find((product) => product.id == idProduct);
+    useEffect(() => {
+        // Lấy danh sách sản phẩm đã xem từ localStorage
+        const viewedProducts = localStorage.getItem('viewedProducts');
+        let viewedProductsValue = [];
+        //kiểm tra danh sách lấy từ local
+        if (viewedProducts) {
+          viewedProductsValue = JSON.parse(viewedProducts);
+        }
+        // Kiểm tra xem sản phẩm hiện tại trong danh sách đã xem
+        if (!viewedProductsValue.includes(idProduct)) {
+          viewedProductsValue.push(idProduct);
+          // Lưu lại danh sách sản phẩm đã xem vào localStorage
+          localStorage.setItem('viewedProducts', JSON.stringify(viewedProductsValue));
+        }
+      }, []);
+    
     const numberWithCommas = (number) => {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       };
