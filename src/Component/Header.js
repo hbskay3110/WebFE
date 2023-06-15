@@ -66,7 +66,7 @@ export default function Header(){
 	},[]);
 	//lấy cart từ store
 	const cart = useSelector(state => state.root.cart);
-    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+    const totalItems = cart.reduce((total, item) => total + parseInt(item.quantity), 0);
     return (
         <div>
                 <div className="header">

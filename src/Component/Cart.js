@@ -19,6 +19,7 @@ import NavHeader from "./NavHeader";
 import Header from "./Header";
 import NavMenu from "./NavMenu";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 export default function Cart() {
 	const { t, i18n } = useTranslation();
@@ -53,7 +54,47 @@ export default function Cart() {
 	};
 	calculateTotal();
 	}, [cart]);
+	// cartitem
+	//sự kiên click remove item
+	const handleClickRemove=(id)=>{
+		dispatch(removeItemCart(id));
+	}
+	const CartItem = (props) =>{
+		//tính sô lượng của mỗi item
+		const [quantityItem, setQuantityItem] = useState(props.quantity.toString());
+		//sự kiện khi thay đổi input
+		const handleQuantityChange = (e) => {
+			const newQuantity = parseInt(e.target.value);
+			if (Number.isNaN(newQuantity) || newQuantity <= 0) {
+			  // Invalid quantity entered, reset it to 1 or any appropriate default value
+			  setQuantityItem(1);
+			  dispatch(updateQuantityCart(props.id, 1));
+			  return;
+			}
+			setQuantityItem(newQuantity);
+			// Update the quantity in the cart
+			dispatch(updateQuantityCart(props.id, newQuantity));
+		  };
+		return(
+			<div className="d-flex align-items-center mb-4">
+				<input className="checkboxCartItem" type="checkbox"/>
+				<Link to={`/product/${props.id}`} state={{ product: props }}>
+				<img className="me-3" src={props.img} alt=""/>
+				</Link>
+				<div>
+				<Link to={`/product/${props.id}`} state={{ product: props }}>
+				<h4 className="font-w600 text-nowrap mb-0">{props.name}</h4>
+				</Link>
+					<div className="quantityIp">
 
+					<input className="quantityItemCard" type="number" value={quantityItem} onChange={handleQuantityChange}/>
+					</div>  
+				</div>
+				<button className="removeItemCart" onClick={()=>handleClickRemove(props.id)} >X</button>  
+				<h4 className="text-primary mb-0 ms-auto">{props.price}</h4>
+			</div>
+		)
+	}
     return (
         <div>
             <div id="main-wrapper">
@@ -71,7 +112,7 @@ export default function Cart() {
 									<div className="d-flex align-items-center justify-content-between border-bottom flex-wrap">
 										<div className="mb-4">
 											<h4 className="font-w500">{t('order')} #1</h4>
-											<span>June 1, 2020, 08:22 AM</span>
+											<span>June 20, 2023, 08:22 AM</span>
 										</div>
 										<div className="orders-img d-flex mb-4">
 											<img src="images/chat-img/orders-img/pic-1.jpg" alt=""/>
@@ -115,53 +156,4 @@ export default function Cart() {
     );
 
 }
-const CartItem = (prop) =>{
-	const dispatch = useDispatch();
-	//tính sô lượng của mỗi item
-	const [quantityItem, setQuantityItem] = useState(prop.quantity.toString());
-	//sự kiện khi thay đổi input
-	const handleInputQuantity=(e)=>{
-		const newValue =e.target.value.toString();
- 			if(newValue>=0){
-				setQuantityItem(newValue);
-			}
-		dispatch(updateQuantityCart(prop.id,newValue));
-	}
-	// suej kiên click tăng sl
-	const handleClickIncrease=()=>{
-			const newValue =parseInt(quantityItem)+1;
-			setQuantityItem(newValue.toString());
-			dispatch(updateQuantityCart(prop.id,newValue));
-		
-	}
-	//sự kiện click giảm
-	const handleClickDecrease=()=>{
-		if(quantityItem>1){
-			const newValue =parseInt(quantityItem)-1;
-			setQuantityItem(newValue.toString());
-			dispatch(updateQuantityCart(prop.id,newValue));
-		}
-		
-	}
-	//sự kiên click remove item
-	const handleClickRemove=()=>{
-		dispatch(removeItemCart(prop.id));
-	}
 
-	return(
-		<div className="d-flex align-items-center mb-4">
-			<input className="checkboxCartItem" type="checkbox"/>
-			<img className="me-3" src={prop.img} alt=""/>
-			<div>
-			<h4 className="font-w600 text-nowrap mb-0">{prop.name}</h4>
-				<div className="quantityIp">
-				<button className="quantity-input__modifier quantity-input__modifier--left" onClick={handleClickDecrease} >-</button>
-				<input className="quantityItemCard" value={quantityItem} onChange={handleInputQuantity}/>
-				<button className="quantity-input__modifier quantity-input__modifier--right" onClick={handleClickIncrease} >+</button>  
-				</div>  
-			</div>
-			<button className="removeItemCart" onClick={handleClickRemove} >X</button>  
-			<h4 className="text-primary mb-0 ms-auto">{prop.price}</h4>
-		</div>
-	)
-}
