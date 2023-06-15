@@ -36,7 +36,7 @@ export default function Cart() {
 	},[]);
 	//lấy cart từ store
 	const cart = useSelector(state => state.root.cart);
-	
+
 	//tổng tiền
 	const [total, setTotal] = useState(0);
 	// Tính tổng tiền khi giỏ hàng thay đổi
