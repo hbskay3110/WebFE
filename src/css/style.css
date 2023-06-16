@@ -11835,18 +11835,18 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 @media only screen and (max-width: 47.9375rem) {
     .metismenu a {
         padding: 0.625rem 1.25rem; } }
-.metismenu .has-arrow:after {
+/* .metismenu .has-arrow:after { */
     /* width:  .5rem;
                 height: .5rem;
                 border-color: inherit; */
-    border-top: 0.3125rem solid #C8C8C8;
+    /* border-top: 0.3125rem solid #C8C8C8;
     border-left: 0.3125rem solid #C8C8C8;
     border-bottom: 0.3125rem solid transparent;
     border-right: 0.3125rem solid transparent;
     right: 1.875rem;
     top: 48%;
     -webkit-transform: rotate(-225deg) translateY(-50%);
-    transform: rotate(-225deg) translateY(-50%); }
+    transform: rotate(-225deg) translateY(-50%); } */
 .metismenu .has-arrow[aria-expanded=true]:after,
 .metismenu .mm-active > .has-arrow:after {
     -webkit-transform: rotate(-135deg) translateY(-50%);
@@ -34288,3 +34288,11 @@ p {
   .FItem { 
 display: flex;
 }
+.metismenu .active i {
+    /* background-color: orange; */
+    color: var(--primary);
+  }
+  .metismenu .active span {
+    /* background-color: orange; */
+    color: var(--primary);
+  }
