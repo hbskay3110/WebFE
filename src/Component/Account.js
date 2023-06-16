@@ -101,10 +101,8 @@ export default function Home() {
                             className="setting-info"
                             onClick={handleChooseTabAccount}
                           >
-                            <h6>{t('account')}</h6>
-                            <p className="mb-0">
-                            {t('manageAccount')}
-                            </p>
+                            <h6>{t("account")}</h6>
+                            <p className="mb-0">{t("manageAccount")}</p>
                           </div>
                         </a>
                         <a
@@ -141,10 +139,8 @@ export default function Home() {
                             className="setting-info"
                             onClick={handleChooseTabChangeP}
                           >
-                            <h6>{t('changePassword')}</h6>
-                            <p className="mb-0">
-                            {t('changePass')}
-                            </p>
+                            <h6>{t("changePassword")}</h6>
+                            <p className="mb-0">{t("changePass")}</p>
                           </div>
                         </a>
                         <a
@@ -177,7 +173,7 @@ export default function Home() {
                             className="setting-info"
                             onClick={handleChooseLogout}
                           >
-                            <h6>{t('logOut')}</h6>
+                            <h6>{t("logOut")}</h6>
                           </div>
                         </a>
                       </div>
@@ -199,7 +195,7 @@ export default function Home() {
                       <div className="setting-right">
                         <div className="card">
                           <div className="card-body">
-                            <h3 className="mb-4">{t('account')}</h3>
+                            <h3 className="mb-4">{t("account")}</h3>
                             {account ? (
                               <AccountForm id={account.id} />
                             ) : (
@@ -404,10 +400,10 @@ const AccountFormLogin = () => {
     <div className="row">
       <div className="col-xl-6 col-sm-6">
         <div className="setting-input">
-          <p>{t('cusNotLogAcc')}</p>
+          <p>{t("cusNotLogAcc")}</p>
         </div>
         <button className="loginbtnAc" onClick={handleClickLogin}>
-        {t('login')}
+          {t("login")}
         </button>
       </div>
     </div>

@@ -31,18 +31,29 @@ export default function Header(){
       i18n.changeLanguage(language);
     };
   
-    const [user1, setUser] = useState(null);
+
     const [searchKeyword, setSearchKeyword] = useState("");
     const handleSearchChange = (event) => {
         const searchTerm = event.target.value;
         setSearchKeyword(searchTerm);
       
       };
+    const [user,setUsser]=useState(null);
+    //kiểm tra có account trong localStorage không
+    useEffect(() => {
+        const checkUser = localStorage.getItem("user-info");
+        if (checkUser) {
+            setUsser(JSON.parse(checkUser));
+        } else {
+            setUsser(null);
+        }
+    }, [user]);
+      //sự kiên đăng xuất
+    const handleChooseLogout = () => {
+        localStorage.removeItem("user-info");
+    };
+
     
-    const user = localStorage.getItem("user-info");
-    const userObject = JSON.parse(user);
-    console.log(userObject)
-    console.log(user)
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
           // Xử lý sự kiện khi nhấn phím Enter
@@ -235,7 +246,7 @@ export default function Header(){
                                         <a>
                                               <li className="nav-item d-flex align-items-center header-profile2">
                                               <img className="img-avt" src="https://vivureviews.com/wp-content/uploads/2022/08/avatar-vo-danh-11.jpg"></img>
-                                                <h4 className="font-w500 mb-0 ms-2 text-while">{userObject.name}</h4>
+                                                <h4 className="font-w500 mb-0 ms-2 text-while">{user.name}</h4>
                                                 <ul class="header__navbar-user-menu">
                                                     <li class="header__navbar-user-item">
                                                         <Link to={"/account"}><a
@@ -243,8 +254,8 @@ export default function Header(){
 
                                                     <li class="header__navbar-user-item"><Link to={"/cart"}><a href="">{t('order')}</a></Link></li>
                                                     <li
-                                                        class="header__navbar-user-item header__navbar-user-item--separate">
-                                                        <a href="">{t('logOut')}</a>
+                                                        class="header__navbar-user-item header__navbar-user-item--separate" onClick={handleChooseLogout} >
+                                                        <p >{t('logOut')}</p>
                                                     </li>
 
                                                 </ul>
