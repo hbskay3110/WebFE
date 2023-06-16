@@ -30,9 +30,9 @@ export default function Login() {
 			const requestUrl = "http://localhost:3000/account";
 			// gửi một yêu cầu HTTP GET đến url
 			const reponse  =  await fetch(requestUrl);
-			//chuyển đổi phản hồi thành đối tượng JSON
+			//chuyển đổi phản hồi thành đối tượng Javascrip
 			const reponseJson = await reponse.json();
-			//cập nhật giá trị của products
+			//cập nhật giá trị của account
 			setAccount(reponseJson);
 		} 
 		fetchPostList()
@@ -47,7 +47,7 @@ export default function Login() {
             if (account[i].pass === password) {
               // set password bằng rỗng để lưu vào localStorage
               account[i].pass = "";
-              // lưu vào local
+              // lưu vào local storage
               localStorage.setItem("user-info", JSON.stringify(account[i]));
               // chuyển đến trang home 
               navigate("/");  

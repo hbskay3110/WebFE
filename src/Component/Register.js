@@ -33,15 +33,17 @@ export default function Register(){
 			const requestUrl = "http://localhost:3000/account";
 			// gửi một yêu cầu HTTP GET đến url
 			const reponse  =  await fetch(requestUrl);
-			//chuyển đổi phản hồi thành đối tượng JSON
+			//chuyển đổi phản hồi thành đối tượng javascrip để sử dụng
 			const reponseJson = await reponse.json();
-			//cập nhật giá trị của products
+			//cập nhật giá trị của account bằng giá trị nhận về
 			setAccount(reponseJson);
 		} 
+        // gọi tới hàm để thực thi
 		fetchPostList()
 	},[])
-    console.log(account)
+    
      function checkEmail() {
+        // cho định dạng email theo dạng dưới
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (email === "") {
           setErrorEmail("Vui lòng nhập trường này");
@@ -72,6 +74,12 @@ export default function Register(){
         if (password === "") {
           setErrorPass("Vui lòng nhập trường này");
           return false;
+        } else{
+            const passwordRegex = /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@#$%^&+=]).{8,}$/;
+            if(!passwordRegex.test(password)){
+                setErrorPass("Password phải bao gồm các chữ cái, số và kí tự đặc biệt")
+                return false
+            }
         }
         return true;
         
@@ -121,14 +129,8 @@ export default function Register(){
       
       
     async function registerUser() {
-        checkUserName()
-        checkEmail()
-        checkPassWord()
-        checkConfirmPass()
-        checkPhone()
-        console.warn(checkEmail())
+       
         if(!checkEmail() || !checkUserName() || !checkPassWord() || !checkConfirmPass() || !checkPhone()){
-            console.log("no")
             return;
         }else{
             const userData = {
