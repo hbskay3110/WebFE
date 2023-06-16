@@ -18,6 +18,25 @@ export default function ProductDetail(){
     const {idProduct} = useParams();
     const products = useSelector(state=> state.root.products)
     const product = products.find((product) => product.id == idProduct);
+    //luu product vào danh sách dã xem
+    useEffect(() => {
+        if (product) {
+          // Lấy danh sách sản phẩm đã xem từ localStorage
+          const viewedProducts = localStorage.getItem('viewedProducts');
+          let viewedProductsValue = [];
+          if (viewedProducts) {
+            viewedProductsValue = JSON.parse(viewedProducts);
+          }
+    
+          // Kiểm tra xem sản phẩm hiện tại có trong danh sách đã xem chưa
+          if (!viewedProductsValue.some((p) => p.id == idProduct)) {
+            viewedProductsValue.push(product);
+            // Lưu lại danh sách sản phẩm đã xem vào localStorage
+            localStorage.setItem('viewedProducts', JSON.stringify(viewedProductsValue));
+          }
+        }
+      }, [idProduct, product]);
+    
     const numberWithCommas = (number) => {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       };
