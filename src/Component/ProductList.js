@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 import HeaderSearch from "./HeaderSearch";
 import { addFavorite } from "../Store/Action";
 import { updatedFavorite } from "../Store/Action";
+import { removeFavoriteItem } from "../Store/Action";
 const ProductList=(props)=>{
 	// const[products,setProducts] = useState([]);
 	const[query,setQuery] = useState("");
@@ -62,7 +63,90 @@ const ProductList=(props)=>{
 			dispatch(updatedFavorite(parsedFList));
 		}
 	},[]);
-	// console.log(product)
+	// cardItem
+	// lấy danh sách yêu thích tù localStorage
+    useEffect(()=>{
+		const fList=localStorage.getItem('favorite');
+		if(fList){
+			// Parse danh sách yêu thích từ JSON
+			const parsedFList=JSON.parse(fList);
+			// cập nhật danh sách yêu thích trong redux store
+			dispatch(updatedFavorite(parsedFList));
+		}
+	},[]);
+	// lấy danh sách yêu thích từ store
+	const favorites = useSelector(state => state.root.favorites);
+	// sự kiện click thêm product vào danh sách yêu thích
+	const handleAddFavorite=(pro)=>{
+		dispatch(addFavorite(pro));
+	}
+    // sự kiện click xóa product vào danh sách yêu thích
+	const handleRemoveFavorite=(id)=>{
+		dispatch(removeFavoriteItem(id));
+	}
+	 // sự kiện cick thêm sản phẩm vào cart
+	 const handleAddCardClick = (pro) => {
+		dispatch(addCart(pro,1));
+	}
+	const numberWithCommas = (number) => {
+		return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	  };
+	const Product  =(prop)=>{
+		const [product,setProduct] =useState(prop)
+			return (
+				<div className="col-xl-3 col-xxl-4 col-sm-6">
+									<div className="card dishe-bx b-hover style-1">
+											 {/* {kiểm tra có nằm trong danh sách yêu thích hay không} */ }
+											 {favorites.some(item => item.id === product.id) ? (
+                                                                     <i className="fa-solid fa-heart ms-auto c-heart c-pointer active" onClick={()=>handleRemoveFavorite(product.id)}></i>
+                                                                    ) : (
+                                                                        <i className="fa-solid fa-heart ms-auto c-heart c-pointer" onClick={()=>handleAddFavorite(product)}></i>
+                                                                    )}
+										
+										<Link to={`/product/${product.id}` }  >
+										<div className="card-body pb-0 pt-3">
+											<div className="text-center mb-2">
+												<img src={product.img} alt=""/>
+											</div>
+											<div className="border-bottom pb-3">
+												<h4 className="font-w500 mb-1">{product.des}</h4>
+												<div className="d-flex align-items-center">
+													<svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M8 0.500031L9.79611 6.02789H15.6085L10.9062 9.4443L12.7023 14.9722L8 11.5558L3.29772 14.9722L5.09383 9.4443L0.391548 6.02789H6.20389L8 0.500031Z" fill="#FC8019"/>
+													</svg>
+													<p className="font-w500 mb-0 px-2">5.0</p>
+													<svg className="me-2" width="4" height="5" viewBox="0 0 4 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<circle cx="2" cy="2.50003" r="2" fill="#C4C4C4"/>
+													</svg>
+													<p className=" font-w500 mb-0">1k+ Reviews</p>
+													<svg className="mx-2" width="4" height="5" viewBox="0 0 4 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<circle cx="2" cy="2.5" r="2" fill="#C4C4C4"/>
+													</svg>
+											
+	
+												</div>
+											</div>
+										</div>
+										</Link>
+										<div className="card-footer border-0 pt-2">
+											<div className="common d-flex align-items-center justify-content-between" >
+											<Link to={`/product/${product.id}` }  >
+												<div>
+													<a href="javascript:void(0);"><h4>{product.name}</h4></a>
+													<h3 className=" mb-0 text-primary">{numberWithCommas(product.price)} đ</h3>
+												</div>
+												</Link>
+												<div className="plus c-pointer" onClick={()=>handleAddCardClick(product)}>
+													<div className="sub-bx">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+			);
+		
+	}
         return (
             <div className="content-body">
               <NavHeader/>
@@ -447,65 +531,5 @@ const ProductList=(props)=>{
         )
     
 }
-const Product  =(prop)=>{
-    const [product,setProduct] =useState(prop)
-	const dispatch = useDispatch();
-	// sự kiện click để thêm product vào cart
-	const handleAddCardClick = () => {
-		dispatch(addCart(product,1));
-	}
-	// sự kiện click thêm product vào danh sách yêu thích
-	const handleAddFavorite=()=>{
-		dispatch(addFavorite(product));
-	}
-	const numberWithCommas = (number) => {
-        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      };
-        return (
-            <div className="col-xl-3 col-xxl-4 col-sm-6">
-								<div className="card dishe-bx b-hover style-1">
-										<i className="fa-solid fa-heart ms-auto c-heart c-pointer" onClick={handleAddFavorite}></i>
-									
-									<Link to={`/product/${product.id}` }  >
-									<div className="card-body pb-0 pt-3">
-										<div className="text-center mb-2">
-											<img src={product.img} alt=""/>
-										</div>
-										<div className="border-bottom pb-3">
-											<h4 className="font-w500 mb-1">{product.des}</h4>
-											<div className="d-flex align-items-center">
-												<svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<path d="M8 0.500031L9.79611 6.02789H15.6085L10.9062 9.4443L12.7023 14.9722L8 11.5558L3.29772 14.9722L5.09383 9.4443L0.391548 6.02789H6.20389L8 0.500031Z" fill="#FC8019"/>
-												</svg>
-												<p className="font-w500 mb-0 px-2">5.0</p>
-												<svg className="me-2" width="4" height="5" viewBox="0 0 4 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<circle cx="2" cy="2.50003" r="2" fill="#C4C4C4"/>
-												</svg>
-												<p className=" font-w500 mb-0">1k+ Reviews</p>
-												<svg className="mx-2" width="4" height="5" viewBox="0 0 4 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<circle cx="2" cy="2.5" r="2" fill="#C4C4C4"/>
-												</svg>
-										
 
-											</div>
-										</div>
-									</div>
-									</Link>
-									<div className="card-footer border-0 pt-2">
-										<div className="common d-flex align-items-center justify-content-between" >
-											<div>
-												<a href="javascript:void(0);"><h4>{product.name}</h4></a>
-												<h3 className=" mb-0 text-primary">{numberWithCommas(product.price)} đ</h3>
-											</div>
-											<div className="plus c-pointer" onClick={handleAddCardClick}>
-												<div className="sub-bx">
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-        );
-    
-}
 export default ProductList
