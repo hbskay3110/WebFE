@@ -245,6 +245,7 @@ export default function ProductDetail(){
         </div>
                     </div>
                 </div>
+            
             <Footer/>
         </div>
         

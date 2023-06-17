@@ -34299,4 +34299,104 @@ display: flex;
     /* background-color: orange; */
     color: var(--primary);
   }
-
+/* product detail */
+.tab-pane {
+    display: block;
+    height: 0;
+    max-width: 100%;
+    visibility: hidden;
+    overflow: hidden;
+    opacity: 0;
+  }
+  .tab-pane.active {
+    height: auto;
+    visibility: visible;
+    opacity: 1;
+    overflow: visible;
+  }
+  .pro_review {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  @media only screen and (max-width: 479px) {
+    .pro_review {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+    }
+    .pro_review .review_thumb {
+      margin-bottom: 20px;
+    }
+  }
+  
+  .review_thumb {
+    min-width: 62px;
+  }
+  
+  .review_details {
+    border: 1px solid #ddd;
+    margin-left: 26px;
+    padding: 10px 20px;
+    position: relative;
+    border-radius: 3px;
+  }
+  @media only screen and (max-width: 479px) {
+    .review_details {
+      margin-left: 0px;
+    }
+  }
+  .review_details:before {
+    background: #fff;
+    border-bottom: 1px solid #ebebeb;
+    border-left: 1px solid #ebebeb;
+    content: "";
+    display: block;
+    height: 10px;
+    left: -6px;
+    position: absolute;
+    top: 10px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    width: 10px;
+  }
+  .review_details .review_info h5 span {
+    font-weight: 300;
+  }
+  
+  .product-rating li {
+    margin-right: 3px;
+    font-size: 16px;
+    color: #ffcc00;
+  }
+  
+  .comments-reply-area .comment-input input,
+  .comments-reply-area .comment-input textarea,
+  .comments-reply-area .comment-form-comment input,
+  .comments-reply-area .comment-form-comment textarea {
+    width: 100%;
+    border: 1px solid #ddd;
+    padding: 10px;
+  }
+  .comments-reply-area .comment-input textarea,
+  .comments-reply-area .comment-form-comment textarea {
+    height: 140px;
+  }
+  .comments-reply-area label {
+    display: block;
+    margin-bottom: 3px;
+  }
+  
+  .comment-form-submit input {
+    border: none;
+    padding: 10px 30px;
+    border-radius: 3px;
+    background:var(--primary-color);
+    color: #fff;
+  }
+  .sort{
+        height: 41px;
+        width: 112%;
+        margin-left: 20px;
+  }
