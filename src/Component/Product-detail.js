@@ -16,19 +16,45 @@ import { useTranslation } from "react-i18next";
 export default function ProductDetail(){
     const { t, i18n } = useTranslation();
     const {idProduct} = useParams();
+    // lấy danh sách product từ trong store 
     const products = useSelector(state=> state.root.products)
+    // tìm ra sản phẩm trong danh sách sản phẩm có id bằng cái mã sản phẩm nhận từ param
     const product = products.find((product) => product.id == idProduct);
+
+    // chuyển đổi số thành giá tiền
     const numberWithCommas = (number) => {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       };
-      const [value, setValue] = useState(1);
+    //luu product vào danh sách dã xem
+    useEffect(() => {
+        if (product) {
+          // Lấy danh sách sản phẩm đã xem từ localStorage
+          const viewedProducts = localStorage.getItem('viewedProducts');
+          let viewedProductsValue = [];
+          if (viewedProducts) {
+            viewedProductsValue = JSON.parse(viewedProducts);
+          }
+    
+          // Kiểm tra xem sản phẩm hiện tại có trong danh sách đã xem chưa
+          if (!viewedProductsValue.some((p) => p.id == idProduct)) {
+            viewedProductsValue.push(product);
+            // Lưu lại danh sách sản phẩm đã xem vào localStorage
+            localStorage.setItem('viewedProducts', JSON.stringify(viewedProductsValue));
+          }
+        }
+      }, [idProduct, product]);
 
+   
+      // số lượng sản phẩm mặc định là 1
+      const [value, setValue] = useState(1);
+      // thay đổi giá trị số lượng sản phẩm khi bấm vào các dấu lên xuống
       const handleInputChange = (event) => {
         const newValue = parseInt(event.target.value);
         if (newValue >= 0) {
             setValue(newValue);
           }
       };
+      //
     const dispatch = useDispatch();
     // sự kiện click thêm sản phẩm vào cart
 	const handleAddCardClick = () => {
@@ -38,6 +64,7 @@ export default function ProductDetail(){
             dispatch(addCart(product,value));
         }
 	}
+    // nếu sản phẩm chưa được lấy ra thì hiển thị màn hình đang load
     if(!product){
         return(
             <span class="loader"></span>

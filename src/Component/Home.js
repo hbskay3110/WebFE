@@ -16,6 +16,8 @@ import Footer from "./Footer";
 import NavHeader from "./NavHeader";
 import Header from "./Header";
 import NavMenu from "./NavMenu";
+import { useDispatch } from "react-redux";
+import { addCart } from "../Store/Action";
 import { Navigation, Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -25,7 +27,10 @@ import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-
+import { updatedFavorite } from "../Store/Action";
+import { useSelector } from "react-redux";
+import { addFavorite } from "../Store/Action";
+import { removeFavoriteItem } from "../Store/Action";
 export default function Home() {
     const { t, i18n } = useTranslation();
  
@@ -59,6 +64,32 @@ export default function Home() {
     const uniqueTypes = [...new Set(products.map((product) => product.type))];
     const productPopular = products.slice(0, 6);
     const productRecentOrder = products.slice(6, 12);
+
+    const dispatch=useDispatch();
+    // sự kiện cick thêm sản phẩm vào cart
+    const handleAddCardClick = (pro) => {
+		dispatch(addCart(pro,1));
+	}
+    // lấy danh sách yêu thích tù localStorage
+    useEffect(()=>{
+		const fList=localStorage.getItem('favorite');
+		if(fList){
+			// Parse danh sách yêu thích từ JSON
+			const parsedFList=JSON.parse(fList);
+			// cập nhật danh sách yêu thích trong redux store
+			dispatch(updatedFavorite(parsedFList));
+		}
+	},[]);
+	// lấy danh sách yêu thích từ store
+	const favorites = useSelector(state => state.root.favorites);
+    // sự kiện click thêm product vào danh sách yêu thích
+	const handleAddFavorite=(pro)=>{
+		dispatch(addFavorite(pro));
+	}
+    // sự kiện click xóa product vào danh sách yêu thích
+	const handleRemoveFavorite=(id)=>{
+		dispatch(removeFavoriteItem(id));
+	}
     return (
         <div>
             <div id="main-wrapper">
@@ -118,19 +149,24 @@ export default function Home() {
                                                
                                                 >
                                                 {productPopular.map((product)=>(
-                                                 
                                                         <SwiperSlide>
-                                                               <Link to={`/product/${product.id}`} state={{ product: product }}>
                                                         <div className="swiper-slide1" key={product.id}>
                                                             <div className="card dishe-bx">
                                                                 <div className="card-header border-0 pb-0 pt-0 pe-3">
                                                                     <span
                                                                         className="badge badge-lg badge-danger side-badge">15% Off</span>
-                                                                    <i className="fa-solid fa-heart ms-auto c-heart c-pointer"></i>
+                                                                    {/* {kiểm tra có nằm trong danh sách yêu thích hay không} */ }
+                                                                    {favorites.some(item => item.id === product.id) ? (
+                                                                     <i className="fa-solid fa-heart ms-auto c-heart c-pointer active" onClick={()=>handleRemoveFavorite(product.id)}></i>
+                                                                    ) : (
+                                                                        <i className="fa-solid fa-heart ms-auto c-heart c-pointer" onClick={()=>handleAddFavorite(product)}></i>
+                                                                    )}
                                                                 </div>
+                                                                <Link to={`/product/${product.id}`} state={{ product: product }}>
                                                                 <div className="card-body p-0 text-center">
                                                                     <img src={product.img} alt=""/>
                                                                 </div>
+                                                                </Link>
                                                                 <div className="card-footer border-0 px-3">
                                                                     <ul className="d-flex align-items-center mb-2">
                                                                         <li>
@@ -179,14 +215,16 @@ export default function Home() {
                                                                             </svg>
                                                                         </li>
                                                                     </ul>
-                                                                    <div
-                                                                        className="common d-flex align-items-end justify-content-between">
+                                                                    
+                                                                    <div className="common d-flex align-items-end justify-content-between">
+                                                                        <Link to={`/product/${product.id}`} state={{ product: product }}>
                                                                         <div>
                                                                             <a href="javascript:void(0);"><h4>{product.name}</h4>
                                                                             </a>
                                                                             <h3 className="font-w700 mb-0 text-primary">{product.price}</h3>
                                                                         </div>
-                                                                        <div className="plus c-pointer">
+                                                                        </Link>
+                                                                        <div className="plus c-pointer" onClick={()=>handleAddCardClick(product)}>
                                                                             <div className="sub-bx">
                                                                                 <a href="javascript:void(0);"></a>
                                                                             </div>
@@ -195,10 +233,7 @@ export default function Home() {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                            </Link>
                                                         </SwiperSlide>
-                                                   
-                                                   
                                                 ))}
                                                 </Swiper>
                                                 <div className="swiper-wrapper">
@@ -224,17 +259,23 @@ export default function Home() {
                                                 >
                                                 {productRecentOrder.map((product)=>(
                                                     <SwiperSlide>
-                                                    <Link to={`/product/${product.id}`} state={{ product: product }}>
                                                     <div className="swiper-slide1" key={product.id}>
                                                         <div className="card dishe-bx">
                                                             <div className="card-header border-0 pb-0 pt-0 pe-3">
                                                                 <span
                                                                     className="badge badge-lg badge-danger side-badge">15% Off</span>
-                                                                <i className="fa-solid fa-heart ms-auto c-heart c-pointer"></i>
+                                                                {/* {kiểm tra có nằm trong danh sách yêu thích hay không} */ }
+                                                                {favorites.some(item => item.id === product.id) ? (
+                                                                 <i className="fa-solid fa-heart ms-auto c-heart c-pointer active" onClick={()=>handleRemoveFavorite(product.id)}></i>
+                                                                ) : (
+                                                                    <i className="fa-solid fa-heart ms-auto c-heart c-pointer" onClick={()=>handleAddFavorite(product)}></i>
+                                                                )}
                                                             </div>
+                                                            <Link to={`/product/${product.id}`} state={{ product: product }}>
                                                             <div className="card-body p-0 text-center">
                                                                 <img src={product.img} alt=""/>
                                                             </div>
+                                                            </Link>
                                                             <div className="card-footer border-0 px-3">
                                                                 <ul className="d-flex align-items-center mb-2">
                                                                     <li>
@@ -283,14 +324,16 @@ export default function Home() {
                                                                         </svg>
                                                                     </li>
                                                                 </ul>
-                                                                <div
-                                                                    className="common d-flex align-items-end justify-content-between">
+                                                                
+                                                                <div className="common d-flex align-items-end justify-content-between">
+                                                                    <Link to={`/product/${product.id}`} state={{ product: product }}>
                                                                     <div>
                                                                         <a href="javascript:void(0);"><h4>{product.name}</h4>
                                                                         </a>
                                                                         <h3 className="font-w700 mb-0 text-primary">{product.price}</h3>
                                                                     </div>
-                                                                    <div className="plus c-pointer">
+                                                                    </Link>
+                                                                    <div className="plus c-pointer" onClick={()=>handleAddCardClick(product)}>
                                                                         <div className="sub-bx">
                                                                             <a href="javascript:void(0);"></a>
                                                                         </div>
@@ -299,7 +342,6 @@ export default function Home() {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    </Link>
                                                     </SwiperSlide>
                                                 ))}
                                                 </Swiper>
@@ -436,3 +478,8 @@ export default function Home() {
     )
 
 }
+// const ProductPopularItem=(props)=>{
+//     return(
+
+//     )
+// }

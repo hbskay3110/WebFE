@@ -11,6 +11,7 @@
     "popularDishes": "Món ăn phổ biến",
     "recentOrder" : "Đơn hàng gần đây",
     "mainMenu": "Thực đơn chính",
+    "menu": "Thực đơn",
     "profile": "Hồ sơ",
     "account":"Tài khoản",
     "changePassword":"Đổi mật khẩu",
@@ -69,6 +70,7 @@
     "name": "Tên",
     "status":"Trạng thái",
     "Order History": "Lịch sử đặt hàng",
+    "history": "Lịch sử",
     "search":"Tìm kiếm",
     "date" :"Ngày",
     "canceled":"Hủy",
@@ -83,7 +85,9 @@
     "back":"Trở lại",
     "update":"Cập nhật",
     "product code":"Mã sản phẩm",
-    "type":"Loại"
+    "type":"Loại",
+    "favorite List":"Danh sách yêu thích",
+    "home":"Trang chủ"
 
 
 

@@ -21,9 +21,41 @@ import { updatedFavorite } from "../Store/Action";
 import { addCart } from "../Store/Action";
 import { removeFavoriteItem } from "../Store/Action";
 import { useSelector } from "react-redux";
-
-export default function FavoriteList() {
+import { addFavorite } from "../Store/Action";
+export default function History() {
   const dispatch = useDispatch();
+  const [viewedProducts, setViewedProducts] = useState([]);
+
+  useEffect(() => {
+    // Lấy danh sách sản phẩm đã xem từ localStorage
+    const viewedProductsStr = localStorage.getItem("viewedProducts");
+    if (viewedProductsStr) {
+      const parsedViewedProducts = JSON.parse(viewedProductsStr);
+      setViewedProducts(parsedViewedProducts);
+    }
+  }, []);
+
+  // phân trang
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 2;
+
+  // Tính toán chỉ số bắt đầu và chỉ số kết thúc của sản phẩm trên trang hiện tại
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = viewedProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
+  // Tính tổng số trang
+  const totalPages = Math.ceil(viewedProducts.length / productsPerPage);
+
+  // sự kiện chuyển đến trang
+  const handleNextPage = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+  // cardItem
+  // lấy danh sách yêu thích tù localStorage
   useEffect(() => {
     const fList = localStorage.getItem("favorite");
     if (fList) {
@@ -35,43 +67,34 @@ export default function FavoriteList() {
   }, []);
   // lấy danh sách yêu thích từ store
   const favorites = useSelector((state) => state.root.favorites);
-
-  // phân trang
-  const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 6;
-
-  // Tính toán chỉ số bắt đầu và chỉ số kết thúc của sản phẩm trên trang hiện tại
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = favorites.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
-
-  // Tính tổng số trang
-  const totalPages = Math.ceil(favorites.length / productsPerPage);
-
-  // sự kiện chuyển đến trang
-  const handleNextPage = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-  // cartItem
-  // sự kiện click để thêm props vào cart
+  // sự kiện click để thêm  vào cart
   const handleAddCardClick = (pro) => {
     dispatch(addCart(pro, 1));
+  };
+  // sự kiện click thêm product vào danh sách yêu thích
+  const handleAddFavorite = (pro) => {
+    dispatch(addFavorite(pro));
   };
   // sự kiện click xóa product vào danh sách yêu thích
   const handleRemoveFavorite = (id) => {
     dispatch(removeFavoriteItem(id));
   };
-  const FavoriteItem = (props) => {
+  const HistoryItem = (props) => {
     return (
       <div className="col-xl-3 col-xxl-4 col-sm-6">
         <div className="card dishe-bx b-hover style-1">
-          <i
-            className="fa-solid fa-heart ms-auto c-heart c-pointer active"
-            onClick={() => handleRemoveFavorite(props.id)}
-          ></i>
+          {/* {kiểm tra có nằm trong danh sách yêu thích hay không} */}
+          {favorites.some((item) => item.id === props.id) ? (
+            <i
+              className="fa-solid fa-heart ms-auto c-heart c-pointer active"
+              onClick={() => handleRemoveFavorite(props.id)}
+            ></i>
+          ) : (
+            <i
+              className="fa-solid fa-heart ms-auto c-heart c-pointer"
+              onClick={() => handleAddFavorite(props)}
+            ></i>
+          )}
 
           <Link to={`/product/${props.id}`} state={{ product: props }}>
             <div className="card-body pb-0 pt-3">
@@ -820,7 +843,7 @@ export default function FavoriteList() {
                     {currentProducts ? (
                       <div className="FItem">
                         {currentProducts.map((fItem) => (
-                          <FavoriteItem
+                          <HistoryItem
                             id={fItem.id}
                             img={fItem.img}
                             price={fItem.price}
@@ -839,7 +862,7 @@ export default function FavoriteList() {
                             Showing {indexOfFirstProduct + 1}-
                             {indexOfLastProduct}
                           </span>{" "}
-                          from <span>{favorites.length}</span> data
+                          from <span>{viewedProducts.length}</span> data
                         </p>
                       </div>
                       <nav>

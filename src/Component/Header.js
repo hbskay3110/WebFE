@@ -14,6 +14,10 @@ import "../css/style.css"
 import pic1 from '../images/banner-img/pic-1.png';
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import { useSelector } from 'react-redux';
+import { setCart } from "../Store/Action";
+
 
    
 export default function Header(){
@@ -27,18 +31,25 @@ export default function Header(){
       i18n.changeLanguage(language);
     };
   
-    const [user1, setUser] = useState(null);
+
     const [searchKeyword, setSearchKeyword] = useState("");
     const handleSearchChange = (event) => {
         const searchTerm = event.target.value;
         setSearchKeyword(searchTerm);
       
       };
+    const [user,setUsser]=useState(null);
+    //kiểm tra có account trong localStorage không
+    useEffect(() => {
+        const checkUser = localStorage.getItem("user-info");
+        if (checkUser) {
+            setUsser(JSON.parse(checkUser));
+        } else {
+            setUsser(null);
+        }
+    }, [user]);
+
     
-    const user = localStorage.getItem("user-info");
-    const userObject = JSON.parse(user);
-    console.log(userObject)
-    console.log(user)
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
           // Xử lý sự kiện khi nhấn phím Enter
@@ -49,11 +60,28 @@ export default function Header(){
         // Chuyển hướng đến trang danh sách sản phẩm với từ khóa tìm kiếm
         window.location.href = `/listProduct?search=${searchKeyword}`;
     };
+
      //sự kiên đăng xuất
     const handleChooseLogout = () => {
         localStorage.removeItem("user-info");
         navigate("/login")
     };
+
+	const dispatch = useDispatch();
+    // Kiểm tra xem có giỏ hàng trong Session Storage không
+	useEffect(()=> {
+		const savedCart = sessionStorage.getItem('cart');
+		if (savedCart) {
+		// Parse giỏ hàng từ JSON
+		const parsedCart = JSON.parse(savedCart);
+		// Cập nhật giỏ hàng trong Redux Store nếu có
+		dispatch(setCart(parsedCart));
+	  	}
+	},[]);
+	//lấy cart từ store
+	const cart = useSelector(state => state.root.cart);
+    const totalItems = cart.reduce((total, item) => total + parseInt(item.quantity), 0);
+
     return (
         <div>
                 <div className="header">
@@ -190,8 +218,10 @@ export default function Header(){
                                                     <div className="header-info2 d-flex align-items-center">
                                                         <img src="https://banner2.cleanpng.com/20180703/vtz/kisspng-shopping-cart-software-computer-icons-mayline-5b3b72a89c95a3.3174593115306226326414.jpg" alt="avt"></img>
                                                         <div className="d-flex align-items-center sidebar-info">
-                                                            
-                                                            <p className="totalcard">1</p>
+                                                        <div>
+                                                            <h6 className="font-w500 mb-0 ms-2">Card</h6>
+                                                        </div>
+                                                            <p className="totalcard">{totalItems}</p>
                                                         </div>
 
                                                     </div>
@@ -220,7 +250,7 @@ export default function Header(){
                                         <a>
                                               <li className="nav-item d-flex align-items-center header-profile2">
                                               <img className="img-avt" src="https://vivureviews.com/wp-content/uploads/2022/08/avatar-vo-danh-11.jpg"></img>
-                                                <h4 className="font-w500 mb-0 ms-2 text-while">{userObject.name}</h4>
+                                                <h4 className="font-w500 mb-0 ms-2 text-while">{user.name}</h4>
                                                 <ul class="header__navbar-user-menu">
                                                     <li class="header__navbar-user-item">
                                                         <Link to={"/account"}><a
@@ -228,8 +258,9 @@ export default function Header(){
 
                                                     <li class="header__navbar-user-item"><Link to={"/cart"}><a href="">{t('order')}</a></Link></li>
                                                     <li
-                                                        class="header__navbar-user-item header__navbar-user-item--separate"  onClick={handleChooseLogout}>
-                                                        <a href="javascript:void(0)">{t('logOut')}</a>
+                                                    class="header__navbar-user-item header__navbar-user-item--separate" onClick={handleChooseLogout} >
+                                                        <p >{t('logOut')}</p>
+
                                                     </li>
 
                                                 </ul>
