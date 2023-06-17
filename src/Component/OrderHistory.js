@@ -160,7 +160,6 @@ export default function OrderHistory() {
                                                                     <h4 class="text-primary">{numberWithCommas(order.price)} đ</h4>
                                                                 </div>
                                                             </td>
-                                                            <td><span class={`badge badge-xl light  ${order.status>=3 ? "badge-success" : "badge-danger"}`}>{order.status>=3 ?  t("Completed") : t("canceled")}</span></td>
                                                             <td>
                                                                 <Link to={`/orderDetail/${order.id}`}>
                                                                 <div>
@@ -168,6 +167,8 @@ export default function OrderHistory() {
                                                                 </div>
                                                                 </Link>
                                                             </td>
+                                                            <td><span class={`badge badge-xl light  ${order.status>=3 ? "badge-success" : "badge-danger"}`}>{order.status>=3 ?  t("Completed") : t("canceled")}</span></td>
+                                                            
                                                             <td>
                                                                 <div class="dropdown dropstart">
                                                                     <a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">

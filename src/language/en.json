@@ -8,6 +8,7 @@
     "popularDishes":"Popular Dishes",
     "recentOrder" : "Recent Order",
     "mainMenu":"Main Menu",
+    "menu": "Menu",
     "profile":"Profile",
     "productList" : "Product List",
     "checkout" : "Checkout",
@@ -69,6 +70,7 @@
     "name":"name",
     "status":"Status",
     "Order History":"Order History",
+    "history": "History",
     "search":"Search",
     "date" :"Date",
     "canceled":"Canceled",
@@ -80,7 +82,13 @@
     "picked by courier":"Picked by courier",
     "on the way":"On the way",
     "ready for pickup":"Ready for pickup",
-    "back":"Back"
+    "back":"Back",
+    "update":"Update",
+    "product code":"Product code",
+    "type":"Type",
+    "favorite List":"Favorite List",
+    "home":"Home"
+
 
     
 

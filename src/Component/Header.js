@@ -12,7 +12,7 @@ import "../vendor/swiper/css/swiper-bundle.min.css"
 import "../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"
 import "../css/style.css"
 import pic1 from '../images/banner-img/pic-1.png';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useSelector } from 'react-redux';
@@ -22,7 +22,7 @@ import { setCart } from "../Store/Action";
    
 export default function Header(){
     const { t, i18n } = useTranslation();
-   
+    const navigate = useNavigate();
     const changeLanguage = (lng)=>{
         i18n.changeLanguage(lng)
     }
@@ -48,10 +48,6 @@ export default function Header(){
             setUsser(null);
         }
     }, [user]);
-      //sự kiên đăng xuất
-    const handleChooseLogout = () => {
-        localStorage.removeItem("user-info");
-    };
 
     
     const handleKeyDown = (event) => {
@@ -64,6 +60,13 @@ export default function Header(){
         // Chuyển hướng đến trang danh sách sản phẩm với từ khóa tìm kiếm
         window.location.href = `/listProduct?search=${searchKeyword}`;
     };
+
+     //sự kiên đăng xuất
+    const handleChooseLogout = () => {
+        localStorage.removeItem("user-info");
+        navigate("/login")
+    };
+
 	const dispatch = useDispatch();
     // Kiểm tra xem có giỏ hàng trong Session Storage không
 	useEffect(()=> {
@@ -78,6 +81,7 @@ export default function Header(){
 	//lấy cart từ store
 	const cart = useSelector(state => state.root.cart);
     const totalItems = cart.reduce((total, item) => total + parseInt(item.quantity), 0);
+
     return (
         <div>
                 <div className="header">
@@ -254,8 +258,9 @@ export default function Header(){
 
                                                     <li class="header__navbar-user-item"><Link to={"/cart"}><a href="">{t('order')}</a></Link></li>
                                                     <li
-                                                        class="header__navbar-user-item header__navbar-user-item--separate" onClick={handleChooseLogout} >
+                                                    class="header__navbar-user-item header__navbar-user-item--separate" onClick={handleChooseLogout} >
                                                         <p >{t('logOut')}</p>
+
                                                     </li>
 
                                                 </ul>

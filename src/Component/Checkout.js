@@ -115,6 +115,9 @@ export default function Checkout() {
 	const handleClick = () => {
 		setShowDialog(true);
 	  };
+	const exitCheckout = ()=>{
+		setShowDialog(false);
+	}
 	// hàm kiểm tra tên người nhận có nhập chưa
 	function checkNameRecipient() {
         if (nameRecipient === "") {
@@ -356,8 +359,8 @@ export default function Checkout() {
 												<div className={`dialog ${showDialog ? "show" : ""}`}>
 													<p className="dialong__title">{t('confirm')}</p>
 													<div className="dialog__main">
-														<p className="dialog__text">{t('youWantToPay')}</p>
-														<button className="dialog__btn " type="button">{t('exit')}</button>
+														<p className="dialog__text">{t('youWantToPay?')}</p>
+														<button className="dialog__btn " onClick={exitCheckout} type="button">{t('exit')}</button>
 														<button className="dialog__btn dialog__btn-ok" type="button" onClick={confirmPayment}>{t('confirm')}</button>
 													</div>
 												</div>
@@ -402,14 +405,14 @@ export default function Checkout() {
 																<td><span className="amount" id="total">{numberWithCommas(totalMoney)}</span>
 																	₫</td>
 															</tr>
-															<tr className="cart-subtotal">
+															{/* <tr className="cart-subtotal">
 																<th>{t('discountCode')}</th>
 																<td>
 																	<p className="checkout-coupon">
 																		<input type="text" placeholder=""/>
 																	</p>
 																</td>
-															</tr>
+															</tr> */}
 															<tr className="shipping">
 																<th>{t('fee')}</th>
 																<td>

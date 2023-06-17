@@ -16,7 +16,7 @@ import NavHeader from "./NavHeader";
 import Header from "./Header";
 import NavMenu from "./NavMenu";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -105,6 +105,49 @@ export default function Home() {
                             <p className="mb-0">{t("manageAccount")}</p>
                           </div>
                         </a>
+                        <Link to={"/orderHistory"}>
+                        <a
+                          href="#"
+                          className={`${
+                            tab == 0
+                              ? "nav-link active setting-bx d-flex"
+                              : "nav-link setting-bx d-flex"
+                          }`}
+                          id="pills-account-tab"
+                          data-bs-toggle="tab"
+                          data-bs-target="#pills-account"
+                          role="tab"
+                          aria-controls="pills-account"
+                          aria-selected="true"
+                        >
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 6C13.2426 6 14.25 4.99264 14.25 3.75C14.25 2.50736 13.2426 1.5 12 1.5C10.7574 1.5 9.75 2.50736 9.75 3.75C9.75 4.99264 10.7574 6 12 6Z"
+                              fill="#3D4152"
+                            />
+                            <path
+                              d="M13.5 6.75H10.5C9.50544 6.75 8.55161 7.14509 7.84835 7.84835C7.14509 8.55161 6.75 9.50544 6.75 10.5V14.25C6.75 14.4489 6.82902 14.6397 6.96967 14.7803C7.11032 14.921 7.30109 15 7.5 15C7.69891 15 7.88968 14.921 8.03033 14.7803C8.17098 14.6397 8.25 14.4489 8.25 14.25V10.5C8.2513 10.0358 8.39616 9.58335 8.6647 9.2047C8.93325 8.82605 9.31234 8.53974 9.75 8.385V21.75C9.75 21.9489 9.82902 22.1397 9.96967 22.2803C10.1103 22.421 10.3011 22.5 10.5 22.5C10.6989 22.5 10.8897 22.421 11.0303 22.2803C11.171 22.1397 11.25 21.9489 11.25 21.75V15.615C11.7331 15.799 12.2669 15.799 12.75 15.615V21.75C12.75 21.9489 12.829 22.1397 12.9697 22.2803C13.1103 22.421 13.3011 22.5 13.5 22.5C13.6989 22.5 13.8897 22.421 14.0303 22.2803C14.171 22.1397 14.25 21.9489 14.25 21.75V8.385C14.6877 8.53974 15.0668 8.82605 15.3353 9.2047C15.6038 9.58335 15.7487 10.0358 15.75 10.5V14.25C15.75 14.4489 15.829 14.6397 15.9697 14.7803C16.1103 14.921 16.3011 15 16.5 15C16.6989 15 16.8897 14.921 17.0303 14.7803C17.171 14.6397 17.25 14.4489 17.25 14.25V10.5C17.25 10.0075 17.153 9.51991 16.9645 9.06494C16.7761 8.60997 16.4999 8.19657 16.1517 7.84835C15.8034 7.50013 15.39 7.22391 14.9351 7.03545C14.4801 6.847 13.9925 6.75 13.5 6.75Z"
+                              fill="#3D4152"
+                            />
+                          </svg>
+                          <div
+                            className="setting-info"
+                            onClick={handleChooseTabAccount}
+                          >
+                            <h6>  {t('my Orders')}</h6>
+                            <p className="mb-0">
+                          
+                           
+                            </p>
+                          </div>
+                        </a>
+                        </Link>
                         <a
                           href="#"
                           className={`${
@@ -384,7 +427,7 @@ const AccountForm = (props) => {
           className="btn btn-primary float-end w-50 btn-md"
           onClick={handleClickUpdateInfo}
         >
-          Update
+         {t("update")}
         </a>
       </div>
     </div>

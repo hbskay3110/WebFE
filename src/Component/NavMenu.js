@@ -3,6 +3,7 @@ import clsx from "clsx";
 import { useTranslation } from "react-i18next";
 import { Link, NavLink } from "react-router-dom";
 export default function NavMenu() {
+
   const { t, i18n } = useTranslation();
   return (
     <div>
@@ -30,7 +31,7 @@ export default function NavMenu() {
               >
                 <NavLink to={"/listProduct"} activeClassName="active">
                   <i class="bi bi-list"></i>
-                  <span className="nav-text">Menu</span>
+                  <span className="nav-text">{t('menu')}</span>
                 </NavLink>
               </a>
             </li>
@@ -43,7 +44,7 @@ export default function NavMenu() {
               >
                 <NavLink to={"/orderHistory"} activeClassName="active">
                   <i class="bi bi-clock-history"></i>
-                  <span className="nav-text">Order History</span>
+                  <span className="nav-text">{t('Order History')}</span>
                 </NavLink>
               </a>
             </li>
@@ -56,7 +57,7 @@ export default function NavMenu() {
               >
                 <NavLink to={"/account"} activeClassName="active">
                   <i class="bi bi-person"></i>
-                  <span className="nav-text">Account</span>
+                  <span className="nav-text">{t('account')}</span>
                 </NavLink>
               </a>
             </li>
@@ -69,7 +70,7 @@ export default function NavMenu() {
               >
                 <NavLink to={"/history"} activeClassName="active">
                   <i class="bi bi-clock-history"></i>
-                  <span className="nav-text">History</span>
+                  <span className="nav-text">{t('history')}</span>
                 </NavLink>
               </a>
             </li>
@@ -82,7 +83,7 @@ export default function NavMenu() {
               >
                 <NavLink to={"/favoriteList"} activeClassName="active">
                   <i class="bi bi-heart"></i>
-                  <span className="nav-text">Favorite List</span>
+                  <span className="nav-text">{t('favorite List')}</span>
                 </NavLink>
               </a>
             </li>

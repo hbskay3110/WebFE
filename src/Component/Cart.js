@@ -23,7 +23,9 @@ import { Link } from "react-router-dom";
 
 export default function Cart() {
   const { t, i18n } = useTranslation();
-
+  const numberWithCommas = (number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
   const dispatch = useDispatch();
   // Kiểm tra xem có giỏ hàng trong Session Storage không
   useEffect(() => {
@@ -99,7 +101,7 @@ export default function Cart() {
         >
           X
         </button>
-        <h4 className="text-primary mb-0 ms-auto">{props.price}</h4>
+        <h4 className="text-primary mb-0 ms-auto">{numberWithCommas(props.price)} đ</h4>
       </div>
     );
   };
@@ -125,13 +127,9 @@ export default function Cart() {
                           <span>June 20, 2023, 08:22 AM</span>
                         </div>
                         <div className="orders-img d-flex mb-4">
-                          <img
-                            src="images/chat-img/orders-img/pic-1.jpg"
-                            alt=""
-                          />
+                          
                           <div>
-                            <h6 className="font-w500">Ruby Roben</h6>
-                            <span>User since 2020</span>
+                          
                           </div>
                         </div>
                       </div>
@@ -156,20 +154,15 @@ export default function Cart() {
 
                       <div className="d-flex align-items-center justify-content-between">
                         <h4 className="font-w500 mb-0">{t("total")}</h4>
-                        <h4 class="cate-title text-primary">{total}</h4>
+                        <h4 class="cate-title text-primary">{numberWithCommas(total)} đ</h4>
                       </div>
                     </div>
                   </div>
                   <div className="text-end">
-                    <a
-                      href="javascript:void(0);"
-                      className="btn btn-outline-danger me-sm-4 me-2"
-                    >
-                      {t("rejectOrder")}
-                    </a>
-                    <a href="javascript:void(0);" className="btn btn-primary">
+                  
+                    <Link to={"/checkout"}><a href="javascript:void(0);" className="btn btn-primary">
                       {t("acceptOrder")}
-                    </a>
+                    </a></Link>
                   </div>
                 </div>
               </div>

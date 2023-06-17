@@ -11,7 +11,7 @@ import "../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"
 import "../css/style.css"
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-
+import ReCAPTCHA from "react-google-recaptcha";
    
 export default function Register(){
     const { t, i18n } = useTranslation();
@@ -26,8 +26,16 @@ export default function Register(){
     const [errorName, setErrorName] = useState("");
     const [errorConfimPass, setErrorConfimPass]= useState("");
     const [errorPhone, setErrorPhone] = useState("");
+    const [errorCapcha, setErrorCapcha] = useState("");
     const[account,setAccount] = useState([]);
+    const [hashedPassword, setHashedPassword] = useState('');
     const navigate = useNavigate();
+    const key = "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+    const [verfied,setVerfied] = useState(false)
+    const handleRecaptchaChange = (value) => {
+        setVerfied(true)
+        
+      };
     useEffect(()=>{
 		async function fetchPostList(){
 			const requestUrl = "http://localhost:3000/account";
@@ -129,10 +137,16 @@ export default function Register(){
       
       
     async function registerUser() {
-       
+  
+    
         if(!checkEmail() || !checkUserName() || !checkPassWord() || !checkConfirmPass() || !checkPhone()){
             return;
-        }else{
+        }else if(!verfied){
+            setErrorCapcha("Vui lòng xác nhận");
+            return;
+
+        } 
+        else{
             const userData = {
                 email: email,
                 pass: password,
@@ -217,6 +231,13 @@ export default function Register(){
                                         </div>
                                         <div className="mb-3">
                                              <span className="mb-1 errorLogin">{errorPhone}</span>                                       
+                                        </div>
+                                        <ReCAPTCHA
+                                                            sitekey={key}
+                                                            onChange={handleRecaptchaChange}
+                                                />
+                                        <div className="mb-3">
+                                             <span className="mb-1 errorLogin">{errorCapcha}</span>                                       
                                         </div>
                                         <div className="text-center mt-4">
                                             <button type="button" onClick={registerUser} className="btn btn-primary btn-block">{t('signMeUp')}</button>
