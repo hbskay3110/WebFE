@@ -19,6 +19,7 @@ import NavHeader from "./NavHeader";
 import Header from "./Header";
 import NavMenu from "./NavMenu";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 export default function Cart() {
 	const { t, i18n } = useTranslation();
@@ -101,8 +102,8 @@ export default function Cart() {
 								</div>
 							</div>
 							<div className="text-end">
-								<a href="javascript:void(0);" className="btn btn-outline-danger me-sm-4 me-2">{t('rejectOrder')}</a>
-								<a href="javascript:void(0);" className="btn btn-primary">{t('acceptOrder')}</a>
+							
+							<Link to="/checkout"><a href="javascript:void(0);" className="btn btn-primary">{t('acceptOrder')}</a></Link>	
 							</div>
 						</div>
 					</div>

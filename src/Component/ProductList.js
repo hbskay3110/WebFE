@@ -26,6 +26,7 @@ const ProductList=(props)=>{
 	const [searchKeyword, setSearchKeyword] = useState("");
 	const dispatch=useDispatch();
 	const products = useSelector(state=> state.root.products)
+	
 	useEffect(() => {
 		// Lấy tham số tìm kiếm từ URL
 		const search = new URLSearchParams(window.location.search).get("search");

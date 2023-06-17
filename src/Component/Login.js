@@ -13,10 +13,12 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { set } from "firebase/database";
 import { useTranslation } from "react-i18next";
 
+
 <style>
 
 </style>
 export default function Login() {
+  
     const { t, i18n } = useTranslation();
     const[email, setEmail]= useState("");
 
@@ -71,6 +73,8 @@ export default function Login() {
           setErrorPass("Mật khẩu không hợp lệ");
         }
       }
+     
+    
     return (
         <div>
             <div className="container mt-0">
@@ -119,6 +123,7 @@ export default function Login() {
                                                         <a href="page-forgot-password.html">{t('forgotPassword')}</a>
                                                     </div>
                                                 </div>
+                                               
                                                 <div className="text-center">
                                                     <button type="button" onClick={login} className="btn btn-primary btn-block shadow">{t('signMeIn')}</button>
                                                 </div>
@@ -132,7 +137,7 @@ export default function Login() {
                                                 <button className="btn btn-outline-light mt-lg-0 mt-md-1 mt-sm-0 mt-1 linked-btn"><i className="fa-brands fa-linkedin me-2 likedin"></i>linkedin</button>
                                             </div>
                                             <div className="text-center">
-                                                <span>{t('realy')}<a href="javascript:void(0);" className="text-primary"> {t('signUp')}</a></span>
+                                                <span>{t('realy')}<a href="/register" className="text-primary"> {t('signUp')}</a></span>
                                             </div>
 
                                         </div>

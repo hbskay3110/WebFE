@@ -12,13 +12,13 @@ import "../vendor/swiper/css/swiper-bundle.min.css"
 import "../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"
 import "../css/style.css"
 import pic1 from '../images/banner-img/pic-1.png';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
    
 export default function Header(){
     const { t, i18n } = useTranslation();
-   
+    const navigate = useNavigate();
     const changeLanguage = (lng)=>{
         i18n.changeLanguage(lng)
     }
@@ -49,7 +49,11 @@ export default function Header(){
         // Chuyển hướng đến trang danh sách sản phẩm với từ khóa tìm kiếm
         window.location.href = `/listProduct?search=${searchKeyword}`;
     };
-    
+     //sự kiên đăng xuất
+    const handleChooseLogout = () => {
+        localStorage.removeItem("user-info");
+        navigate("/login")
+    };
     return (
         <div>
                 <div className="header">
@@ -224,8 +228,8 @@ export default function Header(){
 
                                                     <li class="header__navbar-user-item"><Link to={"/cart"}><a href="">{t('order')}</a></Link></li>
                                                     <li
-                                                        class="header__navbar-user-item header__navbar-user-item--separate">
-                                                        <a href="">{t('logOut')}</a>
+                                                        class="header__navbar-user-item header__navbar-user-item--separate"  onClick={handleChooseLogout}>
+                                                        <a href="javascript:void(0)">{t('logOut')}</a>
                                                     </li>
 
                                                 </ul>

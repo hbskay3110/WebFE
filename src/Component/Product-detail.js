@@ -112,7 +112,7 @@ export default function ProductDetail(){
                                             <p>Availability: <span className="item"> In stock <i
                                                         className="fa fa-shopping-basket"></i></span>
                                             </p>
-                                            <p>Product code: <span className="item">{product.id}</span> </p>
+                                            <p>{t('product code')}: <span className="item">{product.id}</span> </p>
                                             <a>Chia sẻ: <span className="item">
                     
                                                             <FacebookProvider appId="YOUR_APP_ID">
@@ -120,11 +120,9 @@ export default function ProductDetail(){
                                                             </FacebookProvider>
                                                         </span>
                                             </a>
-                                            <p>Product tags:&nbsp;&nbsp;
-                                                <span className="badge badge-success light">bags</span>
-                                                <span className="badge badge-success light">clothes</span>
-                                                <span className="badge badge-success light">shoes</span>
-                                                <span className="badge badge-success light">dresses</span>
+                                            <p>{t('type')}:&nbsp;&nbsp;
+                                                <span className="badge badge-success light">{product.type}</span>
+                                              
                                             </p>
                                             <p className="text-content">{product.des}.</p>
                                             <div className="d-flex align-items-end flex-wrap mt-4">

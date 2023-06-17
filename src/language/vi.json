@@ -71,7 +71,7 @@
     "Order History": "Lịch sử đặt hàng",
     "search":"Tìm kiếm",
     "date" :"Ngày",
-    "canceled":"Đã hủy",
+    "canceled":"Hủy",
     "detail":"Chi tiết",
     "completed":"Hoàn thành",
     "tracking":"Theo dõi",
@@ -80,7 +80,11 @@
     "picked by courier":"Xác nhận bơi chuyển phát nhanh",
     "on the way":"Trên đường",
     "ready for pickup":"Đã giao",
-    "back":"Trở lại"
+    "back":"Trở lại",
+    "update":"Cập nhật",
+    "product code":"Mã sản phẩm",
+    "type":"Loại"
+
 
 
 }
