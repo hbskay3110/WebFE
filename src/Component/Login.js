@@ -12,7 +12,7 @@ import "../css/style.css"
 import { Navigate, useNavigate } from "react-router-dom";
 import { set } from "firebase/database";
 import { useTranslation } from "react-i18next";
-
+import bcrypt from 'bcryptjs';
 
 <style>
 
@@ -39,14 +39,20 @@ export default function Login() {
 		} 
 		fetchPostList()
 	},[])
-    
+    // hàm mã hóa mật khẩu
+    const handleEncryptPassword = (pass) => {
+        const salt = "$2a$10$OzxjyRiCqovM/1ANh3K0EO"
+        const hashed = bcrypt.hashSync(pass, salt);
+        return hashed;
+      };
     async function login() {
         let isEmailValid = true;
         let isPasswordValid = true;
       
         for (var i = 0; i < account.length; i++) {
           if (account[i].email === email) {
-            if (account[i].pass === password) {
+            // kiểm tra mật khẩu trong tài khoản có giống với mật khẩu đã được mã hóa không
+            if (account[i].pass === handleEncryptPassword(password)) {
               // set password bằng rỗng để lưu vào localStorage
               account[i].pass = "";
               // lưu vào local storage

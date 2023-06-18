@@ -102,7 +102,7 @@
     {
       "id": 1,
       "email": "phanthyan123@gmail.com",
-      "pass": "phanan123",
+      "pass": "$2a$10$OzxjyRiCqovM/1ANh3K0EOWtxJT3YDXw3jBpIwk17nHeMM.wNVH.m",
       "name": "Phan Thị An",
       "phone": "0345678912",
       "address": "Linh Tây , Thủ Đức",
@@ -111,7 +111,7 @@
     {
       "id": 2,
       "email": "phanan123@gmail.com",
-      "pass": "phanan123",
+      "pass": "$2a$10$OzxjyRiCqovM/1ANh3K0EOWtxJT3YDXw3jBpIwk17nHeMM.wNVH.m",
       "name": "Phan Thị An",
       "phone": "0345678912",
       "address": "Linh Tây , Thủ Đức",
