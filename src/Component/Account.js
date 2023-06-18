@@ -19,10 +19,11 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import bcrypt from 'bcryptjs';
 
 export default function Home() {
   const { t, i18n } = useTranslation();
-
+  const navigate = useNavigate();
   const [account, setAccount] = useState(null);
 
   //kiểm tra có account trong localStorage không
@@ -47,6 +48,25 @@ export default function Home() {
   //sự kiên đăng xuất
   const handleChooseLogout = () => {
     localStorage.removeItem("user-info");
+  };
+  //Form login
+  const AccountFormLogin = () => {
+    //sự kiện click chuyến đên login
+    const handleClickLogin = () => {
+      navigate("/login");
+    };
+    return (
+      <div className="row">
+        <div className="col-xl-6 col-sm-6">
+          <div className="setting-input">
+            <p>{t("cusNotLogAcc")}</p>
+          </div>
+          <button className="loginbtnAc" onClick={handleClickLogin}>
+            {t("login")}
+          </button>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -108,11 +128,8 @@ export default function Home() {
                         <Link to={"/orderHistory"}>
                         <a
                           href="#"
-                          className={`${
-                            tab == 0
-                              ? "nav-link active setting-bx d-flex"
-                              : "nav-link setting-bx d-flex"
-                          }`}
+                          className={"nav-link setting-bx d-flex"
+                          }
                           id="pills-account-tab"
                           data-bs-toggle="tab"
                           data-bs-target="#pills-account"
@@ -120,22 +137,15 @@ export default function Home() {
                           aria-controls="pills-account"
                           aria-selected="true"
                         >
-                          <svg
+                          <svg  xmlns="http://www.w3.org/2000/svg"
                             width="24"
                             height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M12 6C13.2426 6 14.25 4.99264 14.25 3.75C14.25 2.50736 13.2426 1.5 12 1.5C10.7574 1.5 9.75 2.50736 9.75 3.75C9.75 4.99264 10.7574 6 12 6Z"
-                              fill="#3D4152"
-                            />
-                            <path
-                              d="M13.5 6.75H10.5C9.50544 6.75 8.55161 7.14509 7.84835 7.84835C7.14509 8.55161 6.75 9.50544 6.75 10.5V14.25C6.75 14.4489 6.82902 14.6397 6.96967 14.7803C7.11032 14.921 7.30109 15 7.5 15C7.69891 15 7.88968 14.921 8.03033 14.7803C8.17098 14.6397 8.25 14.4489 8.25 14.25V10.5C8.2513 10.0358 8.39616 9.58335 8.6647 9.2047C8.93325 8.82605 9.31234 8.53974 9.75 8.385V21.75C9.75 21.9489 9.82902 22.1397 9.96967 22.2803C10.1103 22.421 10.3011 22.5 10.5 22.5C10.6989 22.5 10.8897 22.421 11.0303 22.2803C11.171 22.1397 11.25 21.9489 11.25 21.75V15.615C11.7331 15.799 12.2669 15.799 12.75 15.615V21.75C12.75 21.9489 12.829 22.1397 12.9697 22.2803C13.1103 22.421 13.3011 22.5 13.5 22.5C13.6989 22.5 13.8897 22.421 14.0303 22.2803C14.171 22.1397 14.25 21.9489 14.25 21.75V8.385C14.6877 8.53974 15.0668 8.82605 15.3353 9.2047C15.6038 9.58335 15.7487 10.0358 15.75 10.5V14.25C15.75 14.4489 15.829 14.6397 15.9697 14.7803C16.1103 14.921 16.3011 15 16.5 15C16.6989 15 16.8897 14.921 17.0303 14.7803C17.171 14.6397 17.25 14.4489 17.25 14.25V10.5C17.25 10.0075 17.153 9.51991 16.9645 9.06494C16.7761 8.60997 16.4999 8.19657 16.1517 7.84835C15.8034 7.50013 15.39 7.22391 14.9351 7.03545C14.4801 6.847 13.9925 6.75 13.5 6.75Z"
-                              fill="#3D4152"
-                            />
-                          </svg>
+                            fill="currentColor"
+                            class="bi bi-box-arrow-right"
+                            viewBox="0 0 24 24">
+                          <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+                          <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4zM11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                        </svg>
                           <div
                             className="setting-info"
                             onClick={handleChooseTabAccount}
@@ -292,6 +302,18 @@ const AccountForm = (props) => {
   const [dob, setDob] = useState("");
   const [address, setAddress] = useState("");
   const [message, setMessage] = useState("");
+   // hiển thị thông báo
+  useEffect(() => {
+  if (message!=="") {
+    // Đặt thời gian tự động đóng thông báo sau 5 giây
+    const timeout = setTimeout(() => {
+      setMessage("");
+    }, 5000);
+
+    // Xóa timeout khi component bị unmount hoặc trạng thái của showNotification thay đổi
+    return () => clearTimeout(timeout);
+  }
+  }, [message]);
   //load account
   useEffect(() => {
     async function fetchPostList() {
@@ -345,9 +367,9 @@ const AccountForm = (props) => {
       console.error(error);
     }
 
-    setTimeout(() => {
-      setMessage("");
-    }, 5000);
+    // setTimeout(() => {
+    //   setMessage("");
+    // }, 5000);
   };
 
   // sự kiện update info account
@@ -433,33 +455,26 @@ const AccountForm = (props) => {
     </div>
   );
 };
-const AccountFormLogin = () => {
-  const navigate = useNavigate();
-  const { t, i18n } = useTranslation();
-  //sự kiện click chuyến đên login
-  const handleClickLogin = () => {
-    navigate("/login");
-  };
-  return (
-    <div className="row">
-      <div className="col-xl-6 col-sm-6">
-        <div className="setting-input">
-          <p>{t("cusNotLogAcc")}</p>
-        </div>
-        <button className="loginbtnAc" onClick={handleClickLogin}>
-          {t("login")}
-        </button>
-      </div>
-    </div>
-  );
-};
+
 const AccountFormChangeP = (props) => {
   const [oldPass, setOldPass] = useState("");
   const [newPass, setNewPass] = useState("");
   const [pass, setPass] = useState("");
   const [mess, setMess] = useState("");
   const [acc, setAcc] = useState(null);
+  const [name, setName] = useState("");
+  // hiển thị thông báo
+  useEffect(() => {
+    if (mess!=="") {
+      // Đặt thời gian tự động đóng thông báo sau 5 giây
+      const timeout = setTimeout(() => {
+        setMess("");
+      }, 5000);
 
+      // Xóa timeout khi component bị unmount hoặc trạng thái của showNotification thay đổi
+      return () => clearTimeout(timeout);
+    }
+  }, [mess]);
   //load account
   useEffect(() => {
     async function fetchPostList() {
@@ -472,12 +487,14 @@ const AccountFormChangeP = (props) => {
       setAcc(reponseJson);
     }
     fetchPostList();
+  
   }, []);
 
   useEffect(() => {
     // kiểm tra sự thay đổi của acc, nếu đã load xong
     if (acc) {
       setPass(acc.pass);
+      setName(acc.name);
     }
   }, [acc]);
 
@@ -485,7 +502,12 @@ const AccountFormChangeP = (props) => {
   if (acc === null) {
     return <div>Loading...</div>;
   }
-
+  // hàm mã hóa mật khẩu
+  const handleEncryptPassword = (pass) => {
+    const salt = "$2a$10$OzxjyRiCqovM/1ANh3K0EO"
+    const hashed = bcrypt.hashSync(pass, salt);
+    return hashed;
+  };
   // cập nhật account lên server
   const updateAccountOnServer = async (updatedAccount) => {
     try {
@@ -511,14 +533,14 @@ const AccountFormChangeP = (props) => {
   //sự kiện click change pass
   const handleClickChangePass = () => {
     // kiểm tra mật khẩu
-    if (pass.toString() === oldPass.toString()) {
+    if (pass.toString() === handleEncryptPassword(oldPass.toString())) {
       if (newPass.trim().length < 8) {
         setMess("Password must be at least 8 characters !!!");
       } else {
         const updatedAccount = {
           id: props.id,
           email: props.email,
-          pass: newPass,
+          pass: handleEncryptPassword(newPass),
           name: props.name,
           phone: props.phone,
           address: props.address,
@@ -529,9 +551,9 @@ const AccountFormChangeP = (props) => {
     } else {
       setMess("Wrong password !!!");
     }
-    setTimeout(() => {
-      setMess("");
-    }, 5000);
+    // setTimeout(() => {
+    //   setMess("");
+    // }, 5000);
     setOldPass("");
     setNewPass("");
   };
@@ -548,7 +570,7 @@ const AccountFormChangeP = (props) => {
             className="form-control"
             id="exampleInputtext"
             disabled
-            value={acc.email}
+            value={name}
           />
         </div>
         <p className="messAcount">{mess}</p>

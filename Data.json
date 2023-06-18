@@ -88,31 +88,21 @@
       "id": 3
     }
   ],
-   "typeImages" : {
+  "typeImages": {
     "Phở": "https://phovihoang.vn/wp-content/uploads/2018/01/48267.png",
     "Cơm": "https://hungandvietnamfood.files.wordpress.com/2018/11/tacc82cc81m-succ9bocc9bcc80n-bicc80.png",
     "Bánh mì": "https://banhmipho.vn/wp-content/uploads/2021/03/ca-ngu.png",
-    "Hamburger":"https://png.pngtree.com/png-clipart/20230325/original/pngtree-juicy-burgers-with-a-transparent-background-png-image_9002761.png",
-    "Gà":"https://khothietke.net/wp-content/uploads/2021/03/freepng1565-dui-ga-chien-bot-ga-tam-bot.png",
-    "Đồ uống":"https://free.vector6.com/wp-content/uploads/2021/03/freepng1116-nuoc-ep-nuoc-giai-khat-do-uong-png-hinh-tach-nen-55.png",
-    "Bún":"https://png.pngtree.com/png-clipart/20210310/original/pngtree-tasty-beef-vietnamese-rice-noodles-png-image_5953848.png",
-    "Pizza":"https://static.vecteezy.com/system/resources/previews/009/384/620/original/fresh-pizza-and-pizza-box-clipart-design-illustration-free-png.png"
+    "Hamburger": "https://png.pngtree.com/png-clipart/20230325/original/pngtree-juicy-burgers-with-a-transparent-background-png-image_9002761.png",
+    "Gà": "https://khothietke.net/wp-content/uploads/2021/03/freepng1565-dui-ga-chien-bot-ga-tam-bot.png",
+    "Đồ uống": "https://free.vector6.com/wp-content/uploads/2021/03/freepng1116-nuoc-ep-nuoc-giai-khat-do-uong-png-hinh-tach-nen-55.png",
+    "Bún": "https://png.pngtree.com/png-clipart/20210310/original/pngtree-tasty-beef-vietnamese-rice-noodles-png-image_5953848.png",
+    "Pizza": "https://static.vecteezy.com/system/resources/previews/009/384/620/original/fresh-pizza-and-pizza-box-clipart-design-illustration-free-png.png"
   },
   "account": [
     {
-      "id": 1,
-      "email": "phanthyan123@gmail.com",
-      "pass": "$2a$10$OzxjyRiCqovM/1ANh3K0EOWtxJT3YDXw3jBpIwk17nHeMM.wNVH.m",
-      "name": "Phan Thị An",
-      "phone": "0345678912",
-      "address": "Linh Tây , Thủ Đức",
-      "dob": "21/09/2002"
-    },
-    {
       "id": 2,
-      "email": "phanan123@gmail.com",
-      "pass": "$2a$10$OzxjyRiCqovM/1ANh3K0EOWtxJT3YDXw3jBpIwk17nHeMM.wNVH.m",
       "name": "Phan Thị An",
+      "pass": "$2a$10$OzxjyRiCqovM/1ANh3K0EOWtxJT3YDXw3jBpIwk17nHeMM.wNVH.m",
       "phone": "0345678912",
       "address": "Linh Tây , Thủ Đức",
       "dob": "21/09/2002"
@@ -125,7 +115,7 @@
       "img": "https://cdn.tgdd.vn/Files/2022/01/25/1412805/cach-nau-pho-bo-nam-dinh-chuan-vi-thom-ngon-nhu-hang-quan-202201250230038502.jpg",
       "name": "Phở bò",
       "price": 30000,
-      "type":"Phở"
+      "type": "Phở"
     },
     {
       "id": 2,
@@ -133,7 +123,7 @@
       "img": "https://img.meta.com.vn/Data/image/2021/06/29/com-tam-0.jpg",
       "name": "Cơm sườn",
       "price": 25000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 3,
@@ -141,7 +131,7 @@
       "img": "https://images2.thanhnien.vn/Uploaded/bienca/2022_10_07/anh-chup-man-hinh-2022-10-07-luc-172838-4541.png",
       "name": "Bánh mì thịt",
       "price": 20000,
-      "type":"Bánh mì"
+      "type": "Bánh mì"
     },
     {
       "id": 4,
@@ -157,7 +147,7 @@
       "img": "https://vcdn-giadinh.vnecdn.net/2021/01/02/Anh-6-7105-1609558348.jpg",
       "name": "Bún mọc",
       "price": 25000,
-      "type":"Bún"
+      "type": "Bún"
     },
     {
       "id": 6,
@@ -173,7 +163,7 @@
       "img": "https://media-cdn-v2.laodong.vn/Storage/newsportal/2018/1/12/586150/Trua-Nay-An-Gi-1.jpg",
       "name": "Bún riêu",
       "price": 25000,
-      "type":"Bún"
+      "type": "Bún"
     },
     {
       "id": 8,
@@ -181,7 +171,7 @@
       "img": "https://cdn.tgdd.vn/Files/2021/08/16/1375565/cach-nau-com-tam-suon-bi-cha-tai-nha-ngon-nhu-ngoai-tiem-202108162216045436.jpg",
       "name": "Cơm sườn trứng",
       "price": 25000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 9,
@@ -189,7 +179,7 @@
       "img": "https://trixie.com.vn/media/images/article/20931684/cach-lam-com-suon-xao-chua-ngot-5.png",
       "name": "Cơm sườn xào chua ngọt",
       "price": 25000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 10,
@@ -197,7 +187,7 @@
       "img": "https://shipdoandemff.com/wp-content/uploads/2018/05/COM-SUON-CHIEN-GION.jpeg",
       "name": "Cơm sườn chiên xù",
       "price": 25000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 11,
@@ -205,7 +195,7 @@
       "img": "https://comtamtuonghan.vn/wp-content/uploads/2020/09/com-tam-suon-cot-let-nuong.png",
       "name": "Cơm tấm sườn cốt lết ",
       "price": 25000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 12,
@@ -213,7 +203,7 @@
       "img": "https://tea-3.lozi.vn/v1/images/resized/com-tam-sa-bi-chuong-ha-noi-quan-dong-da-ha-noi-1681097569201834611-eatery-avatar-1681097569?w=640&type=s",
       "name": "Cơm tấm sà bì chưởng",
       "price": 25000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 13,
@@ -221,7 +211,7 @@
       "img": "https://thuvienamthuc.vn/upload/images/2018/10/10/com-chien-duong-chau.jpg",
       "name": "Cơm chiên dương châu",
       "price": 25000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 14,
@@ -229,7 +219,7 @@
       "img": "https://img.meta.com.vn/Data/image/2021/12/02/cach-lam-com-cuon-rong-bien-1.jpg",
       "name": "Cơm cuộn rong biển",
       "price": 25000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 15,
@@ -237,7 +227,7 @@
       "img": "https://statics.vinpearl.com/com-ga-xoi-mo-01_1631605364.jpg",
       "name": "Cơm gà xối mỡ",
       "price": 25000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 16,
@@ -245,7 +235,7 @@
       "img": "https://cdn.sgtiepthi.vn/wp-content/uploads/2020/12/T4_ComVP-dui-ga-mam-toi_Com-Viet.jpg",
       "name": "Cơm gà chiên nước mắm",
       "price": 25000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 17,
@@ -253,7 +243,7 @@
       "img": "https://toplist.vn/images/800px/quan-com-ga-hai-nam-ngon-nhat-tai-sai-gon-866410.jpg",
       "name": "Cơm gà hải nam",
       "price": 25000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 18,
@@ -261,7 +251,7 @@
       "img": "https://shipdoandemff.com/wp-content/uploads/2017/06/Com-ga-xe-shipdoandemFF.jpg",
       "name": "Cơm gà xé",
       "price": 30000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 19,
@@ -269,7 +259,7 @@
       "img": "https://channel.mediacdn.vn/428462621602512896/2022/11/9/photo-3-1667986072661527169072.jpg",
       "name": "Cơm gà KFC",
       "price": 45000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 20,
@@ -277,7 +267,7 @@
       "img": "https://static.riviu.co/960/image/2021/05/08/edf05baf16fa17cb5d49198cb21346ec_output.jpeg",
       "name": "Cơm gà bít tết",
       "price": 35000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 21,
@@ -285,7 +275,7 @@
       "img": "https://cdn.sgtiepthi.vn/wp-content/uploads/2021/03/T4_ComVP_Thitkhotrung_ComDaLat.jpg",
       "name": "Cơm thịt kho tàu",
       "price": 20000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 22,
@@ -293,7 +283,7 @@
       "img": "https://phucuongfood.vn/wp-content/uploads/2021/10/com-thit-kho-trung-cut-1-2.jpg",
       "name": "Cơm thịt kho trứng cút",
       "price": 35000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 23,
@@ -301,7 +291,7 @@
       "img": "https://cdn.yeutre.vn/medias/uploads/60/60722-thit-kho-tieu.jpg",
       "name": "Cơm thịt kho tiêu",
       "price": 25000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 24,
@@ -309,7 +299,7 @@
       "img": "https://phunuvietnam.mediacdn.vn/media/news/2ea1202aed1e0ce30d41be4919b0cc99/thit-kho-3.jpg",
       "name": "Cơm thịt kho dưa cải",
       "price": 35000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 25,
@@ -317,7 +307,7 @@
       "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_toFgM1gAQkvbFM40QRlKS_GtmXsXZ_v3Pw&usqp=CAU",
       "name": "Cơm cá ngừ kho thơm",
       "price": 25000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 26,
@@ -325,7 +315,7 @@
       "img": "https://cdn.tgdd.vn/Files/2020/11/03/1304363/ca-hoi-ap-chao-thi-cu-roi-ruoi-ngay-thu-sot-nay-len-dam-bao-ngon-hon-gap-boi-202011031311083859.jpg",
       "name": "Cơm cá hồi",
       "price": 45000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 27,
@@ -333,7 +323,7 @@
       "img": "https://cdn.sgtiepthi.vn/wp-content/uploads/2020/12/T4_comtruaVP_SatraFB.jpg",
       "name": "Cơm cá chiên",
       "price": 25000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 28,
@@ -341,7 +331,7 @@
       "img": "https://thenguyen.vn/files/products/product_1046/com-ca-hu-kho-to.jpg",
       "name": "Cơm cá hú kho tộ",
       "price": 25000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 29,
@@ -349,7 +339,7 @@
       "img": "https://cdn.tgdd.vn/Files/2021/10/11/1389376/hoc-ngay-cach-lam-canh-ga-chien-nuoc-mia-thom-ngon-doc-la-vo-cung-hap-dan-202110111133588472.jpg",
       "name": "Cơm cánh gà chiên nước mắm",
       "price": 25000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 30,
@@ -357,7 +347,7 @@
       "img": "https://media.ngoisao.vn/news/2016/12/11/com-ga-ca-ri-ngon-9-ngoisao.vn-w600-h400.jpg",
       "name": "Cơm cà ri gà",
       "price": 25000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 31,
@@ -365,7 +355,7 @@
       "img": "https://images.foody.vn/res/g107/1060652/prof/s/file_restaurant_photo_ycv0_16341-8f2004d4-211013120038.jpeg",
       "name": "Cơm gà richi",
       "price": 45000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 32,
@@ -373,7 +363,7 @@
       "img": "https://cdn.tgdd.vn/2022/02/CookRecipe/Avatar/com-gao-lut-bang-noi-com-dien-thumbnail.jpg",
       "name": "Cơm gạo lứt gà",
       "price": 25000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 33,
@@ -381,7 +371,7 @@
       "img": "https://thuysanvietnam.com.vn/wp-content/uploads/oldsite/thuysanvietnam.com.vn_uploads/article2/baiviet/giaitri/z300-con-tom-285.jpg",
       "name": "Cơm tôm vị chanh vàng",
       "price": 35000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 34,
@@ -389,7 +379,7 @@
       "img": "https://ameovat.com/wp-content/uploads/2018/12/cah-nau-canh-rong-bien-v%C6%A1i-tom-01-600x376.jpg",
       "name": "Cơm canh rong biển với tôm",
       "price": 25000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 35,
@@ -397,7 +387,7 @@
       "img": "https://kenhphunu.com/images1/102015/1469120400/10-thuc-uong-bo-duong-giup-giam-can-hieu-qua-p1-2.jpg",
       "name": "Sinh tố bơ",
       "price": 25000,
-      "type":"Đồ uống"
+      "type": "Đồ uống"
     },
     {
       "id": 36,
@@ -405,7 +395,7 @@
       "img": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/2/18/nuoc-cam-16451723509001548204332-1645190499535-16451904996541594829836.jpg",
       "name": "Nước cam ",
       "price": 20000,
-      "type":"Đồ uống"
+      "type": "Đồ uống"
     },
     {
       "id": 37,
@@ -413,7 +403,7 @@
       "img": "https://i0.wp.com/hocphachehanoi.vn/wp-content/uploads/2023/03/Rau-ma-dau-xanh-sua-dua-2.jpg?fit=800%2C800&ssl=1",
       "name": "Rau má đậu xanh ",
       "price": 25000,
-      "type":"Đồ uống"
+      "type": "Đồ uống"
     },
     {
       "id": 38,
@@ -421,7 +411,7 @@
       "img": "https://bizweb.dktcdn.net/100/421/036/files/nguyen-lieu-che-bien-nuoc-ep-carot.jpg?v=1617093099366",
       "name": "Nước ép cà rốt",
       "price": 25000,
-      "type":"Đồ uống"
+      "type": "Đồ uống"
     },
     {
       "id": 39,
@@ -429,7 +419,7 @@
       "img": "https://www.cet.edu.vn/wp-content/uploads/2020/08/nuoc-ep-tao-hang-ngay.jpg",
       "name": "Nước ép táo",
       "price": 25000,
-      "type":"Đồ uống"
+      "type": "Đồ uống"
     },
     {
       "id": 40,
@@ -437,7 +427,7 @@
       "img": "https://cdn.tgdd.vn/Files/2019/06/19/1174283/cho-them-thu-nay-vao-nuoc-ep-dua-hau-dam-bao-van-nguoi-me-5_800x450.jpg",
       "name": "Nước ép dưa hấu",
       "price": 25000,
-      "type":"Đồ uống"
+      "type": "Đồ uống"
     },
     {
       "id": 41,
@@ -445,7 +435,7 @@
       "img": "https://cdn.nhathuoclongchau.com.vn/unsafe/https://cms-prod.s3-sgn09.fptcloud.com/thoi_diem_nao_uong_nuoc_dua_la_tot_nhat_m_CGNE_1590720986_996d71ab9f.jpg",
       "name": "Nước ép dứa",
       "price": 25000,
-      "type":"Đồ uống"
+      "type": "Đồ uống"
     },
     {
       "id": 42,
@@ -453,7 +443,7 @@
       "img": "https://img.meta.com.vn/Data/image/2019/07/20/nuoc-ep-oi-co-tac-dung-gi-cach-lam-nuoc-ep-oi-2.jpg",
       "name": "Nước ép ổi",
       "price": 25000,
-      "type":"Đồ uống"
+      "type": "Đồ uống"
     },
     {
       "id": 43,
@@ -461,7 +451,7 @@
       "img": "https://cdn.tasteatlas.com/images/dishes/54fc084ad924460b8bbbe2b437cbef02.jpg?w=600",
       "name": "Bánh mì heo quay",
       "price": 20000,
-      "type":"Bánh mì"
+      "type": "Bánh mì"
     },
     {
       "id": 44,
@@ -469,7 +459,7 @@
       "img": "https://cdn.tgdd.vn/Files/2022/11/23/1489610/cach-lam-banh-mi-cha-ca-don-gian-cho-bua-sang-day-dinh-duong-202211301148589006.jpg",
       "name": "Bánh mì chả cá",
       "price": 15000,
-      "type":"Bánh mì"
+      "type": "Bánh mì"
     },
     {
       "id": 45,
@@ -477,7 +467,7 @@
       "img": "https://banhmihanoi.net/wp-content/uploads/2020/05/cach-lam-banh-mi-op-la-don-gian-tai-nha-1.jpg",
       "name": "Bánh mì trứng",
       "price": 20000,
-      "type":"Bánh mì"
+      "type": "Bánh mì"
     },
     {
       "id": 46,
@@ -485,7 +475,7 @@
       "img": "https://banhmidanto.com/wp-content/uploads/2020/07/BANH-MI-XUC-XICH.jpg",
       "name": "Bánh mì xúc xích",
       "price": 20000,
-      "type":"Bánh mì"
+      "type": "Bánh mì"
     },
     {
       "id": 47,
@@ -493,7 +483,7 @@
       "img": "https://lagroup.edu.vn/wp-content/uploads/2023/04/cach-lam-banh-mi-pate-thap-cam-0.webp",
       "name": "Bánh mì Pa Tê thập cẩm",
       "price": 20000,
-      "type":"Bánh mì"
+      "type": "Bánh mì"
     },
     {
       "id": 48,
@@ -501,7 +491,7 @@
       "img": "https://cachnau.vn/wp-content/uploads/2022/02/pho-ga-mien-bac-ngon.jpg",
       "name": "Phở gà",
       "price": 30000,
-      "type":"Phở"
+      "type": "Phở"
     },
     {
       "id": 49,
@@ -509,7 +499,7 @@
       "img": "https://cdn.tgdd.vn/Files/2022/01/25/1412805/cach-nau-pho-bo-nam-dinh-chuan-vi-thom-ngon-nhu-hang-quan-202201250313281452.jpg",
       "name": "Phở heo",
       "price": 20000,
-      "type":"Phở"
+      "type": "Phở"
     },
     {
       "id": 50,
@@ -517,7 +507,7 @@
       "img": "https://images.foody.vn/res/g107/1067390/prof/s1242x600/foody-upload-api-foody-mobile-pho-bo-cave-1-210227154430.jpg",
       "name": "Phở tái",
       "price": 20000,
-      "type":"Phở"
+      "type": "Phở"
     },
     {
       "id": 51,
@@ -525,7 +515,7 @@
       "img": "https://4.bp.blogspot.com/-eulJAXhCp98/W1kAFLVfXEI/AAAAAAADA5g/955YHpjsPdU95clSdUS6nwrXLjv_CzC8gCLcBGAs/s1600/image003.jpg",
       "name": "Phở tái bò viên",
       "price": 35000,
-      "type":"Phở"
+      "type": "Phở"
     },
     {
       "id": 52,
@@ -533,7 +523,7 @@
       "img": "https://images.foody.vn/res/g18/176370/s400x400/foody-quan-them-chao-ech-230-637303109298888102.jpg",
       "name": "Phở ếch",
       "price": 25000,
-      "type":"Phở"
+      "type": "Phở"
     },
     {
       "id": 53,
@@ -605,7 +595,7 @@
       "img": "https://statics.vinpearl.com/pho-chua-lang-son-1_1679501620.jpg",
       "name": "Phở chua",
       "price": 20000,
-      "type":"Phở"
+      "type": "Phở"
     },
     {
       "id": 62,
@@ -613,7 +603,7 @@
       "img": "https://cosopho.com/wp-content/uploads/2020/08/pho-gao-lut.jpg",
       "name": "Phở gạo lứt",
       "price": 30000,
-      "type":"Phở"
+      "type": "Phở"
     },
     {
       "id": 63,
@@ -621,7 +611,7 @@
       "img": "https://i.ytimg.com/vi/8yKh4C4FQTk/maxresdefault.jpg",
       "name": "Phở bò sốt vang",
       "price": 40000,
-      "type":"Phở"
+      "type": "Phở"
     },
     {
       "id": 64,
@@ -629,7 +619,7 @@
       "img": "https://vit29.com/media/news/992_pho_vit_quay.jpg",
       "name": "Phở vịt quay",
       "price": 40000,
-      "type":"Phở"
+      "type": "Phở"
     },
     {
       "id": 65,
@@ -637,7 +627,7 @@
       "img": "https://i.ytimg.com/vi/qs-efL8GBcw/maxresdefault.jpg",
       "name": "Phở chiên phồng",
       "price": 30000,
-      "type":"Phở"
+      "type": "Phở"
     },
     {
       "id": 66,
@@ -717,7 +707,7 @@
       "img": "https://img-global.cpcdn.com/recipes/901d0fa8fbfc48da/680x482cq70/d%E1%BA%ADu-h%E1%BB%A7-nh%E1%BB%93i-th%E1%BB%8Bt-s%E1%BB%91t-ca-recipe-main-photo.jpg",
       "name": "Cơm đậu hủ nhồi thịt",
       "price": 25000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 76,
@@ -725,7 +715,7 @@
       "img": "https://i.ytimg.com/vi/RM8Q14iCUq0/maxresdefault.jpg",
       "name": "Cơm sườn trứng",
       "price": 25000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 77,
@@ -733,7 +723,7 @@
       "img": "https://i.ytimg.com/vi/5IGTG-m3WQg/maxresdefault.jpg",
       "name": "Cơm rang xúc xích",
       "price": 25000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 78,
@@ -741,7 +731,7 @@
       "img": "https://media.vov.vn/sites/default/files/styles/large/public/2020-11/maxresdefault_1_0.jpg",
       "name": "Cơm tôm rang thịt",
       "price": 35000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 79,
@@ -749,7 +739,7 @@
       "img": "https://cafefcdn.com/203337114487263232/2022/7/11/photo-28-16575189594341685739631.jpeg",
       "name": "Cơm cá mắm",
       "price": 25000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 80,
@@ -757,7 +747,7 @@
       "img": "https://cdn.sgtiepthi.vn/wp-content/uploads/2020/12/T4_comtruaVP_SatraFB.jpg",
       "name": "Cơm cá diêu hồng chiên",
       "price": 25000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 81,
@@ -765,7 +755,7 @@
       "img": "https://static-images.vnncdn.net/files/publish/2023/2/6/vit-kho-gung-2-513.jpg",
       "name": "Cơm thịt vịt kho gừng",
       "price": 35000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 82,
@@ -773,7 +763,7 @@
       "img": "https://langchaixua.com/wp-content/uploads/2021/09/ca-tre-chien-nuoc-mam-4.jpg",
       "name": "Cơm cá trê chiên",
       "price": 25000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 83,
@@ -781,7 +771,7 @@
       "img": "https://cdn.tgdd.vn/Files/2021/10/08/1388623/huong-dan-cach-lam-mon-ca-phi-le-chien-gion-sot-chua-ngot-cuc-hap-dan-202110080908463688.jpg",
       "name": "Cơm cá phi lê muối sả chiên",
       "price": 45000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 84,
@@ -789,7 +779,7 @@
       "img": "https://media.loveitopcdn.com/19212/com-tam-xiu-mai.jpg",
       "name": "Cơm tấm xíu mại",
       "price": 25000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 85,
@@ -797,7 +787,7 @@
       "img": "https://cdn.pastaxi-manager.onepas.vn/content/uploads/articles/lenttt/cachlamechxaolan/1-cach-lam-ech-xao-lan.jpg",
       "name": "Cơm ếch xào xả lăn",
       "price": 25000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 86,
@@ -805,7 +795,7 @@
       "img": "https://cakho.vn/wp-content/uploads/2021/02/maxresdefault-1-1.jpg",
       "name": "Cơm cá rô đồng kho riềng",
       "price": 45000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 87,
@@ -813,7 +803,7 @@
       "img": "https://bizweb.dktcdn.net/100/420/256/files/cach-kho-ca-bong-cung-ngon-voi-thit-ba-chi-2.jpg?v=1617814485153",
       "name": "Cơm cá bống kho tiêu",
       "price": 45000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 88,
@@ -821,7 +811,7 @@
       "img": "https://cdn.tgdd.vn/Files/2022/01/06/1409476/cach-lam-com-rang-dua-bo-tai-nha-ngon-nhu-ngoai-hang-202201061628031278.jpg",
       "name": "Cơm dưa xào bò",
       "price": 45000,
-      "type":"Cơm"
+      "type": "Cơm"
     },
     {
       "id": 89,
@@ -829,7 +819,7 @@
       "img": "https://cdn.tgdd.vn/Files/2017/07/07/1000538/cach-lam-xiu-mai-an-banh-mi-202203171048010986.jpg",
       "name": "Bánh mì xíu mại",
       "price": 20000,
-      "type":"Bánh mì"
+      "type": "Bánh mì"
     },
     {
       "id": 90,
@@ -837,7 +827,7 @@
       "img": "https://yummyday.vn/uploads/images/banh-mi-ga-8.jpg",
       "name": "Bánh mì gà xé",
       "price": 20000,
-      "type":"Bánh mì"
+      "type": "Bánh mì"
     },
     {
       "id": 91,
@@ -861,7 +851,7 @@
       "img": "https://www.cet.edu.vn/wp-content/uploads/2020/08/nuoc-ep-buoi-tot-cho-tim-mach.jpg",
       "name": "Nước ép bưởi",
       "price": 25000,
-      "type":"Đồ uống"
+      "type": "Đồ uống"
     },
     {
       "id": 94,
@@ -869,7 +859,7 @@
       "img": "https://tieudung.kinhtedothi.vn/upload_images/images/2021/10/04/nuoc-dep-luu.jpg",
       "name": "Nước ép lựu",
       "price": 35000,
-      "type":"Đồ uống"
+      "type": "Đồ uống"
     },
     {
       "id": 95,
@@ -877,7 +867,7 @@
       "img": "https://toplist.vn/images/800px/nuoc-ep-viet-quat-luu-728692.jpg",
       "name": "Nước ép trái cây ngon việt quất",
       "price": 25000,
-      "type":"Đồ uống"
+      "type": "Đồ uống"
     },
     {
       "id": 96,
@@ -885,7 +875,7 @@
       "img": "https://quangon.vn/resources/2020/05/07/nuoc-ep-dau-tay-1.jpg",
       "name": "Nước ép dâu",
       "price": 35000,
-      "type":"Đồ uống"
+      "type": "Đồ uống"
     },
     {
       "id": 97,
@@ -893,7 +883,7 @@
       "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOGa-CP9PiX4j1dyciQHTSFiRGhqAnU0Fweg&usqp=CAU",
       "name": "Trà sữa trân châu đường đen",
       "price": 35000,
-      "type":"Đồ uống"
+      "type": "Đồ uống"
     },
     {
       "id": 98,
@@ -901,7 +891,7 @@
       "img": "https://hocphache.com.vn/wp-content/uploads/2019/08/thuong-thuc-tra-sua-kem-cheese-man.jpg",
       "name": "Hồng trà kem cheese",
       "price": 45000,
-      "type":"Đồ uống"
+      "type": "Đồ uống"
     },
     {
       "id": 99,
@@ -909,7 +899,7 @@
       "img": "https://hc.com.vn/i/ecommerce/media/ckeditor_3315716.jpg",
       "name": "Trà chanh đào",
       "price": 25000,
-      "type":"Đồ uống"
+      "type": "Đồ uống"
     },
     {
       "id": 100,
@@ -917,11 +907,7 @@
       "img": "https://horecavn.com/uploads/images/bai-viet/cong-thuc-tra-dao-cam-sa-chuan-vi-quan-2-.jpg",
       "name": "Trà đào cam sả",
       "price": 35000,
-      "type":"Đồ uống"
+      "type": "Đồ uống"
     }
-
-
-    
-    
   ]
 }
