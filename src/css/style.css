@@ -34400,3 +34400,8 @@ display: flex;
         width: 112%;
         margin-left: 20px;
   }
+  .icon_showPassword{
+        position: relative;
+        right: 23px;
+        top: 9px;
+    }

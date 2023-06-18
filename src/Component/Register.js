@@ -12,7 +12,7 @@ import "../css/style.css"
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import ReCAPTCHA from "react-google-recaptcha";
-   
+import bcrypt from 'bcryptjs';   
 export default function Register(){
     const { t, i18n } = useTranslation();
 
@@ -30,6 +30,7 @@ export default function Register(){
     const[account,setAccount] = useState([]);
     const [hashedPassword, setHashedPassword] = useState('');
     const navigate = useNavigate();
+    
     const key = "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
     const [verfied,setVerfied] = useState(false)
     const handleRecaptchaChange = (value) => {
@@ -134,10 +135,18 @@ export default function Register(){
         setPhone(e.target.value)
         setErrorPhone("")
       }
-      
-      
+    // hàm mã hóa mật khẩu truyền vào pass để mã hóa
+      const handleEncryptPassword = (pass) => {
+        // tạo ra 1 chuỗi kí tự để làm mật khẩu có độ khó cao hơn tránh bị hack
+        const salt = "$2a$10$OzxjyRiCqovM/1ANh3K0EO"
+        // sử dụng thư viện bcrypt gọi tới hàm hashSync để mã hóa
+        const hashed = bcrypt.hashSync(pass, salt);
+        // trả về kết quả đã mã hóa
+        return hashed;
+      };
+      console.log(handleEncryptPassword("phanan123"))
+    
     async function registerUser() {
-  
     
         if(!checkEmail() || !checkUserName() || !checkPassWord() || !checkConfirmPass() || !checkPhone()){
             return;
@@ -147,9 +156,10 @@ export default function Register(){
 
         } 
         else{
+        // tạo 1 đối tượng userData để lưu vào API
             const userData = {
                 email: email,
-                pass: password,
+                pass: handleEncryptPassword(password),
                 name: username,
                 phone: phone,
                 // address: "Linh Tây, Thủ Đức",

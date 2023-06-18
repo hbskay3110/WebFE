@@ -12,8 +12,11 @@ import "../css/style.css"
 import { Navigate, useNavigate } from "react-router-dom";
 import { set } from "firebase/database";
 import { useTranslation } from "react-i18next";
-
-
+// thư viện mã hóa mk
+import bcrypt from 'bcryptjs';
+// thư viện icon hiển thị mật khẩu
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 <style>
 
 </style>
@@ -21,8 +24,9 @@ export default function Login() {
   
     const { t, i18n } = useTranslation();
     const[email, setEmail]= useState("");
-
     const[password, setPassword]= useState("");
+    // hiển thị mật khẩu
+    const[showPassword, setShowPassword] = useState(false);
     const[errorEmail, setErrorEmail]= useState("");
     const[errorPass, setErrorPass]= useState("");
     const[account,setAccount] = useState([]);
@@ -39,14 +43,25 @@ export default function Login() {
 		} 
 		fetchPostList()
 	},[])
-    
+    // hàm mã hóa mật khẩu
+    const handleEncryptPassword = (pass) => {
+        const salt = "$2a$10$OzxjyRiCqovM/1ANh3K0EO"
+        const hashed = bcrypt.hashSync(pass, salt);
+        return hashed;
+      };
+    // hàm hiển thị password
+      const toggleShowPassword = () => {
+        // cập nhật giá trị ngược lại, nếu đang false thì nó là ẩn, true thì hiện
+        setShowPassword(!showPassword);
+      };
     async function login() {
         let isEmailValid = true;
         let isPasswordValid = true;
       
         for (var i = 0; i < account.length; i++) {
           if (account[i].email === email) {
-            if (account[i].pass === password) {
+            // kiểm tra mật khẩu trong tài khoản có giống với mật khẩu đã được mã hóa không
+            if (account[i].pass === handleEncryptPassword(password)) {
               // set password bằng rỗng để lưu vào localStorage
               account[i].pass = "";
               // lưu vào local storage
@@ -106,7 +121,12 @@ export default function Login() {
                                                 </div>
                                                 <div className="mb-3">
                                                     <label className="mb-1"><strong>{t('password')}</strong></label>
-                                                    <input type="password" onChange={(e)=>setPassword(e.target.value)} className="form-control" placeholder="" />
+                                                   <div className="d-flex">
+                                                    <input type={showPassword ? 'text' : 'password'} onChange={(e)=>setPassword(e.target.value)} className="form-control" placeholder="" />
+                                                     <p className="icon_showPassword"onClick={toggleShowPassword}>
+                                                        <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                                                     </p>
+                                                    </div>
                                                 </div>
                                                 <div className="mb-3">
                                                     <span className="mb-1 errorLogin">{errorPass}</span>
