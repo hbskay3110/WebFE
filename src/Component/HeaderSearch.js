@@ -87,7 +87,7 @@ export default  function HeaderSearch({onSearchChange}){
 											<path d="M12.8333 18.6667C16.055 18.6667 18.6666 16.055 18.6666 12.8333C18.6666 9.61168 16.055 7 12.8333 7C9.61163 7 6.99996 9.61168 6.99996 12.8333C6.99996 16.055 9.61163 18.6667 12.8333 18.6667ZM12.8333 21C8.32297 21 4.66663 17.3437 4.66663 12.8333C4.66663 8.32301 8.32297 4.66667 12.8333 4.66667C17.3436 4.66667 21 8.32301 21 12.8333C21 17.3437 17.3436 21 12.8333 21Z" fill="var(--primary)"/>
 											</svg>
 											</a></span>
-                                                    <input type="text" className="form-control"  placeholder="What do you want eat today"  onChange={handleSearchChange}/>
+                                                    <input type="text" className="form-control" placeholder={t('whateattoday')}   onChange={handleSearchChange}/>
                                                 </div>
                                                 <div className="search-drop">
                                                     <div className="card tag-bx">
