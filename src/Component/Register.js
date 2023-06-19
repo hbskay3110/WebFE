@@ -12,7 +12,7 @@ import "../css/style.css"
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import ReCAPTCHA from "react-google-recaptcha";
-   
+import bcrypt from 'bcryptjs';   
 export default function Register(){
     const { t, i18n } = useTranslation();
 
@@ -30,6 +30,7 @@ export default function Register(){
     const[account,setAccount] = useState([]);
     const [hashedPassword, setHashedPassword] = useState('');
     const navigate = useNavigate();
+    
     const key = "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
     const [verfied,setVerfied] = useState(false)
     const handleRecaptchaChange = (value) => {
@@ -134,8 +135,20 @@ export default function Register(){
         setPhone(e.target.value)
         setErrorPhone("")
       }
+    
+        const generateSalt = () => {
+            const salt = bcrypt.genSaltSync(10); // Tạo muối (salt)
+        return salt;
+        };
       
-      
+        console.log(generateSalt())
+      const handleEncryptPassword = (pass) => {
+        const salt = "$2a$10$OzxjyRiCqovM/1ANh3K0EO"
+        const hashed = bcrypt.hashSync(pass, salt);
+        return hashed;
+      };
+      console.log(handleEncryptPassword("phanan123"))
+    
     async function registerUser() {
   
     
@@ -149,7 +162,7 @@ export default function Register(){
         else{
             const userData = {
                 email: email,
-                pass: password,
+                pass: handleEncryptPassword(password),
                 name: username,
                 phone: phone,
                 // address: "Linh Tây, Thủ Đức",
