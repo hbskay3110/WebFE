@@ -34287,10 +34287,21 @@ p {
       margin-top: 0;
     }
   }
-  .FItem { 
+  /* .FItem { 
 display: flex;
-}
-
+} */
+.FItem {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -15px;
+  }
+  
+  .FItem > .col-xl-3,
+  .FItem > .col-xxl-4,
+  .FItem > .col-sm-6 {
+    padding: 15px;
+    box-sizing: border-box;
+  }
 .metismenu .active i {
     /* background-color: orange; */
     color: var(--primary);
