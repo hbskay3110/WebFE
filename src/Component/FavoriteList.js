@@ -35,10 +35,11 @@ export default function FavoriteList() {
   }, []);
   // lấy danh sách yêu thích từ store
   const favorites = useSelector((state) => state.root.favorites);
+  console.log({favorites});
 
   // phân trang
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 6;
+  const productsPerPage = 12;
 
   // Tính toán chỉ số bắt đầu và chỉ số kết thúc của sản phẩm trên trang hiện tại
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -47,6 +48,7 @@ export default function FavoriteList() {
     indexOfFirstProduct,
     indexOfLastProduct
   );
+  console.log({currentProducts});
 
   // Tính tổng số trang
   const totalPages = Math.ceil(favorites.length / productsPerPage);
@@ -139,6 +141,7 @@ export default function FavoriteList() {
       </div>
     );
   };
+  
   return (
     <div>
       <div id="main-wrapper">

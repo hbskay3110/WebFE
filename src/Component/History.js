@@ -37,7 +37,7 @@ export default function History() {
 
   // phân trang
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 2;
+  const productsPerPage = 12;
 
   // Tính toán chỉ số bắt đầu và chỉ số kết thúc của sản phẩm trên trang hiện tại
   const indexOfLastProduct = currentPage * productsPerPage;
