@@ -12,6 +12,7 @@ import "../css/style.css"
 import { Navigate, useNavigate } from "react-router-dom";
 import { set } from "firebase/database";
 import { useTranslation } from "react-i18next";
+
 // thư viện mã hóa mk
 import bcrypt from 'bcryptjs';
 // thư viện icon hiển thị mật khẩu
@@ -44,16 +45,19 @@ export default function Login() {
 		fetchPostList()
 	},[])
     // hàm mã hóa mật khẩu
+
     const handleEncryptPassword = (pass) => {
         const salt = "$2a$10$OzxjyRiCqovM/1ANh3K0EO"
         const hashed = bcrypt.hashSync(pass, salt);
         return hashed;
       };
+
     // hàm hiển thị password
       const toggleShowPassword = () => {
         // cập nhật giá trị ngược lại, nếu đang false thì nó là ẩn, true thì hiện
         setShowPassword(!showPassword);
       };
+
     async function login() {
         let isEmailValid = true;
         let isPasswordValid = true;
