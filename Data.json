@@ -118,6 +118,118 @@
       "dob": "21/09/2002"
     }
   ],
+  "comment": [
+    {
+      "email": "phanthyan123@gmail.com",
+      "productId": 2,
+      "name": "Phan Thị An",
+      "createAt": "19/6/2023 3:57:29",
+      "commentContent": "ngon quá",
+      "rating": "3",
+      "status": 0,
+      "id": 1
+    },
+    {
+      "email": "phanthyan123@gmail.com",
+      "name": "Phan Thị An",
+      "productId": 2,
+      "createAt": "19/6/2023 4:17:17",
+      "commentContent": "ngon quá đi <3",
+      "rating": "1",
+      "status": 0,
+      "id": 2
+    },
+    {
+      "email": "phanthyan123@gmail.com",
+      "name": "Phan Thị An",
+      "productId": "3",
+      "createAt": "19/6/2023 8:48:51",
+      "commentContent": "ngon",
+      "rating": "1",
+      "status": 0,
+      "id": 3
+    },
+    {
+      "email": "phanthyan123@gmail.com",
+      "name": "Phan Thị An",
+      "productId": "4",
+      "createAt": "19/6/2023 8:57:10",
+      "commentContent": "bao ngon",
+      "rating": "1",
+      "status": 0,
+      "id": 4
+    },
+    {
+      "email": "phanthyan123@gmail.com",
+      "name": "Phan Thị An",
+      "productId": "4",
+      "createAt": "19/6/2023 8:57:13",
+      "commentContent": "bao ngon",
+      "rating": "1",
+      "status": 0,
+      "id": 5
+    },
+    {
+      "email": "phanthyan123@gmail.com",
+      "name": "Phan Thị An",
+      "productId": "8",
+      "createAt": "19/6/2023 9:1:49",
+      "commentContent": "oke",
+      "rating": "2",
+      "status": 0,
+      "id": 6
+    },
+    {
+      "email": "phanthyan123@gmail.com",
+      "name": "Phan Thị An",
+      "productId": "8",
+      "createAt": "19/6/2023 9:4:21",
+      "commentContent": "okerr",
+      "rating": "3",
+      "status": 0,
+      "id": 7
+    },
+    {
+      "email": "phanthyan123@gmail.com",
+      "name": "Phan Thị An",
+      "productId": "8",
+      "createAt": "19/6/2023 9:6:22",
+      "commentContent": "ngon nhức",
+      "rating": "3",
+      "status": 0,
+      "id": 8
+    },
+    {
+      "email": "phanthyan123@gmail.com",
+      "name": "Phan Thị An",
+      "productId": "2",
+      "createAt": "19/6/2023 10:22:36",
+      "commentContent": "tuyệt",
+      "rating": "2",
+      "status": 0,
+      "id": 9
+    },
+    {
+      "email": "phanthyan123@gmail.com",
+      "name": "Phan Thị An",
+      "productId": "3",
+      "createAt": "19/6/2023 10:24:33",
+      "commentContent": "tuyệt vời",
+      "rating": "2",
+      "status": 0,
+      "id": 10
+    },
+    {
+      "email": "phanthyan123@gmail.com",
+      "name": "Phan Thị An",
+      "productId": "3",
+      "createAt": "19/6/2023 10:35:0",
+      "commentContent": "ngon",
+      "rating": "4",
+      "status": 0,
+      "id": 11
+    }
+  ],
   "products": [
     {
       "id": 1,
