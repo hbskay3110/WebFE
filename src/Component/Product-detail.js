@@ -8,10 +8,12 @@ import Footer from "./Footer";
 import NavHeader from "./NavHeader";
 import Header from "./Header";
 import NavMenu from "./NavMenu";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addCart } from "../Store/Action";
 import { useTranslation } from "react-i18next";
+import { async } from "q";
+import axios from "axios";
 
 export default function ProductDetail(){
     const { t, i18n } = useTranslation();
@@ -242,10 +244,13 @@ export default function ProductDetail(){
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
+        <FormComment/>
+
                     </div>
+                   
                 </div>
-            
+          
             <Footer/>
         </div>
         
@@ -262,3 +267,171 @@ export const ShareButton = ({ url, quote }) => {
       
     );
   };
+  const FormComment = () => {
+  const { idProduct } = useParams();
+  const [comment, setComment] = useState('');
+  const [comments, setComments] = useState([]);
+  const [errorComment, setErrorComment] = useState('');
+  const [rating, setRating] = useState(0);
+  const [errorRating, setErrorRating] = useState('');
+
+  useEffect(() => {
+    const fetchCommentList = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/comment');
+        const commentsData = await response.json();
+
+        // Lọc danh sách comment chỉ lấy comment của sản phẩm cụ thể
+        const listCommentOfProduct = commentsData.filter(
+          (comment) => comment.productId === idProduct
+        );
+
+        setComments(listCommentOfProduct);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchCommentList();
+  }, [idProduct]);
+
+  const navigate = useNavigate();
+
+  const handleComment = (e) => {
+    setComment(e.target.value);
+    setErrorComment('');
+  };
+
+  const handleRating = (value) => {
+    setRating(value);
+    setErrorRating('');
+  };
+
+  const submitComment = async () => {
+    if (comment === '') {
+      setErrorComment('Vui lòng nhập comment');
+      return;
+    } else if (rating === 0) {
+      setErrorRating('Vui lòng chọn sao đánh giá');
+      return;
+    } else {
+      const userInfoJSON = localStorage.getItem('user-info');
+      if (!userInfoJSON) {
+        navigate('/login');
+      } else {
+        const userInfo = JSON.parse(userInfoJSON);
+        const currentDate = new Date();
+        const day = currentDate.getDate();
+        const month = currentDate.getMonth() + 1;
+        const year = currentDate.getFullYear();
+        const hours = currentDate.getHours();
+        const minutes = currentDate.getMinutes();
+        const seconds = currentDate.getSeconds();
+        const date = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+
+        const commentData = {
+          email: userInfo.email,
+          name: userInfo.name,
+          productId: idProduct,
+          createAt: date,
+          commentContent: comment,
+          rating: rating,
+          status: 0,
+        };
+
+        try {
+          const response = await fetch('http://localhost:3000/comment', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(commentData),
+          });
+
+          if (response.ok) {
+            const updatedCommentsResponse = await fetch(
+              'http://localhost:3000/comment'
+            );
+            const updatedCommentsData = await updatedCommentsResponse.json();
+
+            // Lọc danh sách comment chỉ lấy comment của sản phẩm cụ thể
+            const listCommentOfProduct = updatedCommentsData.filter(
+              (comment) => comment.productId === idProduct
+            );
+
+            setComments(listCommentOfProduct);
+            setComment('');
+            setRating(0);
+          } else {
+            console.error(
+              'Lỗi khi gửi yêu cầu đăng ký:',
+              response.status,
+              response.statusText
+            );
+          }
+        } catch (error) {
+          console.error('Lỗi khi gửi yêu cầu đăng ký:', error.message);
+        }
+      }
+    }
+  };
+    return(
+        <div>
+          <div class="comment-section">
+  <h3>Bình luận và đánh giá</h3>
+  <div class="comment-list">
+    {comments.map((comment)=>(
+        <div class="comment">
+      <div class="avatar"></div>
+      <div class="comment-content">
+  
+        <div class="comment-header">
+          <span class="comment-author">{comment.name}</span>
+         <div className="d-flex">
+         <div className="rating">
+                {[...Array(parseInt(comment.rating))].map((_, index) => (
+                  <React.Fragment key={index}>
+                    <input
+                      type="radio"
+                      id={`star-${comment.id}-${index + 1}`}
+                      name={`rating-${comment.id}`}
+                      checked={true}
+                      readOnly
+                    />
+                    <label htmlFor={`star-${comment.id}-${index + 1}`}  className="star-yellow"></label>
+                  </React.Fragment>
+                ))}
+            </div>
+            <span class="comment-date">{comment.createAt}</span>
+         </div>
+         
+        </div>
+        <p class="comment-text">{comment.commentContent}.</p>
+           
+      </div>
+    </div>
+    ))}
+  
+  </div>
+        <form id="comment-form">
+        <div class="rating">
+      
+      <input type="radio" id="star1" name="rating" value="1" onChange={() => handleRating("5")}/>
+      <label for="star1"></label>
+      <input type="radio" id="star2" name="rating" value="2" onChange={() => handleRating("4")}/>
+      <label for="star2"></label>
+      <input type="radio" id="star3" name="rating" value="3" onChange={() => handleRating("3")}/>
+      <label for="star3"></label>
+      <input type="radio" id="star4" name="rating" value="4" onChange={() => handleRating("2")}/>
+      <label for="star4"></label>
+      <input type="radio" id="star5" name="rating" value="5" onChange={() => handleRating("1")}/>
+      <label for="star5"></label>
+    </div>
+                <textarea id="comment-text" onChange={handleComment} placeholder="Write a comment..."></textarea>
+           
+            <button type="button" onClick={submitComment} >Gửi</button>
+        </form>
+</div>
+        </div>
+    )
+  }
